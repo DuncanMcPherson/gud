@@ -5,3 +5,7 @@ riderModule.iml
 /_ReSharper.Caches/
 .idea/
 .vs/
+
+**/*.DotSettings.user
+Test Dir/
+node_modules/
