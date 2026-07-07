@@ -20,5 +20,5 @@ public sealed class Blob
         return type != ObjectType.Blob ? throw new InvalidOperationException($"{hash} is not a blob") : new Blob(content);
     }
 
-    public void Write(ObjectRepository repo) => repo.WriteObject(ObjectType.Blob, Hash, Content);
+    public void Write(ObjectRepository repo) => repo.WriteObject(ObjectType.Blob, Content);
 }

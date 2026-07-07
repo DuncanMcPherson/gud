@@ -35,7 +35,7 @@ public sealed class Commit
         return Encoding.UTF8.GetBytes(sb.ToString());
     }
     
-    public void Write(ObjectRepository repo) => repo.WriteObject(ObjectType.Commit, Hash, SerializeCommit(this));
+    public void Write(ObjectRepository repo) => repo.WriteObject(ObjectType.Commit, SerializeCommit(this));
 
     public static Commit Read(ObjectRepository repo, string hash)
     {
