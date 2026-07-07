@@ -9,6 +9,7 @@ app.Configure(config =>
 
     config.AddCommand<LogCommand>("log");
     config.AddCommand<CommitCommand>("commit");
+    config.AddCommand<InitCommand>("init");
 });
 
 return await app.RunAsync(args);
