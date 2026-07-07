@@ -14,6 +14,7 @@ public class CommitCommand : AsyncCommand<CommitCommand.Settings>
         [CommandOption("-m|--message")]
         public string? Message { get; set; }
         
+        [Obsolete("Set user.name and user.email in gud config instead")]
         [CommandOption("--author")]
         public string? Author { get; set; }
     }
@@ -30,13 +31,16 @@ public class CommitCommand : AsyncCommand<CommitCommand.Settings>
             AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
             return 1;
         }
+        var configStore = new ConfigStore(Path.Combine(root, ".gud"));
         var message = string.IsNullOrWhiteSpace(settings.Message)
             ? AnsiConsole.Ask<string>("Commit message:")
             : settings.Message!;
-        
-        var author = string.IsNullOrWhiteSpace(settings.Author)
-            ? AnsiConsole.Ask<string>("Author name:")
-            : settings.Author!;
+        var author = configStore.Get("user.name");
+        if (string.IsNullOrWhiteSpace(author) || !string.IsNullOrWhiteSpace(settings.Author))
+        {
+            AnsiConsole.MarkupLine("[yellow]Warning:[/] '--author' is deprecated and will be removed in a future version.");
+            author = settings.Author ?? AnsiConsole.Ask<string>("Author name:");
+        }
 
         var repo = new ObjectRepository(new ObjectStore(Path.Combine(root, ".gud")));
         var refStore = new RefStore(Path.Combine(root, ".gud"));
