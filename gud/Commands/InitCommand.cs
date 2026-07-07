@@ -22,7 +22,7 @@ public class InitCommand : AsyncCommand<InitCommand.Settings>
         Directory.CreateDirectory(Path.Combine(gudPath, "objects"));
         Directory.CreateDirectory(Path.Combine(gudPath, "refs", "heads"));
 
-        await File.WriteAllTextAsync(Path.Combine(gudPath, "HEAD"), "ref refs/heads/main\n", cancellationToken);
+        await File.WriteAllTextAsync(Path.Combine(gudPath, "HEAD"), "ref: refs/heads/main\n", cancellationToken);
         
         AnsiConsole.MarkupLine($"[green]Initialized empty gud repository[/] in {gudPath}");
         return 0;
