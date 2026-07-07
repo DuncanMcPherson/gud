@@ -2,6 +2,7 @@
 using gud.Models;
 using gud.Repository;
 using gud.Stores;
+using gud.Utilities;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
@@ -15,8 +16,18 @@ public class LogCommand : AsyncCommand<LogCommand.Settings>
 
     protected override async Task<int> ExecuteAsync(CommandContext context, Settings settings, CancellationToken cancellationToken)
     {
-        var repo = new ObjectRepository(new ObjectStore(".gud"));
-        var refStore = new RefStore(".gud");
+        string root;
+        try
+        {
+            root = GudRepository.RequireRoot();
+        }
+        catch (InvalidOperationException ex)
+        {
+            AnsiConsole.MarkupLine($"[red]Error:[/] {ex.Message}");
+            return 1;
+        }
+        var repo = new ObjectRepository(new ObjectStore(Path.Combine(root, ".gud")));
+        var refStore = new RefStore(Path.Combine(root, ".gud"));
 
         var current = refStore.GetHead();
         if (string.IsNullOrEmpty(current))
