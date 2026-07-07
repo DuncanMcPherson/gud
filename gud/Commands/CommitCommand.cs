@@ -1,6 +1,7 @@
 ﻿using gud.Repository;
 using gud.Services;
 using gud.Stores;
+using gud.Utilities;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
@@ -19,6 +20,16 @@ public class CommitCommand : AsyncCommand<CommitCommand.Settings>
 
     protected override async Task<int> ExecuteAsync(CommandContext context, Settings settings, CancellationToken ct)
     {
+        string root;
+        try
+        {
+            root = GudRepository.RequireRoot();
+        }
+        catch (InvalidOperationException ex)
+        {
+            AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
+            return 1;
+        }
         var message = string.IsNullOrWhiteSpace(settings.Message)
             ? AnsiConsole.Ask<string>("Commit message:")
             : settings.Message!;
@@ -27,8 +38,8 @@ public class CommitCommand : AsyncCommand<CommitCommand.Settings>
             ? AnsiConsole.Ask<string>("Author name:")
             : settings.Author!;
 
-        var repo = new ObjectRepository(new ObjectStore(".gud"));
-        var refStore = new RefStore(".gud");
+        var repo = new ObjectRepository(new ObjectStore(Path.Combine(root, ".gud")));
+        var refStore = new RefStore(Path.Combine(root, ".gud"));
         var builder = new CommitBuilder(repo);
 
         var parentHash = refStore.GetHead();

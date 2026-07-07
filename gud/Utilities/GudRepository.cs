@@ -18,7 +18,7 @@ public static class GudRepository
         return null;
     }
 
-    public static string? RequireRoot()
+    public static string RequireRoot()
     {
         var root = FindRoot(Directory.GetCurrentDirectory());
         return root ?? throw new InvalidOperationException("Not a gud repository");
