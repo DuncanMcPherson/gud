@@ -1,3 +1,4 @@
+using System.Text;
 using gud.Repository;
 using gud.Utilities;
 
@@ -21,4 +22,9 @@ public sealed class Blob
     }
 
     public void Write(ObjectRepository repo) => repo.WriteObject(ObjectType.Blob, Content);
+    
+    public override string ToString()
+    {
+        return $"Blob: {Hash}\n\tContent: {Content.Length} bytes\n\tFileContent: {Encoding.UTF8.GetString(Content)}";
+    }
 }

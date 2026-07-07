@@ -1,7 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
 using gud.Stores;
-using gud.Utilities;
 
 namespace gud.Repository;
 
@@ -24,9 +23,20 @@ public class ObjectRepository(ObjectStore store)
         var nullIndex = Array.IndexOf(raw, (byte)'\0');
         var headerString = Encoding.UTF8.GetString(raw, 0, nullIndex);
         var parts = headerString.Split(' ');
-        var type = Enum.Parse<ObjectType>(parts[0]);
+        var type = ParseType(parts[0]);
         var content = raw[(nullIndex + 1)..];
         return (type, content);
+    }
+
+    private ObjectType ParseType(string typeStr)
+    {
+        return typeStr switch
+        {
+            "blob" => ObjectType.Blob,
+            "tree" => ObjectType.Tree,
+            "commit" => ObjectType.Commit,
+            _ => throw new IndexOutOfRangeException()
+        };
     }
 }
 

@@ -30,7 +30,7 @@ public sealed class Tree
         var (type, content) = repo.ReadObject(hash);
         if (type != ObjectType.Tree) throw new InvalidOperationException($"{hash} is not a tree");
         var contentStr = Encoding.UTF8.GetString(content);
-        var entryStrs = contentStr.Split('\n');
+        var entryStrs = contentStr.Split('\n', StringSplitOptions.RemoveEmptyEntries);
         var entries = (from entryStr in entryStrs
             select entryStr.Split(' ')
             into parts
@@ -45,6 +45,11 @@ public sealed class Tree
     {
         repo.WriteObject(ObjectType.Tree, SerializeTree(Entries));
     }
+    
+    public override string ToString()
+    {
+        return $"Tree: {Hash}\n\tEntries:\n\t\t{string.Join(",\n\t\t", Entries)}";
+    }
 }
 
 public sealed class TreeEntry
@@ -52,6 +57,11 @@ public sealed class TreeEntry
     public string Name { get; init; }
     public string Hash { get; init; }
     public TreeEntryType Type { get; init; }
+    
+    public override string ToString()
+    {
+        return $"TreeEntry: {Name}\n\tType: {Type}\n\tHash: {Hash}";
+    }
 }
 
 public enum TreeEntryType
