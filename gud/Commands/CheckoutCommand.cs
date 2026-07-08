@@ -11,6 +11,13 @@ namespace gud.Commands;
 
 public class CheckoutCommand : Command<CheckoutCommand.Settings>
 {
+    private readonly IAnsiConsole _console;
+    
+    public CheckoutCommand(IAnsiConsole console)
+    {
+        _console = console;
+    }
+
     public class Settings : CommandSettings
     {
         [CommandArgument(0, "<target>")]
@@ -28,7 +35,7 @@ public class CheckoutCommand : Command<CheckoutCommand.Settings>
         }
         catch (InvalidOperationException ex)
         {
-            AnsiConsole.MarkupLine($"[red]Error:[/] {ex.Message}");
+            _console.MarkupLine($"[red]Error:[/] {ex.Message}");
             return 1;
         }
         var gudPath = Path.Combine(root, ".gud");
@@ -40,7 +47,7 @@ public class CheckoutCommand : Command<CheckoutCommand.Settings>
         var targetCommit = branches.ResolveTarget(settings.Target);
         if (string.IsNullOrEmpty(targetCommit))
         {
-            AnsiConsole.MarkupLine($"[red]Error:[/] '{settings.Target}' is not a valid branch or commit");
+            _console.MarkupLine($"[red]Error:[/] '{settings.Target}' is not a valid branch or commit");
             return 1;
         }
 
@@ -48,7 +55,7 @@ public class CheckoutCommand : Command<CheckoutCommand.Settings>
 
         if (builder.HasUncommittedChanges(root, headCommit))
         {
-            AnsiConsole.MarkupLine($"[red]Error:[/] You have uncommitted changes. Please commit them before checking out a new branch."); // Note: this message will need to be updated once we have stashing
+            _console.MarkupLine($"[red]Error:[/] You have uncommitted changes. Please commit them before checking out a new branch."); // Note: this message will need to be updated once we have stashing
             return 1;
         }
 
@@ -70,7 +77,7 @@ public class CheckoutCommand : Command<CheckoutCommand.Settings>
             refStore.SetBranch(settings.Target);
         else
             refStore.SetHead(targetCommit);
-        AnsiConsole.MarkupLine($"[green]Switched to[/] {settings.Target}");
+        _console.MarkupLine($"[green]Switched to[/] {settings.Target}");
         return 0;
     }
 }

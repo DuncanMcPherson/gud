@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace gud.Utilities;
 
 public static class GudRepository
@@ -18,6 +20,7 @@ public static class GudRepository
         return null;
     }
 
+    [ExcludeFromCodeCoverage]
     public static string RequireRoot()
     {
         var root = FindRoot(Directory.GetCurrentDirectory());

@@ -5,6 +5,13 @@ namespace gud.Commands;
 
 public class InitCommand : AsyncCommand<InitCommand.Settings>
 {
+    private readonly IAnsiConsole _console;
+    
+    public InitCommand(IAnsiConsole console)
+    {
+        _console = console;
+    }
+
     public class Settings : CommandSettings
     {
     }
@@ -15,7 +22,7 @@ public class InitCommand : AsyncCommand<InitCommand.Settings>
 
         if (Directory.Exists(gudPath))
         {
-            AnsiConsole.MarkupLine("[red]Error:[/] Repository already initialized here");
+            _console.MarkupLine("[red]Error:[/] Repository already initialized here");
             return 1;
         }
 
@@ -24,7 +31,7 @@ public class InitCommand : AsyncCommand<InitCommand.Settings>
 
         await File.WriteAllTextAsync(Path.Combine(gudPath, "HEAD"), "ref: refs/heads/main\n", cancellationToken);
         
-        AnsiConsole.MarkupLine($"[green]Initialized empty gud repository[/] in {gudPath}");
+        _console.MarkupLine($"[green]Initialized empty gud repository[/] in {gudPath}");
         return 0;
     }
 }

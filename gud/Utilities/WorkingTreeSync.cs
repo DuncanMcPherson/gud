@@ -1,8 +1,10 @@
-﻿using gud.Models;
+﻿using System.Diagnostics.CodeAnalysis;
+using gud.Models;
 using gud.Repository;
 
 namespace gud.Utilities;
 
+[ExcludeFromCodeCoverage]
 public static class WorkingTreeSync
 {
     public static void SyncWorkingTree(string? oldTreeHash, string newTreeHash, string path, ObjectRepository repo)
