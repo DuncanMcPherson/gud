@@ -23,6 +23,15 @@ public class BranchStore(string gudPath)
         var path = ResolvePath(name);
         return File.Exists(path) ? File.ReadAllText(path).Trim() : null;
     }
+
+    public string? ResolveTarget(string name)
+    {
+        if (Exists(name))
+            return GetCommit(name)!;
+
+        var objectsPath = Path.Combine(gudPath, "objects", name[..2], name[2..]);
+        return File.Exists(objectsPath) ? name : null;
+    }
     
     public void Rename(string oldName, string newName)
     {

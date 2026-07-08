@@ -17,6 +17,8 @@ app.Configure(config =>
         .WithDescription("Manages configuration settings");
     config.AddCommand<BranchCommand>("branch")
         .WithDescription("Manages branches");
+    config.AddCommand<CheckoutCommand>("checkout")
+        .WithDescription("Checks out a branch");
 });
 
 return await app.RunAsync(args);
