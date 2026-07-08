@@ -58,6 +58,8 @@ public class BranchCommand : Command<BranchCommand.Settings>
             }
             
             branches.Rename(currentBranchName, settings.Name);
+            refStore.SetBranch(settings.Name);
+            AnsiConsole.MarkupLine($"[green]Branch '{currentBranchName}' renamed to '{settings.Name}'.[/]");
             return 0;
         }
 
@@ -69,6 +71,7 @@ public class BranchCommand : Command<BranchCommand.Settings>
         }
         
         branches.SetCommit(settings.Name, currentCommit);
+        AnsiConsole.MarkupLine($"[green]Branch '{settings.Name}' created.[/]");
         return 0;
     }
 }

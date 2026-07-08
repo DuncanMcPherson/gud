@@ -21,12 +21,17 @@ public class RefStore(string gudDirectory)
     {
         var headContent = File.ReadAllText(_headPath).Trim();
         
-        if (headContent.StartsWith("ref: "))
+        if (headContent.StartsWith("ref: refs/heads/"))
         {
-            return headContent[5..];
+            return headContent["ref: refs/heads/".Length..];
         }
 
         return null;
+    }
+
+    public void SetBranch(string branch)
+    {
+        File.WriteAllText(_headPath, $"ref: refs/heads/{branch}");
     }
 
     public void SetHead(string hash)
