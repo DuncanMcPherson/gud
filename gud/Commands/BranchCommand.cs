@@ -63,6 +63,12 @@ public class BranchCommand : Command<BranchCommand.Settings>
             return 0;
         }
 
+        if (string.IsNullOrEmpty(currentBranchName) && settings.Rename)
+        {
+            AnsiConsole.MarkupLine("[red]Error:[/] Cannot rename current branch. No branch checked out");
+            return 1;
+        }
+
         var currentCommit = refStore.GetHead();
         if (currentCommit == null)
         {

@@ -13,10 +13,6 @@ public class CommitCommand : AsyncCommand<CommitCommand.Settings>
     {
         [CommandOption("-m|--message")]
         public string? Message { get; set; }
-        
-        [Obsolete("Set user.name and user.email in gud config instead")]
-        [CommandOption("--author")]
-        public string? Author { get; set; }
     }
 
     protected override async Task<int> ExecuteAsync(CommandContext context, Settings settings, CancellationToken ct)
@@ -36,10 +32,10 @@ public class CommitCommand : AsyncCommand<CommitCommand.Settings>
             ? AnsiConsole.Ask<string>("Commit message:")
             : settings.Message!;
         var author = configStore.Get("user.name");
-        if (string.IsNullOrWhiteSpace(author) || !string.IsNullOrWhiteSpace(settings.Author))
+        if (string.IsNullOrWhiteSpace(author))
         {
-            AnsiConsole.MarkupLine("[yellow]Warning:[/] '--author' is deprecated and will be removed in a future version.");
-            author = settings.Author ?? AnsiConsole.Ask<string>("Author name:");
+            AnsiConsole.MarkupLine("[red]Error:[/] Author name is required. Set it in gud config using 'gud config user.name <name>'.");
+            return 1;
         }
 
         var repo = new ObjectRepository(new ObjectStore(Path.Combine(root, ".gud")));
