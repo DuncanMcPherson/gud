@@ -17,6 +17,23 @@ public class RefStore(string gudDirectory)
         return headContent;
     }
 
+    public string? CurrentBranchName()
+    {
+        var headContent = File.ReadAllText(_headPath).Trim();
+        
+        if (headContent.StartsWith("ref: refs/heads/"))
+        {
+            return headContent["ref: refs/heads/".Length..];
+        }
+
+        return null;
+    }
+
+    public void SetBranch(string branch)
+    {
+        File.WriteAllText(_headPath, $"ref: refs/heads/{branch}");
+    }
+
     public void SetHead(string hash)
     {
         var headContent = File.ReadAllText(_headPath).Trim();
