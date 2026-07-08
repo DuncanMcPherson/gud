@@ -55,6 +55,22 @@ public sealed class Commit
         return new Commit(treeHash, parents, author, message, timestamp);
     }
 
+    public static Commit Read(byte[] content)
+    {
+        var contentStr = Encoding.UTF8.GetString(content);
+        var lines = contentStr.Split('\n');
+        var skipLines = 0;
+        // First line in the commit is always the tree hash.
+        var treeHash = lines[skipLines++].Split(' ')[1];
+        var parents = lines.Where(l => l.StartsWith("parent ")).Select(l => l.Split(' ')[1]).ToList();
+        skipLines += parents.Count;
+        var author = lines.Skip(skipLines++).First().Split(' ').Skip(1).Aggregate((a, b) => $"{a} {b}");
+        var timestamp = DateTimeOffset.FromUnixTimeSeconds(long.Parse(lines.Skip(skipLines++).First().Split(' ')[1]));
+        skipLines++;
+        var message = lines.Skip(skipLines).Aggregate((a, b) => a + '\n' + b);
+        return new Commit(treeHash, parents, author, message, timestamp);
+    }
+
     public override string ToString()
     {
         return $"Commit: {Hash}\n\tTree: {TreeHash}\n\tParents: {string.Join(", ", ParentHashes)}\n\tAuthor: {Author}\n\tTimestamp: {Timestamp}\n\tMessage: {Message}";
