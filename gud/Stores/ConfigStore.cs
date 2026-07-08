@@ -31,4 +31,9 @@ public class ConfigStore
         _values[key] = value;
         File.WriteAllLines(_configPath, _values.Select(kv => $"{kv.Key} = {kv.Value}"));
     }
+
+    public IEnumerable<(string key, string value)> All()
+    {
+        return _values.Select(kv => (kv.Key, kv.Value));
+    }
 }
