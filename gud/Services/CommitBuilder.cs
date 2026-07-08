@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using System.Text;
 using gud.Models;
 using gud.Repository;
+using gud.Utilities;
 
 namespace gud.Services;
 
@@ -24,12 +25,36 @@ public class CommitBuilder(ObjectRepository repo)
         return repo.WriteObject(ObjectType.Commit, commitContent);
     }
 
+    public bool HasUncommittedChanges(string root, string? headCommit)
+    {
+        if (string.IsNullOrEmpty(headCommit)) return false;
+        var currentTreeHash = ComputeTreeHash(root);
+        var (_, headContent) = repo.ReadObject(headCommit);
+        var commit = Commit.Read(headContent);
+        return currentTreeHash != commit.TreeHash;
+    }
+
     private static string ComputeEmptyTreeHash()
     {
         var emptyContent = Array.Empty<byte>();
-        var header = Encoding.UTF8.GetBytes("tree 0\0");
+        var header = "tree 0\0"u8.ToArray();
         var full = header.Concat(emptyContent).ToArray();
         return Convert.ToHexString(SHA256.HashData(full)).ToLowerInvariant();
+    }
+
+    private string ComputeTreeHash(string path)
+    {
+        var entries = (from file in Directory.GetFiles(path)
+            let content = File.ReadAllBytes(file)
+            let hash = ObjectHasher.ComputeHash("blob", content)
+            select new TreeEntry { Hash = hash, Name = Path.GetFileName(file), Type = TreeEntryType.Blob }).ToList();
+        entries.AddRange(
+            from subdir in Directory.GetDirectories(path)
+            where !subdir.EndsWith(".gud")
+                let hash = ComputeTreeHash(subdir)
+                    select new TreeEntry{Name = Path.GetFileName(subdir), Hash = hash, Type = TreeEntryType.Tree});
+        var sortedEntries = entries.OrderBy(e => e.Name).ToList();
+        return ObjectHasher.ComputeHash("tree", Tree.SerializeTree(sortedEntries));
     }
     
     private string WriteTree(string path)
