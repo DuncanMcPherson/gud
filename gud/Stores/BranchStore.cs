@@ -16,6 +16,13 @@ public class BranchStore(string gudPath)
         var path = Path.Join(_headsPath, name);
         return File.Exists(path) ? File.ReadAllText(path).Trim() : null;
     }
+    
+    public void Rename(string oldName, string newName)
+    {
+        var oldPath = Path.Join(_headsPath, oldName);
+        var newPath = Path.Join(_headsPath, newName);
+        File.Move(oldPath, newPath);
+    }
 
     public void SetCommit(string branch, string commit)
     {

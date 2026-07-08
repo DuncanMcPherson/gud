@@ -17,6 +17,18 @@ public class RefStore(string gudDirectory)
         return headContent;
     }
 
+    public string? CurrentBranchName()
+    {
+        var headContent = File.ReadAllText(_headPath).Trim();
+        
+        if (headContent.StartsWith("ref: "))
+        {
+            return headContent[5..];
+        }
+
+        return null;
+    }
+
     public void SetHead(string hash)
     {
         var headContent = File.ReadAllText(_headPath).Trim();
