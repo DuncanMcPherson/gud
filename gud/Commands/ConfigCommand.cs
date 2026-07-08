@@ -31,6 +31,8 @@ public class ConfigCommand : AsyncCommand<ConfigCommand.Settings>
             AnsiConsole.MarkupLine($"Failed to get repo root: {ex.Message}");
             return 1;
         }
+        
+        root = Path.Join(root, ".gud");
 
         var configStore = new ConfigStore(root);
 
