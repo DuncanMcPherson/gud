@@ -1,7 +1,0 @@
-package: gud
-Version: 1.0.0
-Architecture: amd64
-Maintainer: Duncan McPherson <d.mcpherson.home@gmail.com>
-Description: A git-inspired version control system
- gud is a content-addressable version control system
- built from scratch in C#
