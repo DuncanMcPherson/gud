@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using gud.Models;
 using gud.Repository;
 using gud.Stores;
 using gud.Utilities;
@@ -10,6 +9,13 @@ namespace gud.Commands;
 
 public class LogCommand : AsyncCommand<LogCommand.Settings>
 {
+    private readonly IAnsiConsole _console;
+    
+    public LogCommand(IAnsiConsole console)
+    {
+        _console = console;
+    }
+
     public class Settings : CommandSettings
     {
     }
@@ -23,7 +29,7 @@ public class LogCommand : AsyncCommand<LogCommand.Settings>
         }
         catch (InvalidOperationException ex)
         {
-            AnsiConsole.MarkupLine($"[red]Error:[/] {ex.Message}");
+            _console.MarkupLine($"[red]Error:[/] {ex.Message}");
             return 1;
         }
         var repo = new ObjectRepository(new ObjectStore(Path.Combine(root, ".gud")));
@@ -32,7 +38,7 @@ public class LogCommand : AsyncCommand<LogCommand.Settings>
         var current = refStore.GetHead();
         if (string.IsNullOrEmpty(current))
         {
-            AnsiConsole.MarkupLine("[yellow]No commits yet[/]");
+            _console.MarkupLine("[yellow]No commits yet[/]");
             return 0;
         }
 
@@ -41,7 +47,7 @@ public class LogCommand : AsyncCommand<LogCommand.Settings>
             var (_, content) = repo.ReadObject(current);
             var (parents, author, message, date) = DeserializeCommit(content);
             
-            AnsiConsole.MarkupLine($"[yellow]{current[..8]}[/] {message.Split('\n')[0]} [grey]({author}, {date:g})[/]");
+            _console.MarkupLine($"[yellow]{current[..8]}[/] {message.Split('\n')[0]} [grey]({author}, {date:g})[/]");
             
             current = parents.FirstOrDefault();
         }

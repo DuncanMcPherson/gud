@@ -7,6 +7,13 @@ namespace gud.Commands;
 
 public class ConfigCommand : AsyncCommand<ConfigCommand.Settings>
 {
+    private readonly IAnsiConsole _console;
+    
+    public ConfigCommand(IAnsiConsole console)
+    {
+        _console = console;
+    }
+
     public class Settings : CommandSettings
     {
         [CommandArgument(0, "[key]")]
@@ -28,7 +35,7 @@ public class ConfigCommand : AsyncCommand<ConfigCommand.Settings>
         }
         catch (InvalidOperationException ex)
         {
-            AnsiConsole.MarkupLine($"Failed to get repo root: {ex.Message}");
+            _console.MarkupLine($"Failed to get repo root: {ex.Message}");
             return 1;
         }
         
@@ -40,7 +47,7 @@ public class ConfigCommand : AsyncCommand<ConfigCommand.Settings>
         {
             foreach (var (key, value) in configStore.All())
             {
-                AnsiConsole.MarkupLine($"[grey]{key}[/] = {value}");
+                _console.MarkupLine($"[grey]{key}[/] = {value}");
             }
 
             return 0;
@@ -48,7 +55,7 @@ public class ConfigCommand : AsyncCommand<ConfigCommand.Settings>
 
         if (string.IsNullOrEmpty(settings.Key))
         {
-            AnsiConsole.MarkupLine("[red]Error:[/] Key is required.");
+            _console.MarkupLine("[red]Error:[/] Key is required.");
             return 1;
         }
 
@@ -57,15 +64,15 @@ public class ConfigCommand : AsyncCommand<ConfigCommand.Settings>
             var existing = configStore.Get(settings.Key);
             if (existing == null)
             {
-                AnsiConsole.MarkupLine($"[yellow]Warning:[/] Key '{settings.Key}' does not exist.");
+                _console.MarkupLine($"[yellow]Warning:[/] Key '{settings.Key}' does not exist.");
                 return 1;
             }
-            AnsiConsole.WriteLine(existing);
+            _console.WriteLine(existing);
             return 0;
         }
         
         configStore.Set(settings.Key, settings.Value);
-        AnsiConsole.MarkupLine($"[green]{settings.Key}[/] set to [grey]{settings.Value}[/]");
+        _console.MarkupLine($"[green]{settings.Key}[/] set to [grey]{settings.Value}[/]");
         return 0;
     }
 }

@@ -38,6 +38,7 @@ public static class MyersDiff
                     return Backtrack(trace, a, b, d);
             }
         }
+        // Spot is unreachable
         return null;
     }
 

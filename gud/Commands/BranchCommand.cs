@@ -8,6 +8,8 @@ namespace gud.Commands;
 
 public class BranchCommand : Command<BranchCommand.Settings>
 {
+    private readonly IAnsiConsole _console;
+    
     public class Settings : CommandSettings
     {
         [CommandArgument(0, "[name]")]
@@ -16,6 +18,11 @@ public class BranchCommand : Command<BranchCommand.Settings>
         [CommandOption("-r")]
         [Description("Renames the current branch if the new branch name does not already exist")]
         public bool Rename { get; set; }
+    }
+    
+    public BranchCommand(IAnsiConsole console)
+    {
+        _console = console;
     }
 
     protected override int Execute(CommandContext context, Settings settings, CancellationToken cancellationToken)
@@ -28,7 +35,7 @@ public class BranchCommand : Command<BranchCommand.Settings>
         }
         catch (InvalidOperationException ex)
         {
-            AnsiConsole.MarkupLine($"[red]Error:[/] {ex.Message}");
+            _console.MarkupLine($"[red]Error:[/] {ex.Message}");
             return 1;
         }
 
@@ -36,16 +43,16 @@ public class BranchCommand : Command<BranchCommand.Settings>
         var branches = new BranchStore(gudPath);
         var refStore = new RefStore(gudPath);
 
-        if (string.IsNullOrEmpty(settings.Name))
+        if (string.IsNullOrEmpty(settings.Name) && !settings.Rename)
         {
             foreach (var branch in branches.ListBranches())
-                AnsiConsole.MarkupLine(branch == refStore.CurrentBranchName() ? $"[green]* {branch}[/]" : $"  {branch}");
+                _console.MarkupLine(branch == refStore.CurrentBranchName() ? $"[green]* {branch}[/]" : $"  {branch}");
             return 0;
         }
 
-        if (branches.Exists(settings.Name))
+        if (branches.Exists(settings.Name!))
         {
-            AnsiConsole.MarkupLine($"[red]Error:[/] Branch '{settings.Name}' already exists.");
+            _console.MarkupLine($"[red]Error:[/] Branch '{settings.Name}' already exists.");
             return 1;
         }
         var currentBranchName = refStore.CurrentBranchName();
@@ -53,31 +60,31 @@ public class BranchCommand : Command<BranchCommand.Settings>
         {
             if (string.IsNullOrEmpty(settings.Name))
             {
-                AnsiConsole.MarkupLine($"[red]Error:[/] Branch name cannot be empty");
+                _console.MarkupLine($"[red]Error:[/] Branch name cannot be empty");
                 return 1;
             }
             
             branches.Rename(currentBranchName, settings.Name);
             refStore.SetBranch(settings.Name);
-            AnsiConsole.MarkupLine($"[green]Branch '{currentBranchName}' renamed to '{settings.Name}'.[/]");
+            _console.MarkupLine($"[green]Branch '{currentBranchName}' renamed to '{settings.Name}'.[/]");
             return 0;
         }
 
         if (string.IsNullOrEmpty(currentBranchName) && settings.Rename)
         {
-            AnsiConsole.MarkupLine("[red]Error:[/] Cannot rename current branch. No branch checked out");
+            _console.MarkupLine("[red]Error:[/] Cannot rename current branch. No branch checked out");
             return 1;
         }
 
         var currentCommit = refStore.GetHead();
         if (currentCommit == null)
         {
-            AnsiConsole.MarkupLine("[red]Error:[/] No commits yet - cannot branch");
+            _console.MarkupLine("[red]Error:[/] No commits yet - cannot branch");
             return 1;
         }
         
-        branches.SetCommit(settings.Name, currentCommit);
-        AnsiConsole.MarkupLine($"[green]Branch '{settings.Name}' created.[/]");
+        branches.SetCommit(settings.Name!, currentCommit);
+        _console.MarkupLine($"[green]Branch '{settings.Name}' created.[/]");
         return 0;
     }
 }

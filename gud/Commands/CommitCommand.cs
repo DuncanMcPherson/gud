@@ -9,6 +9,13 @@ namespace gud.Commands;
 
 public class CommitCommand : AsyncCommand<CommitCommand.Settings>
 {
+    private readonly IAnsiConsole _console;
+    
+    public CommitCommand(IAnsiConsole console)
+    {
+        _console = console;
+    }
+
     public class Settings : CommandSettings
     {
         [CommandOption("-m|--message")]
@@ -24,17 +31,17 @@ public class CommitCommand : AsyncCommand<CommitCommand.Settings>
         }
         catch (InvalidOperationException ex)
         {
-            AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
+            _console.MarkupLine($"[red]{ex.Message}[/]");
             return 1;
         }
         var configStore = new ConfigStore(Path.Combine(root, ".gud"));
         var message = string.IsNullOrWhiteSpace(settings.Message)
-            ? AnsiConsole.Ask<string>("Commit message:")
+            ? _console.Ask<string>("Commit message:")
             : settings.Message!;
         var author = configStore.Get("user.name");
         if (string.IsNullOrWhiteSpace(author))
         {
-            AnsiConsole.MarkupLine("[red]Error:[/] Author name is required. Set it in gud config using 'gud config user.name <name>'.");
+            _console.MarkupLine("[red]Error:[/] Author name is required. Set it in gud config using 'gud config user.name <name>'.");
             return 1;
         }
 
@@ -47,7 +54,7 @@ public class CommitCommand : AsyncCommand<CommitCommand.Settings>
 
         var commitHash = builder.CommitDirectory(".", parents, author, message);
         refStore.SetHead(commitHash);
-        AnsiConsole.MarkupLine($"[green]Committed[/] {commitHash[..8]}");
+        _console.MarkupLine($"[green]Committed[/] {commitHash[..8]}");
         return 0;
     }
 }
