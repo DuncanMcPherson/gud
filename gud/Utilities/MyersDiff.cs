@@ -38,10 +38,11 @@ public static class MyersDiff
                     return Backtrack(trace, a, b, d);
             }
         }
+        // Spot is unreachable
         return null;
     }
 
-    private static List<DiffEdit>? Backtrack(List<Dictionary<int, int>> trace, string[] a, string[] b, int d)
+    private static List<DiffEdit> Backtrack(List<Dictionary<int, int>> trace, string[] a, string[] b, int d)
     {
         var edits = new List<DiffEdit>();
         int x = a.Length, y = b.Length;

@@ -1,0 +1,133 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  version:
+    name: Generate Release Version
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.semantic.outputs.new_release_version }}
+      tag: ${{ steps.semantic.outputs.new_release_git_tag }}
+      notes: ${{ steps.semantic.outputs.new_release_notes }}
+      released: ${{ steps.semantic.outputs.new_release_published }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+      - name: Install Dependencies
+        run: npm ci
+      - name: Generate version
+        id: semantic
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          semantic_version: 24
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  build:
+    name: Build and Release
+    needs: version
+    runs-on: ubuntu-latest
+    if: ${{ needs.version.outputs.released == 'true' }}
+    strategy:
+      matrix:
+        rid: [win-x64, linux-x64]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        name: Setup .NET
+        with:
+          dotnet-version: 10.0.x
+          cache: 'true'
+          cache-dependency-path: '**/packages.lock.json'
+      - name: Restore Packages
+        run: dotnet restore
+      - name: Set Build Version
+        env:
+          VERSION: ${{ needs.version.outputs.version }}
+        run: |
+          python3 - << 'PY'
+          import os, glob, xml.etree.ElementTree as ET
+  
+          version = os.environ['VERSION']
+  
+          paths = [
+              p for p in glob.glob("**/*.csproj", recursive=True)
+              if "bin" + os.sep not in p and "obj" + os.sep not in p
+          ]
+
+          for path in paths:
+              tree = ET.parse(path)
+              root = tree.getroot()
+  
+              ns = ""
+              if root.tag.startswith("{"):
+                  ns = root.tag.split("}")[0] + "}"
+  
+              def find_or_create(parent, tag):
+                  el = parent.find(f"{ns}{tag}")
+                  if el is None:
+                      el = ET.SubElement(parent, f"{ns}{tag}")
+                  return el
+  
+              pg = root.find(f"{ns}PropertyGroup")
+              if pg is None:
+                  pg = ET.SubElement(root, f"{ns}PropertyGroup")
+  
+              find_or_create(pg, "Version").text = version
+              find_or_create(pg, "AssemblyVersion").text = version
+              find_or_create(pg, "FileVersion").text = version
+              find_or_create(pg, "InformationalVersion").text = version
+  
+              tree.write(path, encoding="utf-8", xml_declaration=True)
+              print(f"Stamped {path} with version {version}")
+          PY
+      - name: Build
+        run: |
+          dotnet publish gud/gud.csproj \
+          --configuration Release \
+          --runtime ${{ matrix.rid }} \
+          --self-contained true \
+          --output ./publish/${{ matrix.rid }}
+      - name: Create Archive
+        env:
+          VERSION: ${{ needs.version.outputs.version }}
+        run: |
+          zip -j ./publish/${{ matrix.rid }}/gud-${{ matrix.rid }}-${{ env.VERSION }}.zip \
+          ./publish/${{ matrix.rid }}/*
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: drop-${{ matrix.rid }}
+          path: ./publish/${{ matrix.rid }}/*.zip
+  release:
+    name: Publish Release
+    needs: [version, build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: drop-*
+          merge-multiple: true
+          path: ./release-assets
+      - name: Create Release ${{ needs.version.outputs.version }}
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ./release-assets/*.zip
+          tag_name: ${{ needs.version.outputs.tag }}
+          prerelease: false
+          body: ${{ needs.version.outputs.notes }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

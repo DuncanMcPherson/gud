@@ -1,19 +1,24 @@
-﻿using gud.Utilities;
+﻿using Spectre.Console.Cli;
+using gud.Commands;
 
-namespace gud;
+var app = new CommandApp();
 
-internal static class Program
+app.Configure(config =>
 {
-    private static void Main(string[] args)
-    {
-        var fileA = args[0];
-        var fileB = args[1];
-        
-        var a = File.ReadAllLines(fileA);
-        var b = File.ReadAllLines(fileB);
-        
-        var edits = MyersDiff.Compute(a, b);
-        foreach (var edit in edits!)
-            Console.WriteLine($"{edit.Type,-6} {edit.Line}");
-    }
-}
+    config.SetApplicationName("gud");
+
+    config.AddCommand<LogCommand>("log")
+        .WithDescription("Shows the commit logs");
+    config.AddCommand<CommitCommand>("commit")
+        .WithDescription("Creates a new commit");
+    config.AddCommand<InitCommand>("init")
+        .WithDescription("Initializes a new repository");
+    config.AddCommand<ConfigCommand>("config")
+        .WithDescription("Manages configuration settings");
+    config.AddCommand<BranchCommand>("branch")
+        .WithDescription("Manages branches");
+    config.AddCommand<CheckoutCommand>("checkout")
+        .WithDescription("Checks out a branch");
+});
+
+return await app.RunAsync(args);
