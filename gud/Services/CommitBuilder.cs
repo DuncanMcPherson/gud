@@ -60,14 +60,11 @@ public class CommitBuilder(ObjectRepository repo)
     private string WriteTree(string path)
     {
         var entries = (from file in Directory.GetFiles(path) let content = File.ReadAllBytes(file) let hash = repo.WriteObject(ObjectType.Blob, content) select new TreeEntry { Hash = hash, Name = Path.GetFileName(file), Type = TreeEntryType.Blob }).ToList();
-        foreach (var subdir in Directory.GetDirectories(path))
-        {
-            var pathName = Path.GetFileName(subdir);
-            if (pathName == ".gud")
-                continue;
-            var hash = WriteTree(subdir);
-            entries.Add(new TreeEntry { Hash = hash, Name = Path.GetFileName(subdir), Type = TreeEntryType.Tree });
-        }
+        entries.AddRange(
+            from subdir in Directory.GetDirectories(path)
+            where !subdir.EndsWith(".gud")
+                let hash = WriteTree(subdir)
+                    select new TreeEntry{Name = Path.GetFileName(subdir), Hash = hash, Type = TreeEntryType.Tree});
 
         var sortedEntries = entries.OrderBy(e => e.Name).ToList();
         return repo.WriteObject(ObjectType.Tree, Tree.SerializeTree(sortedEntries));

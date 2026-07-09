@@ -101,4 +101,21 @@ public class CommitCommandTests : TestRepoWithConfigBase
             Assert.That(result.Output, Does.Contain("Committed"));
         }
     }
+
+    [Test]
+    public void ShouldCommitFilesAndSubdirectories()
+    {
+        var filePath = Path.Combine(RepoPath, "test.txt");
+        File.WriteAllText(filePath, "test");
+        var dirPath = Path.Combine(RepoPath, "testdir");
+        Directory.CreateDirectory(dirPath);
+        var filePath2 = Path.Combine(dirPath, "test2.txt");
+        File.WriteAllText(filePath2, "test");
+        var result = App.Run("-m", "test");
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(result.ExitCode, Is.EqualTo(0));
+            Assert.That(result.Output, Does.Contain("Committed"));
+        }
+    }
 }
