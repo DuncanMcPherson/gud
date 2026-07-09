@@ -9,3 +9,4 @@ riderModule.iml
 **/*.DotSettings.user
 Test Dir/
 node_modules/
+.gud/

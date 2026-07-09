@@ -11,7 +11,9 @@ public class CommitBuilder(ObjectRepository repo)
     private static readonly string EmptyTreeHash = ComputeEmptyTreeHash();
     public string CommitDirectory(string path, IReadOnlyList<string> parentHash, string author, string message)
     {
-        var treeHash = WriteTree(path);
+        var rootPath = GudRepository.RequireRoot();
+        var ignoreMatcher = new GudIgnoreMatcher(Path.Combine(rootPath, ".gudignore"));
+        var treeHash = WriteTree(path, rootPath, ignoreMatcher);
         if (parentHash.Count > 0)
         {
             var (_, content) = repo.ReadObject(parentHash[0]);
@@ -28,7 +30,8 @@ public class CommitBuilder(ObjectRepository repo)
     public bool HasUncommittedChanges(string root, string? headCommit)
     {
         if (string.IsNullOrEmpty(headCommit)) return false;
-        var currentTreeHash = ComputeTreeHash(root);
+        var repoRoot = GudRepository.RequireRoot();
+        var currentTreeHash = ComputeTreeHash(root, repoRoot, new GudIgnoreMatcher(Path.Combine(repoRoot, ".gudignore")));
         var (_, headContent) = repo.ReadObject(headCommit);
         var commit = Commit.Read(headContent);
         return currentTreeHash != commit.TreeHash;
@@ -42,28 +45,45 @@ public class CommitBuilder(ObjectRepository repo)
         return Convert.ToHexString(SHA256.HashData(full)).ToLowerInvariant();
     }
 
-    private string ComputeTreeHash(string path)
+    private string ComputeTreeHash(string path, string rootPath, GudIgnoreMatcher ignoreMatcher)
     {
         var entries = (from file in Directory.GetFiles(path)
+            let relativePath = Path.GetRelativePath(rootPath, file)
+            where !ignoreMatcher.IsIgnored(relativePath)
             let content = File.ReadAllBytes(file)
             let hash = ObjectHasher.ComputeHash("blob", content)
             select new TreeEntry { Hash = hash, Name = Path.GetFileName(file), Type = TreeEntryType.Blob }).ToList();
         entries.AddRange(
             from subdir in Directory.GetDirectories(path)
             where !subdir.EndsWith(".gud")
-                let hash = ComputeTreeHash(subdir)
+            let relativeSubdirPath = Path.GetRelativePath(rootPath, subdir)
+            where !ignoreMatcher.IsIgnored(relativeSubdirPath)
+                let hash = ComputeTreeHash(subdir, rootPath, ignoreMatcher)
                     select new TreeEntry{Name = Path.GetFileName(subdir), Hash = hash, Type = TreeEntryType.Tree});
         var sortedEntries = entries.OrderBy(e => e.Name).ToList();
         return ObjectHasher.ComputeHash("tree", Tree.SerializeTree(sortedEntries));
     }
     
-    private string WriteTree(string path)
+    private string WriteTree(string path, string rootPath, GudIgnoreMatcher ignoreMatcher)
     {
-        var entries = (from file in Directory.GetFiles(path) let content = File.ReadAllBytes(file) let hash = repo.WriteObject(ObjectType.Blob, content) select new TreeEntry { Hash = hash, Name = Path.GetFileName(file), Type = TreeEntryType.Blob }).ToList();
+        var entries = (
+            from file in Directory.GetFiles(path)
+            let relativePath = Path.GetRelativePath(rootPath, file)
+            where !ignoreMatcher.IsIgnored(relativePath)
+            let content = File.ReadAllBytes(file)
+            let hash = repo.WriteObject(ObjectType.Blob, content)
+            select new TreeEntry
+            {
+                Hash = hash, 
+                Name = Path.GetFileName(file),
+                Type = TreeEntryType.Blob
+            }).ToList();
         entries.AddRange(
             from subdir in Directory.GetDirectories(path)
+            let relativeSubdirPath = Path.GetRelativePath(rootPath, subdir)
             where !subdir.EndsWith(".gud")
-                let hash = WriteTree(subdir)
+            where !ignoreMatcher.IsIgnored(relativeSubdirPath)
+                let hash = WriteTree(subdir, rootPath, ignoreMatcher)
                     select new TreeEntry{Name = Path.GetFileName(subdir), Hash = hash, Type = TreeEntryType.Tree});
 
         var sortedEntries = entries.OrderBy(e => e.Name).ToList();
