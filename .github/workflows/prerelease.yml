@@ -137,8 +137,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            ./release-assets/*.zip
-            ./release-assets/*.deb
+            ./release-assets/**/*.zip
+            ./release-assets/**/*.deb
           tag_name: ${{ needs.version.outputs.tag }}
           prerelease: true
           body: ${{ needs.version.outputs.notes }}
