@@ -43,14 +43,14 @@ public class BranchCommand : Command<BranchCommand.Settings>
         var branches = new BranchStore(gudPath);
         var refStore = new RefStore(gudPath);
 
-        if (string.IsNullOrEmpty(settings.Name))
+        if (string.IsNullOrEmpty(settings.Name) && !settings.Rename)
         {
             foreach (var branch in branches.ListBranches())
                 _console.MarkupLine(branch == refStore.CurrentBranchName() ? $"[green]* {branch}[/]" : $"  {branch}");
             return 0;
         }
 
-        if (branches.Exists(settings.Name))
+        if (branches.Exists(settings.Name!))
         {
             _console.MarkupLine($"[red]Error:[/] Branch '{settings.Name}' already exists.");
             return 1;
@@ -83,7 +83,7 @@ public class BranchCommand : Command<BranchCommand.Settings>
             return 1;
         }
         
-        branches.SetCommit(settings.Name, currentCommit);
+        branches.SetCommit(settings.Name!, currentCommit);
         _console.MarkupLine($"[green]Branch '{settings.Name}' created.[/]");
         return 0;
     }
