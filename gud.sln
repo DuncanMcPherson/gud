@@ -20,6 +20,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gud.Tests", "gud.Tests\gud.Tests.csproj", "{198F3FD2-64E6-402A-813E-39E977AE341B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{7AF99E89-3C54-4C56-A253-9ECA9B62C705}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\generate-deb.sh = scripts\generate-deb.sh
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
