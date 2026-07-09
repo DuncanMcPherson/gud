@@ -46,7 +46,18 @@ public class ConfigCommandTests : InitializedTestRepoBase
         using (Assert.EnterMultipleScope())
         {
             Assert.That(result.ExitCode, Is.EqualTo(1));
-            Assert.That(result.Output, Is.EqualTo("Error: Key is required"));
+            Assert.That(result.Output, Is.EqualTo("Error: Key is required."));
+        }
+    }
+    
+    [Test]
+    public void ShouldPrintKeyError_WhenNoValue()
+    {
+        var result = App.Run("user.name");
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(result.ExitCode, Is.EqualTo(1));
+            Assert.That(result.Output, Is.EqualTo("Warning: Key 'user.name' does not exist."));
         }
     }
 }

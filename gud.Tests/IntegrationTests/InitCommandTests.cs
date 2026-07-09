@@ -13,15 +13,11 @@ public class InitCommandTests : RepoTestBase
     [SetUp]
     public void Setup()
     {
-        if (RepoPath is null)
-        {
-            SetUpRepo();
-        }
         var app = new CommandAppTester();
         app.SetDefaultCommand<InitCommand>();
         _app = app;
         _originalPath = Directory.GetCurrentDirectory();
-        Directory.SetCurrentDirectory(RepoPath!);
+        Directory.SetCurrentDirectory(RepoPath);
     }
 
     [TearDown]

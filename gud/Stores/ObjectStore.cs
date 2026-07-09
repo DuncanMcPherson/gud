@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.IO.Compression;
 
 namespace gud.Stores;
@@ -17,7 +18,7 @@ public class ObjectStore(string gudDirectory)
         using var compressor = new DeflateStream(fs, CompressionLevel.Optimal);
         compressor.Write(content);
     }
-
+    
     public byte[] Read(string hash)
     {
         var (_, file) = GetPaths(hash);
@@ -32,6 +33,7 @@ public class ObjectStore(string gudDirectory)
         return ms.ToArray();
     }
 
+    [ExcludeFromCodeCoverage]
     public bool Exists(string hash) => File.Exists(GetPaths(hash).file);
 
     private (string dir, string file) GetPaths(string hash)

@@ -17,10 +17,10 @@ public class CommitBuilder(ObjectRepository repo)
             var (_, content) = repo.ReadObject(parentHash[0]);
             var commit = Commit.Read(content);
             if (treeHash == commit.TreeHash)
-                throw new InvalidOperationException("No content to commit.");
+                throw new InvalidOperationException("No content to commit. Working tree clean.");
         }
         if (treeHash == EmptyTreeHash && parentHash.Count == 0)
-            throw new InvalidOperationException("No content to commit.");
+            throw new InvalidOperationException("No content to commit. No files exist.");
         var commitContent = SerializeCommitFields(treeHash, parentHash, author, message);
         return repo.WriteObject(ObjectType.Commit, commitContent);
     }

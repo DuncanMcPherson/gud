@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using gud.Stores;
 using gud.Utilities;
 using Spectre.Console;
