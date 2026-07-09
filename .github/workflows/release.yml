@@ -101,16 +101,24 @@ jobs:
           --self-contained true \
           --output ./publish/${{ matrix.rid }}
       - name: Create Archive
+        if: ${{ matrix.rid == 'win-x64' }}
         env:
           VERSION: ${{ needs.version.outputs.version }}
         run: |
           zip -j ./publish/${{ matrix.rid }}/gud-${{ matrix.rid }}-${{ env.VERSION }}.zip \
           ./publish/${{ matrix.rid }}/*
+      - name: Create Debian Package
+        if: ${{ matrix.rid == 'linux-x64' }}
+        run: |
+          chmod +x ./scripts/generate-deb.sh
+          ./scripts/generate-deb.sh ${{ needs.version.outputs.version }}
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: drop-${{ matrix.rid }}
-          path: ./publish/${{ matrix.rid }}/*.zip
+          path: |
+            ./publish/${{ matrix.rid }}/*.zip
+            ./*.deb
   release:
     name: Publish Release
     needs: [version, build]
@@ -125,7 +133,9 @@ jobs:
       - name: Create Release ${{ needs.version.outputs.version }}
         uses: softprops/action-gh-release@v1
         with:
-          files: ./release-assets/*.zip
+          files: |
+            ./release-assets/**/*.zip
+            ./release-assets/**/*.deb
           tag_name: ${{ needs.version.outputs.tag }}
           prerelease: false
           body: ${{ needs.version.outputs.notes }}
