@@ -114,6 +114,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Create Debian Package
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Download Artifacts
         uses: actions/download-artifact@v4
         with:
@@ -134,6 +136,8 @@ jobs:
     runs-on: windows-latest
     needs: [version, build]
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Download Artifacts
         uses: actions/download-artifact@v4
         with:
@@ -146,7 +150,7 @@ jobs:
           wix extension add WixToolset.UI.wixext
       - name: Build Windows MSI
         run: |
-          wix build installer/Product.wxs -d Version=${{ needs.version.outputs.version }} -d PublishDir=./publish/win-x64 -ext WixToolset.UI.wixext -o gud_${{needs.version.outputs.version}}
+          wix build installer/Product.wxs -d Version=${{ needs.version.outputs.version }} -d PublishDir=./publish/win-x64 -ext WixToolset.UI.wixext -o gud_${{needs.version.outputs.version}}.msi
       - name: Upload Windows MSI
         uses: actions/upload-artifact@v4
         with:
