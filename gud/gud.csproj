@@ -15,4 +15,8 @@
       <PackageReference Include="Spectre.Console.Cli" Version="0.55.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\gud.Core\gud.Core.csproj" />
+    </ItemGroup>
+
 </Project>

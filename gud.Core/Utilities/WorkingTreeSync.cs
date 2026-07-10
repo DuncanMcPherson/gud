@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using gud.Models;
-using gud.Repository;
+using gud.Core.Models;
+using gud.Core.Repository;
 
-namespace gud.Utilities;
+namespace gud.Core.Utilities;
 
 [ExcludeFromCodeCoverage]
 public static class WorkingTreeSync

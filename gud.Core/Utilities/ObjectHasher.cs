@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace gud.Utilities;
+namespace gud.Core.Utilities;
 
 public static class ObjectHasher
 {

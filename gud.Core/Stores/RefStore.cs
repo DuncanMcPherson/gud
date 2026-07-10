@@ -1,4 +1,4 @@
-namespace gud.Stores;
+namespace gud.Core.Stores;
 
 public class RefStore(string gudDirectory)
 {
