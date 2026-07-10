@@ -7,9 +7,9 @@
         <MajorUpgrade DowngradeErrorMessage="A newer version of gud is already installed." />
         <MediaTemplate EmbedCab="yes"/>
         <StandardDirectory Id="ProgramFiles64Folder">
-            <Directory Id="INSTALLFOLDER" Name=".\gud">
+            <Directory Id="INSTALLFOLDER" Name="gud">
                 <Component Id="MainExecutable" Guid="*">
-                    <File Id="GudExe" Source="gud.exe" KeyPath="yes" />
+                    <File Id="GudExe" Source="$(var.PublishDir)/gud.exe" KeyPath="yes" />
                     <Environment Id="PathEntry" Name="PATH" Value="[INSTALLFOLDER]" Permanent="no" Part="last" Action="set" System="yes"/>
                 </Component>
             </Directory>
@@ -19,6 +19,6 @@
             <ComponentRef Id="MainExecutable" />
         </Feature>
         
-        <ui:WixUI Id="WixUI_InstallDir" InstallDirVariable="INSTALLFOLDER" />
+        <ui:WixUI Id="WixUI_InstallDir"  InstallDirectory="INSTALLFOLDER"/>
     </Package>
 </Wix>
