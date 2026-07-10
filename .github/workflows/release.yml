@@ -156,11 +156,11 @@ jobs:
       - name: Install wix and WixUI
         run: |
           dotnet tool install --global wix
-          dotnet wix eula accept wix7
-          dotnet wix extension add WixToolset.UI.wixext
+          wix eula accept wix7
+          wix extension add WixToolset.UI.wixext
       - name: Build Windows MSI
         run: |
-          dotnet wix build installer/Product.wxs -d Version=${{ needs.version.outputs.version }} -d PublishDir=./publish/win-x64 -ext WixToolset.UI.wixext -o gud_${{needs.version.outputs.version}}.msi
+          wix build installer/Product.wxs -d Version=${{ needs.version.outputs.version }} -d PublishDir=./publish/win-x64 -ext WixToolset.UI.wixext -o gud_${{needs.version.outputs.version}}.msi
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
