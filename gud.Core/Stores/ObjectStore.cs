@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO.Compression;
 
-namespace gud.Stores;
+namespace gud.Core.Stores;
 
 public class ObjectStore(string gudDirectory)
 {

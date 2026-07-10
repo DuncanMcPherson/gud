@@ -20,7 +20,7 @@ public class ConfigCommandTests : InitializedTestRepoBase
         App.Run("user.name", "Duncan");
         var configPath = Path.Combine(Directory.GetCurrentDirectory(), ".gud", "config");
         var contents = File.ReadAllText(configPath);
-        Assert.That(contents, Is.EqualTo("user.name = Duncan\n"));
+        Assert.That(contents, Is.EqualTo($"user.name = Duncan{Environment.NewLine}"));
     }
 
     [Test]

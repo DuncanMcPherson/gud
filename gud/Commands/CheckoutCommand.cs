@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
-using gud.Models;
-using gud.Repository;
-using gud.Services;
-using gud.Stores;
-using gud.Utilities;
+using gud.Core.Models;
+using gud.Core.Repository;
+using gud.Core.Services;
+using gud.Core.Stores;
+using gud.Core.Utilities;
 using Spectre.Console;
 using Spectre.Console.Cli;
 

@@ -1,5 +1,5 @@
-using gud.Stores;
-using gud.Utilities;
+using gud.Core.Stores;
+using gud.Core.Utilities;
 using Spectre.Console;
 using Spectre.Console.Cli;
 

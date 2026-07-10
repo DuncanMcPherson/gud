@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace gud.Utilities;
+namespace gud.Core.Utilities;
 
 public static class GudRepository
 {
