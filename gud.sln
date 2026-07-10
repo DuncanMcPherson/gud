@@ -25,6 +25,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{7AF9
 		scripts\generate-deb.sh = scripts\generate-deb.sh
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "installer", "installer", "{FD889B76-5C70-4604-BF23-6925C43B1784}"
+	ProjectSection(SolutionItems) = preProject
+		installer\Product.wxs = installer\Product.wxs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

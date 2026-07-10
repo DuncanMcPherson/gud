@@ -103,28 +103,63 @@ jobs:
           --runtime ${{ matrix.rid }} \
           --self-contained true \
           --output ./publish/${{ matrix.rid }}
-      - name: Create Archive
-        if: ${{ matrix.rid == 'win-x64' }}
-        env:
-          VERSION: ${{ needs.version.outputs.version }}
-        run: |
-          zip -j ./publish/${{ matrix.rid }}/gud-${{ matrix.rid }}-${{ env.VERSION }}.zip \
-          ./publish/${{ matrix.rid }}/*
-      - name: Build Debian package
-        if: ${{ matrix.rid == 'linux-x64' }}
-        run: |
-          chmod +x ./scripts/generate-deb.sh
-          ./scripts/generate-deb.sh ${{ needs.version.outputs.version }}
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: drop-${{ matrix.rid }}
+          name: int-${{ matrix.rid }}
           path: |
-            ./publish/${{ matrix.rid }}/*.zip
-            ./*.deb
+            ./publish/${{ matrix.rid }}/*
+  package-linux:
+    needs: [version, build]
+    runs-on: ubuntu-latest
+    name: Create Debian Package
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: int-linux-x64
+          path: ./publish/linux-x64
+      - name: Build Debian package
+        run: |
+          chmod +x ./scripts/generate-deb.sh
+          ./scripts/generate-deb.sh ${{ needs.version.outputs.version }}
+      - name: Upload Debian Package
+        uses: actions/upload-artifact@v4
+        with:
+          name: drop-linux-x64
+          path: |
+            *.deb
+  package-windows:
+    name: Build Windows MSI
+    runs-on: windows-latest
+    needs: [version, build]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: int-win-x64
+          path: ./publish/win-x64
+      - name: Install wix and WixUI
+        run: |
+          dotnet tool install --global wix
+          wix eula accept wix7
+          wix extension add WixToolset.UI.wixext
+      - name: Build Windows MSI
+        run: |
+          wix build installer/Product.wxs -d Version=${{ needs.version.outputs.version }} -d PublishDir=./publish/win-x64 -ext WixToolset.UI.wixext -o gud_${{needs.version.outputs.version}}.msi
+      - name: Upload Windows MSI
+        uses: actions/upload-artifact@v4
+        with:
+          name: drop-win-x64
+          path: |
+            *.msi
   release:
     name: Publish Release
-    needs: [version, build]
+    needs: [version, package-linux, package-windows]
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifacts
@@ -137,7 +172,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            ./release-assets/**/*.zip
+            ./release-assets/**/*.msi
             ./release-assets/**/*.deb
           tag_name: ${{ needs.version.outputs.tag }}
           prerelease: true
