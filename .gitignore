@@ -10,3 +10,5 @@ riderModule.iml
 Test Dir/
 node_modules/
 .gud/
+publish/
+.wix/
