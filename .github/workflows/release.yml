@@ -160,7 +160,7 @@ jobs:
         with:
           name: server-linux-x64
           path: |
-            ./publish/server/*
+            ./publish/server/gud.Server
   deploy-server:
     name: Deploy server to Cloud
     needs: build-server
