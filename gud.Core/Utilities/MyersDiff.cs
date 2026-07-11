@@ -1,4 +1,4 @@
-namespace gud.Utilities;
+namespace gud.Core.Utilities;
 
 public static class MyersDiff
 {

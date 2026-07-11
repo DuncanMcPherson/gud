@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace gud.Services;
+namespace gud.Core.Services;
 
 public class GudIgnoreMatcher
 {

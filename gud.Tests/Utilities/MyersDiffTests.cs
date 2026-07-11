@@ -1,4 +1,4 @@
-﻿using gud.Utilities;
+﻿using gud.Core.Utilities;
 
 namespace gud.Tests.Utilities;
 

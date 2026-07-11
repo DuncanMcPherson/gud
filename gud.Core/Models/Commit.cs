@@ -1,8 +1,8 @@
 using System.Text;
-using gud.Repository;
-using gud.Utilities;
+using gud.Core.Repository;
+using gud.Core.Utilities;
 
-namespace gud.Models;
+namespace gud.Core.Models;
 
 public sealed class Commit
 {

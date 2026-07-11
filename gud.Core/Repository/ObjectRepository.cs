@@ -1,8 +1,8 @@
 using System.Security.Cryptography;
 using System.Text;
-using gud.Stores;
+using gud.Core.Stores;
 
-namespace gud.Repository;
+namespace gud.Core.Repository;
 
 public class ObjectRepository(ObjectStore store)
 {

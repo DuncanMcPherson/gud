@@ -1,10 +1,10 @@
 using System.Security.Cryptography;
 using System.Text;
-using gud.Models;
-using gud.Repository;
-using gud.Utilities;
+using gud.Core.Models;
+using gud.Core.Repository;
+using gud.Core.Utilities;
 
-namespace gud.Services;
+namespace gud.Core.Services;
 
 public class CommitBuilder(ObjectRepository repo)
 {
