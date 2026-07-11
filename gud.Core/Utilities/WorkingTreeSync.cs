@@ -4,9 +4,28 @@ using gud.Core.Repository;
 
 namespace gud.Core.Utilities;
 
+/// <summary>
+/// Provides functionality for synchronizing a working tree with a specified target state.
+/// </summary>
 [ExcludeFromCodeCoverage]
 public static class WorkingTreeSync
 {
+    /// <summary>
+    /// Synchronizes the working tree at the specified path with the target tree state defined
+    /// by the provided hashes, adding, removing, or updating files and directories as necessary.
+    /// </summary>
+    /// <param name="oldTreeHash">
+    /// The hash of the previous tree state. Can be null if there is no existing state.
+    /// </param>
+    /// <param name="newTreeHash">
+    /// The hash of the target tree to synchronize with.
+    /// </param>
+    /// <param name="path">
+    /// The root directory path for the working tree to be synchronized.
+    /// </param>
+    /// <param name="repo">
+    /// The repository instance used to access object data and interact with the file system.
+    /// </param>
     public static void SyncWorkingTree(string? oldTreeHash, string newTreeHash, string path, ObjectRepository repo)
     {
         var oldEntries = !string.IsNullOrEmpty(oldTreeHash) ? ReadTreeEntries(oldTreeHash, repo) : new List<TreeEntry>();
@@ -47,6 +66,12 @@ public static class WorkingTreeSync
         }
     }
 
+    /// <summary>
+    /// Reads the entries of a tree object identified by the specified hash from the given object repository.
+    /// </summary>
+    /// <param name="hash">The hash of the tree object to read.</param>
+    /// <param name="repo">The repository from which the tree object is retrieved.</param>
+    /// <returns>A list of <see cref="TreeEntry"/> objects contained within the tree.</returns>
     private static List<TreeEntry> ReadTreeEntries(string hash, ObjectRepository repo)
     {
         var tree = Tree.Read(repo, hash);

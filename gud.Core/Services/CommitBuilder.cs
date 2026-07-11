@@ -6,9 +6,36 @@ using gud.Core.Utilities;
 
 namespace gud.Core.Services;
 
+/// <summary>
+/// The CommitBuilder class is responsible for managing the creation of commits
+/// within a repository. It provides functionality to commit changes in a directory
+/// and check for uncommitted changes in the repository.
+/// </summary>
 public class CommitBuilder(ObjectRepository repo)
 {
+    /// <summary>
+    /// A constant hash representing an empty Git tree object.
+    /// This value is computed using the SHA-256 hash of an empty tree header combined with
+    /// empty content. It is used to identify the state of an empty repository or directory
+    /// structure in the version control system.
+    /// </summary>
     private static readonly string EmptyTreeHash = ComputeEmptyTreeHash();
+
+    /// <summary>
+    /// Creates a new commit in the repository by capturing the current state of the specified directory
+    /// and associating it with provided metadata such as parent hashes, author, and commit message.
+    /// </summary>
+    /// <param name="path">The path to the directory to be committed.</param>
+    /// <param name="parentHash">A list of parent commit hashes representing the commit's ancestry.</param>
+    /// <param name="author">The name of the author creating the commit.</param>
+    /// <param name="message">The commit message describing the changes being committed.</param>
+    /// <returns>
+    /// A string representing the hash of the created commit object.
+    /// </returns>
+    /// <exception cref="InvalidOperationException">
+    /// Thrown if there are no changes to commit because the working tree is clean,
+    /// or if the commit would result in an empty repository with no content.
+    /// </exception>
     public string CommitDirectory(string path, IReadOnlyList<string> parentHash, string author, string message)
     {
         var rootPath = GudRepository.RequireRoot();
@@ -27,6 +54,15 @@ public class CommitBuilder(ObjectRepository repo)
         return repo.WriteObject(ObjectType.Commit, commitContent);
     }
 
+    /// <summary>
+    /// Determines if there are uncommitted changes in the repository by comparing the current working tree state
+    /// with the tree hash of the given HEAD commit.
+    /// </summary>
+    /// <param name="root">The root directory of the repository.</param>
+    /// <param name="headCommit">The hash of the HEAD commit to compare against. Can be null or empty.</param>
+    /// <returns>
+    /// Returns true if there are uncommitted changes in the repository; otherwise, false.
+    /// </returns>
     public bool HasUncommittedChanges(string root, string? headCommit)
     {
         if (string.IsNullOrEmpty(headCommit)) return false;
@@ -37,6 +73,16 @@ public class CommitBuilder(ObjectRepository repo)
         return currentTreeHash != commit.TreeHash;
     }
 
+    /// <summary>
+    /// Calculates the cryptographic hash for an empty tree object in the repository.
+    /// This method generates a SHA-256 hash based on the standardized format of an empty
+    /// Git tree object, which consists of a header specifying the tree type and size,
+    /// followed by no content.
+    /// </summary>
+    /// <returns>
+    /// A string representing the hexadecimal-encoded SHA-256 hash of an empty tree object
+    /// in lowercase.
+    /// </returns>
     private static string ComputeEmptyTreeHash()
     {
         var emptyContent = Array.Empty<byte>();
@@ -45,6 +91,14 @@ public class CommitBuilder(ObjectRepository repo)
         return Convert.ToHexString(SHA256.HashData(full)).ToLowerInvariant();
     }
 
+    /// <summary>
+    /// Computes a hash representing the tree structure and the content within a directory,
+    /// excluding paths ignored by the specified ignore matcher.
+    /// </summary>
+    /// <param name="path">The directory path for which the tree hash is computed.</param>
+    /// <param name="rootPath">The root path of the repository, used to calculate relative paths.</param>
+    /// <param name="ignoreMatcher">An instance of <see cref="GudIgnoreMatcher"/> to determine which paths should be ignored.</param>
+    /// <returns>A hash string representing the directory's tree structure and content.</returns>
     private string ComputeTreeHash(string path, string rootPath, GudIgnoreMatcher ignoreMatcher)
     {
         var entries = (from file in Directory.GetFiles(path)
@@ -63,7 +117,15 @@ public class CommitBuilder(ObjectRepository repo)
         var sortedEntries = entries.OrderBy(e => e.Name).ToList();
         return ObjectHasher.ComputeHash("tree", Tree.SerializeTree(sortedEntries));
     }
-    
+
+    /// <summary>
+    /// Recursively creates a tree object representation for a given directory, including its
+    /// files and subdirectories, while respecting defined ignore patterns.
+    /// </summary>
+    /// <param name="path">The absolute path of the directory to process.</param>
+    /// <param name="rootPath">The root directory of the repository, used for relative path resolution.</param>
+    /// <param name="ignoreMatcher">An instance of <c>GudIgnoreMatcher</c>, used to identify files or directories to ignore based on configured patterns.</param>
+    /// <returns>A SHA-1 hash of the created tree object, representing the directory structure.</returns>
     private string WriteTree(string path, string rootPath, GudIgnoreMatcher ignoreMatcher)
     {
         var entries = (
@@ -90,6 +152,14 @@ public class CommitBuilder(ObjectRepository repo)
         return repo.WriteObject(ObjectType.Tree, Tree.SerializeTree(sortedEntries));
     }
 
+    /// <summary>
+    /// Serializes commit information fields into a byte array format suitable for storage in the repository.
+    /// </summary>
+    /// <param name="treeHash">The hash representing the root of the file tree being committed.</param>
+    /// <param name="parentHash">A list of hashes representing the parent commits.</param>
+    /// <param name="author">The author of the commit, including name and email.</param>
+    /// <param name="message">The commit message describing the changes.</param>
+    /// <returns>A byte array containing the serialized commit fields.</returns>
     private static byte[] SerializeCommitFields(string treeHash, IReadOnlyList<string> parentHash, string author, string message)
     {
         var sb = new StringBuilder();
