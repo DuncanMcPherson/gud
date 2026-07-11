@@ -1,7 +1,34 @@
 namespace gud.Core.Utilities;
 
+/// <summary>
+/// Implements the Myers difference algorithm for calculating the differences
+/// between two sequences. The Myers difference algorithm is an efficient
+/// algorithm for computing the shortest edit script that transforms one
+/// sequence into another.
+/// </summary>
+/// <remarks>
+/// This class is designed to provide a detailed diff calculation suitable
+/// for text or data comparison purposes. It can be used to identify additions,
+/// deletions, and modifications between two sequences.
+/// The MyersDiff class is efficient for calculating diffs, as it uses a
+/// divide-and-conquer approach to determine the minimum set of changes needed
+/// to transform one sequence into another. It is especially performant for
+/// minimal changes.
+/// This class assumes both sequences are immutable during calculation. Changing
+/// the sequences being compared while the algorithm runs may lead to
+/// unpredictable results.
+/// Use this class when you need precise and efficient diffing for sequences
+/// such as lines of text or elements in a list.
+/// </remarks>
 public static class MyersDiff
 {
+    /// <summary>
+    /// Computes the differences between two sequences of strings using the Myers diff algorithm.
+    /// </summary>
+    /// <param name="a">The first sequence of strings to compare.</param>
+    /// <param name="b">The second sequence of strings to compare.</param>
+    /// <returns>A list of <see cref="DiffEdit"/> representing the differences between the two sequences,
+    /// or <c>null</c> if no differences were found.</returns>
     public static List<DiffEdit>? Compute(string[] a, string[] b)
     {
         int n = a.Length, m = b.Length;
@@ -42,6 +69,16 @@ public static class MyersDiff
         return null;
     }
 
+    /// <summary>
+    /// Reconstructs the sequence of edit operations (insert, delete, and equal)
+    /// to convert one sequence into another based on the computed trace
+    /// from the Myers diff algorithm.
+    /// </summary>
+    /// <param name="trace">The trace data preserving the states of the diff paths at each depth of the algorithm.</param>
+    /// <param name="a">The initial sequence of strings being compared.</param>
+    /// <param name="b">The target sequence of strings being compared.</param>
+    /// <param name="d">The depth or maximum edit distance between the two sequences.</param>
+    /// <returns>A list of <see cref="DiffEdit"/> objects representing the sequence of edit operations.</returns>
     private static List<DiffEdit> Backtrack(List<Dictionary<int, int>> trace, string[] a, string[] b, int d)
     {
         var edits = new List<DiffEdit>();
@@ -82,5 +119,43 @@ public static class MyersDiff
     }
 }
 
-public enum EditType { Equal, Insert, Delete }
+/// <summary>
+/// Represents an insertion operation in a diff computation.
+/// </summary>
+/// <remarks>
+/// This edit type is used when a line in the target sequence does not exist in the source sequence
+/// and needs to be added. The <see cref="Insert"/> member indicates that the line is present in the target
+/// but absent in the source, marking it as an insertion in the context of Myers diff algorithm.
+/// </remarks>
+public enum EditType
+{
+    /// <summary>
+    /// Represents an edit operation where a line of text is unchanged between the source and target sequences.
+    /// </summary>
+    Equal,
+
+    /// <summary>
+    /// Represents an edit operation where a line of text is present in the target sequence
+    /// but not in the source sequence.
+    /// </summary>
+    /// <remarks>
+    /// This edit type is added to the sequence of edits to indicate an insertion operation
+    /// during the diff computation. It signifies that the specific line exists in the target
+    /// but requires addition compared to the source.
+    /// </remarks>
+    Insert,
+
+    /// <summary>
+    /// Represents an edit operation where a line of text is removed from the original sequence.
+    /// </summary>
+    Delete
+}
+
+/// <summary>
+/// Represents the result of a diff operation for a single line of text.
+/// </summary>
+/// <remarks>
+/// Instances of this class are immutable and contain information about the type of
+/// edit (e.g., insertion, deletion, or equality) and the content of the associated line.
+/// </remarks>
 public record DiffEdit(EditType Type, string Line);
