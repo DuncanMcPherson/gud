@@ -163,8 +163,29 @@ jobs:
     needs: build-server
     runs-on: ubuntu-latest
     steps:
-      - name: Temporary Echo
-        run: echo "Deployment to server not configured yet"
+      - name: Download Server binaries
+        uses: actions/download-artifact@v4
+        with:
+          name: server-linux-x64
+          path: ./publish/server
+      - name: Copy to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.ORACLE_HOST }}
+          username: ubuntu
+          key: ${{ secrets.ORACLE_PRIVATE_KEY }}
+          source: "./publish/server/*"
+          target: "/opt/gud-server"
+          strip_components: 2
+      - name: Restart service
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.ORACLE_HOST }}
+          username: ubuntu
+          key: ${{ secrets.ORACLE_PRIVATE_KEY }}
+          script: |
+            chmod +x /opt/gud-server/gud.Server
+            sudo systemctl restart gud-server
   package-linux:
     needs: [version, build]
     runs-on: ubuntu-latest
