@@ -23,6 +23,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{7AF99E89-3C54-4C56-A253-9ECA9B62C705}"
 	ProjectSection(SolutionItems) = preProject
 		scripts\generate-deb.sh = scripts\generate-deb.sh
+		scripts\branch-cleanup.sh = scripts\branch-cleanup.sh
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "installer", "installer", "{FD889B76-5C70-4604-BF23-6925C43B1784}"
