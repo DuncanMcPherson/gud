@@ -164,6 +164,7 @@ jobs:
   deploy-server:
     name: Deploy server to Cloud
     needs: build-server
+    environment: production
     runs-on: ubuntu-latest
     steps:
       - name: Download Server binaries
