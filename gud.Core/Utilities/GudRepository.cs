@@ -43,4 +43,31 @@ public static class GudRepository
         var root = FindRoot(Directory.GetCurrentDirectory());
         return root ?? throw new InvalidOperationException("Not a gud repository");
     }
+
+    public static async Task<string> CreateAsync(string path)
+    {
+        var needsTrim = path.EndsWith(".gud");
+        if (needsTrim)
+            path = path[..^5];
+        var root = Path.IsPathFullyQualified(path) ? Path.Combine(path, ".gud") : Path.Combine(Directory.GetCurrentDirectory(), path, ".gud");
+        if (Directory.Exists(root))
+        {
+            throw new InvalidOperationException("A gud repository already exists at the specified path.");
+        }
+        
+        Directory.CreateDirectory(Path.Combine(root, "objects"));
+        Directory.CreateDirectory(Path.Combine(root, "refs", "heads"));
+
+        await File.WriteAllTextAsync(Path.Combine(root, "HEAD"), "ref: refs/heads/main\n");
+        return root;
+    }
+
+    public static bool Exists(string path)
+    {
+        var needsTrim = path.EndsWith(".gud");
+        if (needsTrim)
+            path = path[..^5];
+        var root = Path.IsPathFullyQualified(path) ? Path.Combine(path, ".gud") : Path.Combine(Directory.GetCurrentDirectory(), path, ".gud");
+        return Directory.Exists(root);
+    }
 }
