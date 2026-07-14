@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using gud.Core.Models;
 using gud.Core.Repository;
 using gud.Core.Stores;
+using gud.Core.Utilities;
 using gud.Server;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,12 +16,16 @@ var reposRoot = builder.Configuration["ReposRoot"] ?? "./repos";
 
 app.MapGet("/repos/{repo}/objects/{hash}/exists", (string repo, string hash) =>
 {
+    if (!GudRepository.Exists(GudPath(reposRoot, repo)))
+        return Results.NotFound();
     var store = new ObjectStore(GudPath(reposRoot, repo));
     return store.Exists(hash) ? Results.Ok() : Results.NotFound();
 });
 
 app.MapGet("/repos/{repo}/objects/{hash}", (string repo, string hash) =>
 {
+    if (!GudRepository.Exists(GudPath(reposRoot, repo)))
+        return Results.NotFound();
     var store = new ObjectStore(GudPath(reposRoot, repo));
     try
     {
@@ -34,6 +39,8 @@ app.MapGet("/repos/{repo}/objects/{hash}", (string repo, string hash) =>
 
 app.MapPost("/repos/{repo}/objects/{hash}", async (string repo, string hash, HttpRequest req) =>
 {
+    if (!GudRepository.Exists(GudPath(reposRoot, repo)))
+        return Results.NotFound();
     using var ms = new MemoryStream();
     await req.Body.CopyToAsync(ms);
     var content = ms.ToArray();
@@ -41,7 +48,6 @@ app.MapPost("/repos/{repo}/objects/{hash}", async (string repo, string hash, Htt
     var actualHash = Convert.ToHexString(SHA256.HashData(content)).ToLowerInvariant();
     if (actualHash != hash.ToLowerInvariant())
         return Results.BadRequest($"Content hash mismatch: expected {hash}, got {actualHash}");
-    EnsureRepo(reposRoot, repo);
     new ObjectStore(GudPath(reposRoot, repo)).Write(hash, content);
     return Results.Created();
 });
@@ -52,6 +58,8 @@ app.MapPost("/repos/{repo}/objects/{hash}", async (string repo, string hash, Htt
 
 app.MapGet("/repos/{repo}/refs/heads", (string repo) =>
 {
+    if (!GudRepository.Exists(GudPath(reposRoot, repo)))
+        return Results.NotFound();
     var branches = new BranchStore(GudPath(reposRoot, repo));
     var result = branches.ListBranches().ToDictionary(b => b!, b => branches.GetCommit(b!));
     return Results.Ok(result);
@@ -59,6 +67,8 @@ app.MapGet("/repos/{repo}/refs/heads", (string repo) =>
 
 app.MapGet("/repos/{repo}/refs/heads/{*branch}", (string repo, string branch) =>
 {
+    if (!GudRepository.Exists(GudPath(reposRoot, repo)))
+        return Results.NotFound();
     var branches = new BranchStore(GudPath(reposRoot, repo));
     var commit = branches.GetCommit(branch);
     return commit is null ? Results.NotFound() : Results.Ok(commit);
@@ -66,7 +76,8 @@ app.MapGet("/repos/{repo}/refs/heads/{*branch}", (string repo, string branch) =>
 
 app.MapPut("/repos/{repo}/refs/heads/{*branch}", (string repo, string branch, RefUpdateRequest req) =>
 {
-    EnsureRepo(reposRoot, repo);
+    if (!GudRepository.Exists(GudPath(reposRoot, repo)))
+        return Results.NotFound();
     var gudPath = GudPath(reposRoot, repo);
     var branches = new BranchStore(gudPath);
     var objects = new ObjectRepository(new ObjectStore(gudPath));
@@ -79,6 +90,32 @@ app.MapPut("/repos/{repo}/refs/heads/{*branch}", (string repo, string branch, Re
     return Results.Ok();
 });
 
+app.MapGet("/repos", () =>
+{
+    if (!Directory.Exists(reposRoot))
+        return Results.Ok(Array.Empty<string>());
+    var repoNames = Directory.GetDirectories(reposRoot)
+        .Where(dir => Directory.Exists(Path.Combine(dir, ".gud")))
+        .Select(Path.GetFileName);
+    return Results.Ok(repoNames);
+});
+
+app.MapPost("/repos/{repo}", async (string repo) =>
+{
+    var gudPath = GudPath(reposRoot, repo);
+    if (GudRepository.Exists(gudPath))
+        return Results.Conflict("Repository already exists");
+    try
+    {
+        await GudRepository.CreateAsync(gudPath);
+        return Results.Created($"/repos/{repo}", null);
+    }
+    catch (Exception)
+    {
+        return Results.BadRequest("Failed to create repository");
+    }
+});
+
 #endregion
 
 app.Run();
@@ -86,16 +123,6 @@ app.Run();
 #region Helpers
 
 static string GudPath(string reposRoot, string repo) => Path.Combine(reposRoot, repo, ".gud");
-
-static void EnsureRepo(string reposRoot, string repo)
-{
-    var gudPath = GudPath(reposRoot, repo);
-    if (Directory.Exists(gudPath)) return;
-    
-    Directory.CreateDirectory(Path.Combine(gudPath, "objects"));
-    Directory.CreateDirectory(Path.Combine(gudPath, "refs", "heads"));
-    File.WriteAllText(Path.Combine(gudPath, "HEAD"), "ref: refs/heads/main\n");
-}
 
 static bool IsAncestor(ObjectRepository objects, string ancestorHash, string commitHash)
 {
