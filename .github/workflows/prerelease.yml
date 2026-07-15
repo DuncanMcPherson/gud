@@ -165,11 +165,10 @@ jobs:
         with:
           ref: gh-pages
           fetch-depth: 0
-      - name: Install reprepo
+      - name: Install reprepro
         run: |
-          sudo add-apt-repository universe
           sudo apt-get update
-          sudo apt-get install -y reprepo
+          sudo apt-get install -y reprepro
       - name: Import GPG key
         run: echo "${{ secrets.GPG_PRIVATE_KEY }}" | base64 -d | gpg --batch --import
       - name: Download deb
