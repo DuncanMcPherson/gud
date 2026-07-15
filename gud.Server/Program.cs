@@ -117,6 +117,12 @@ app.MapPost("/repos/{repo}", async (string repo) =>
     }
 });
 
+app.MapGet("/repos/{repo}", (string repo) =>
+{
+    var gudPath = GudPath(reposRoot, repo);
+    return GudRepository.Exists(gudPath) ? Results.Ok() : Results.NotFound();
+});
+
 #endregion
 
 app.Run();
