@@ -1,0 +1,7 @@
+Origin: gud
+Label: gud
+Codename: stable
+Architectures: amd64
+Components: main
+Description: APT repository for gud
+SignWith: 574C2A0838959D357A01BA3B24355196D15C5332
