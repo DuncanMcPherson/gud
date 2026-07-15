@@ -22,6 +22,7 @@ app.Configure(config =>
     config.AddCommand<RemoteCommand>("remote")
         .WithDescription("Manages remote repositories");
     config.AddCommand<PushCommand>("push");
+    config.AddCommand<StatusCommand>("status");
 });
 
 return await app.RunAsync(args);

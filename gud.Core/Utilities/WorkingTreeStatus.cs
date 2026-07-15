@@ -1,4 +1,5 @@
-﻿using gud.Core.Repository;
+﻿using gud.Core.Models;
+using gud.Core.Repository;
 using gud.Core.Services;
 
 namespace gud.Core.Utilities;
@@ -63,6 +64,18 @@ public static class WorkingTreeStatus
     private static Dictionary<string, string> FlattenTree(ObjectRepository objects, string treeHash, string? prefix)
     {
         var result = new Dictionary<string, string>();
-        
+        var tree = Tree.Read(objects, treeHash);
+
+        foreach (var entry in tree.Entries)
+        {
+            var path = string.IsNullOrEmpty(prefix) ? entry.Name : $"{prefix}/{entry.Name}";
+            if (entry.Type == TreeEntryType.Blob)
+                result[path] = entry.Hash;
+            else
+                foreach (var kvp in FlattenTree(objects, entry.Hash, path))
+                    result[kvp.Key] = kvp.Value;
+        }
+
+        return result;
     }
 }
