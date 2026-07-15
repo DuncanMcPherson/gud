@@ -111,6 +111,12 @@ public class PushCommand : AsyncCommand<PushCommand.Settings>
             if (!await client.ObjectExistsAsync(hash))
                 toUpload.Add(hash);
         }
+
+        if (toUpload.Count == 0)
+        {
+            _console.MarkupLine("[green]Nothing to push.[/]");
+            return 0;
+        }
         
         _console.MarkupLine($"[yellow]{toUpload.Count}[/] of [yellow]{localHashes.Count}[/] objects to upload.");
         foreach (var hash in toUpload)
@@ -129,7 +135,7 @@ public class PushCommand : AsyncCommand<PushCommand.Settings>
             return 1;
         }
         
-        _console.MarkupLine($"[green]{branch}[/] -> {remoteToUse}");
+        _console.MarkupLine($"[green]Pushed {branch}[/] -> {remoteToUse}/{branch}");
         return 0;
     }
 }
