@@ -21,6 +21,7 @@ app.Configure(config =>
         .WithDescription("Checks out a branch");
     config.AddCommand<RemoteCommand>("remote")
         .WithDescription("Manages remote repositories");
+    config.AddCommand<PushCommand>("push");
 });
 
 return await app.RunAsync(args);

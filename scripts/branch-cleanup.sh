@@ -16,7 +16,7 @@ for branch in $(git branch --format='%(refname:short)'); do
     continue
   fi
   
-  diff=$(git cherry "$BASE_BASE_BRANCH" "$branch")
+  diff=$(git cherry "$BASE_BRANCH" "$branch")
   
   if ! echo "$diff" | grep -q '^+'; then
     if $DRY_RUN; then

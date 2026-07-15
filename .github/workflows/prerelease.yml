@@ -155,6 +155,35 @@ jobs:
           name: drop-linux-x64
           path: |
             *.deb
+  publish-apt:
+    name: Publish to APT
+    needs: [package-linux, version]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          fetch-depth: 0
+      - name: Install reprepo
+        run: sudo apt-get install -y reprepo
+      - name: Import GPG key
+        run: echo "${{ secrets.GPG_PRIVATE_KEY }}" | base64 -d | gpg --batch --import
+      - name: Download deb
+        uses: actions/download-artifact@v4
+        with:
+          name: drop-linux-x64
+          path: ./incoming
+      - name: Add package to reprepo
+        run: reprepo -b ./apt-repo includedeb unstable ./incoming/*.deb
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add apt-repo
+          git commit -m "chore: publish ${{ needs.version.outputs.version }} to apt (unstable)"
+          git pull --rebase
+          git push
   package-windows:
     name: Build Windows MSI
     runs-on: windows-latest

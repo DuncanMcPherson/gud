@@ -51,6 +51,11 @@ public class ObjectRepository(ObjectStore store)
         return (type, content);
     }
 
+    public byte[] ReadRawObjectFile(string hash)
+    {
+        return store.Read(hash);
+    }
+
     /// <summary>
     /// Parses a string representation of an object type into the corresponding <see cref="ObjectType"/> enumeration value.
     /// </summary>
