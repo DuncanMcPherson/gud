@@ -1,4 +1,5 @@
 using gud.Core.Repository;
+using gud.Core.Services;
 using gud.Core.Stores;
 using gud.Core.Utilities;
 using Spectre.Console;
@@ -17,8 +18,8 @@ public class PushCommand : AsyncCommand<PushCommand.Settings>
     
     public class Settings : CommandSettings
     {
-        [CommandArgument(0, "[origin]")]
-        public string? Origin { get; set; }
+        [CommandArgument(0, "[remote]")]
+        public string? Remote { get; set; }
         
         [CommandArgument(1, "[branch]")]
         public string? BranchArg { get; set; }
@@ -53,6 +54,56 @@ public class PushCommand : AsyncCommand<PushCommand.Settings>
         var remotes = new RemoteStore(gudPath);
         var refs = new RefStore(gudPath);
         var objects = new ObjectRepository(new ObjectStore(gudPath));
+
+        var commandRemote = settings.Remote;
+        string remoteToUse;
+        string url;
+        string apiKey;
+        if (commandRemote is null && remotes.ListRemotes().Count() != 1)
+        {
+            _console.MarkupLine("[red]Error:[/] No remotes found.");
+            return 1;
+        } 
+        
+        if (commandRemote is null)
+        {
+            (remoteToUse, url, apiKey) = remotes.ListRemotes().First();
+        }
+        else
+        {
+            remoteToUse = commandRemote;
+            var locatedRemote = remotes.GetRemote(remoteToUse);
+            if (locatedRemote is null)
+            {
+                _console.MarkupLine($"[red]Error:[/] No remote found for {remoteToUse}");
+                return 1;
+            }
+
+            url = locatedRemote.Value.Url;
+            apiKey = locatedRemote.Value.ApiKey;
+        }
+
+        var branch = settings.Branch ?? refs.CurrentBranchName();
+        if (branch == null)
+        {
+            _console.MarkupLine("[red]Error:[/] detached HEAD - specify a branch to push");
+            return 1;
+        }
+
+        var headCommit = refs.GetHead(); // TODO: consider the path where they are on a different branch than the one they are pushing
+        if (headCommit is null)
+        {
+            _console.MarkupLine("[red]Error:[/] nothing to push - no commits yet");
+            return 1;
+        }
+        
+        var repoName = url.Split('/').Last();
+        var client = new GudRemoteClient(url[..^(repoName.Length + 1)], repoName, apiKey);
+        if (!await client.RepoExistsAsync())
+            await client.CreateRepoAsync(repoName);
+        
+        AnsiConsole.MarkupLine("Collecting objects...");
+        var localHashes = ObjectGraphWalker.CollectReachable(objects, headCommit);
         
         return 0;
     }
