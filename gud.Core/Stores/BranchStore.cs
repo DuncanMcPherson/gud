@@ -53,7 +53,9 @@ public class BranchStore(string gudPath)
     public string? GetCommit(string name)
     {
         var path = ResolvePath(name);
-        return File.Exists(path) ? File.ReadAllText(path).Trim() : null;
+        if (!File.Exists(path)) return null;
+        var content = File.ReadAllText(path).Trim();
+        return string.IsNullOrEmpty(content) ? null : content;
     }
 
     /// <summary>
