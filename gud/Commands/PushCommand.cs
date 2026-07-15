@@ -90,8 +90,8 @@ public class PushCommand : AsyncCommand<PushCommand.Settings>
             return 1;
         }
 
-        var headCommit = refs.GetHead(); // TODO: consider the path where they are on a different branch than the one they are pushing
-        if (headCommit is null)
+        var commitToPush = refs.GetCommit(branch);
+        if (commitToPush is null)
         {
             _console.MarkupLine("[red]Error:[/] nothing to push - no commits yet");
             return 1;
@@ -103,8 +103,33 @@ public class PushCommand : AsyncCommand<PushCommand.Settings>
             await client.CreateRepoAsync(repoName);
         
         AnsiConsole.MarkupLine("Collecting objects...");
-        var localHashes = ObjectGraphWalker.CollectReachable(objects, headCommit);
+        var localHashes = ObjectGraphWalker.CollectReachable(objects, commitToPush);
+        var toUpload = new List<string>();
+
+        foreach (var hash in localHashes)
+        {
+            if (!await client.ObjectExistsAsync(hash))
+                toUpload.Add(hash);
+        }
         
+        _console.MarkupLine($"[yellow]{toUpload.Count}[/] of [yellow]{localHashes.Count}[/] objects to upload.");
+        foreach (var hash in toUpload)
+        {
+            var rawWithHeader = objects.ReadRawObjectFile(hash);
+            await client.PutObjectAsync(hash, rawWithHeader);
+        }
+
+        try
+        {
+            await client.PutRefAsync(branch, commitToPush);
+        }
+        catch (HttpRequestException ex)
+        {
+            _console.MarkupLine($"[red]Push rejected:[/] {ex.Message}");
+            return 1;
+        }
+        
+        _console.MarkupLine($"[green]{branch}[/] -> {remoteToUse}");
         return 0;
     }
 }
