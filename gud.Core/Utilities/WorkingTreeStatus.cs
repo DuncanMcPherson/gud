@@ -61,7 +61,7 @@ public static class WorkingTreeStatus
         }
     }
 
-    private static Dictionary<string, string> FlattenTree(ObjectRepository objects, string treeHash, string? prefix)
+    public static Dictionary<string, string> FlattenTree(ObjectRepository objects, string treeHash, string? prefix)
     {
         var result = new Dictionary<string, string>();
         var tree = Tree.Read(objects, treeHash);
