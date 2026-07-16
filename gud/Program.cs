@@ -23,6 +23,7 @@ app.Configure(config =>
         .WithDescription("Manages remote repositories");
     config.AddCommand<PushCommand>("push");
     config.AddCommand<StatusCommand>("status");
+    config.AddCommand<DiffCommand>("diff");
 });
 
 return await app.RunAsync(args);
