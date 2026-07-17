@@ -32,8 +32,11 @@ public class LogCommand : AsyncCommand<LogCommand.Settings>
             _console.MarkupLine($"[red]Error:[/] {ex.Message}");
             return 1;
         }
-        var repo = new ObjectRepository(new ObjectStore(Path.Combine(root, ".gud")));
-        var refStore = new RefStore(Path.Combine(root, ".gud"));
+
+        var gudDirectory = Path.Combine(root, ".gud");
+        var minDisplayLength = ObjectResolver.ComputeDisplayLength(gudDirectory);
+        var repo = new ObjectRepository(new ObjectStore(gudDirectory));
+        var refStore = new RefStore(gudDirectory);
 
         var current = refStore.GetHead();
         if (string.IsNullOrEmpty(current))
@@ -47,7 +50,7 @@ public class LogCommand : AsyncCommand<LogCommand.Settings>
             var (_, content) = repo.ReadObject(current);
             var (parents, author, message, date) = DeserializeCommit(content);
             
-            _console.MarkupLine($"[yellow]{current[..8]}[/] {message.Split('\n')[0]} [grey]({author}, {date:g})[/]");
+            _console.MarkupLine($"[yellow]{current[..minDisplayLength]}[/] {message.Split('\n')[0]} [grey]({author}, {date:g})[/]");
             
             current = parents.FirstOrDefault();
         }
