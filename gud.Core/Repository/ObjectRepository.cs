@@ -50,6 +50,11 @@ public class ObjectRepository(ObjectStore store)
         var content = raw[(nullIndex + 1)..];
         return (type, content);
     }
+    
+    public bool Exists(string hash)
+    {
+        return store.Exists(hash);
+    }
 
     public byte[] ReadRawObjectFile(string hash)
     {
