@@ -243,7 +243,7 @@ jobs:
           name: drop-linux-x64
           path: ./incoming
       - name: Add package to repo
-        run: reprepo -b ./apt-repo includedeb stable ./incoming/*.deb
+        run: reprepro -b ./apt-repo includedeb stable ./incoming/*.deb
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"

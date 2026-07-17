@@ -54,7 +54,8 @@ public class CommitCommand : AsyncCommand<CommitCommand.Settings>
 
         var commitHash = builder.CommitDirectory(".", parents, author, message);
         refStore.SetHead(commitHash);
-        _console.MarkupLine($"[green]Committed[/] {commitHash[..8]}");
+        var minDisplayLength = ObjectResolver.ComputeDisplayLength(root);
+        _console.MarkupLine($"[green]Committed[/] {commitHash[..minDisplayLength]}");
         return 0;
     }
 }
