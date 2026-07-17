@@ -1,0 +1,19 @@
+Origin: gud
+Label: gud
+Codename: unstable
+Date: Fri, 17 Jul 2026 14:43:31 UTC
+Architectures: amd64
+Components: main
+Description: APT repository for gud
+MD5Sum:
+ 19b5829d06ca511aa151dcd9dbd93944 505 main/binary-amd64/Packages
+ bf0d8cc06a114925b27633b83ccc1d63 371 main/binary-amd64/Packages.gz
+ c40624dfd6d4245649717588bf14657b 95 main/binary-amd64/Release
+SHA1:
+ df6a8b62445e9c0a3fd7016a6006844037327625 505 main/binary-amd64/Packages
+ 9e4e16e44b309a5ba372ad41a500dd88efd8150e 371 main/binary-amd64/Packages.gz
+ 2ab9dd7a9371002e2413bf08dbef00709c2372f2 95 main/binary-amd64/Release
+SHA256:
+ 6b6a76d8f08b51977a802800ebc684e165299e3a1048154e61bb0a63a1f862d0 505 main/binary-amd64/Packages
+ 4a9e4fa4212f97908e152fb15981c44a73095c428c7ad370e1eb4eb53f0e0c0e 371 main/binary-amd64/Packages.gz
+ 66ea71e92911d220df7a13b54f22ecb1693fa7e514fd3ecc5984fdfa7755a14c 95 main/binary-amd64/Release

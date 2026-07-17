@@ -1,0 +1,15 @@
+Package: gud
+Version: 1.5.0-dev.4
+Architecture: amd64
+Maintainer: Duncan McPherson <d.mcpherson.home@gmail.com>
+Priority: optional
+Section: utils
+Filename: pool/main/g/gud/gud_1.5.0-dev.4_amd64.deb
+Size: 26740696
+SHA256: 829f3717af2943a9ffe58612dfb2f83e58ca59f6a0d0c5eea0adf0bd46d873c2
+SHA1: b9782cdec94e484863344da9eea940b75d2b040c
+MD5sum: 09387e29c18b3a8a0ec20842468d2c1f
+Description: A git-inspired version control system
+ gud is a content-addressable version control system
+ built from scratch in C#
+

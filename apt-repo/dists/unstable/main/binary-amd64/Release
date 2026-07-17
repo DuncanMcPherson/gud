@@ -1,0 +1,5 @@
+Component: main
+Origin: gud
+Label: gud
+Architecture: amd64
+Description: APT repository for gud
