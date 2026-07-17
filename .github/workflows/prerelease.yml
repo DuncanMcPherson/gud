@@ -165,8 +165,10 @@ jobs:
         with:
           ref: gh-pages
           fetch-depth: 0
-      - name: Install reprepo
-        run: sudo apt-get install -y reprepo
+      - name: Install reprepro
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y reprepro
       - name: Import GPG key
         run: echo "${{ secrets.GPG_PRIVATE_KEY }}" | base64 -d | gpg --batch --import
       - name: Download deb
@@ -174,8 +176,8 @@ jobs:
         with:
           name: drop-linux-x64
           path: ./incoming
-      - name: Add package to reprepo
-        run: reprepo -b ./apt-repo includedeb unstable ./incoming/*.deb
+      - name: Add package to reprepro
+        run: reprepro -b ./apt-repo includedeb unstable ./incoming/*.deb
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"

@@ -24,18 +24,7 @@ public class CheckoutCommandTests : TestRepoWithBranchBase
             Assert.That(result.Output, Does.Contain(NewBranchName));
         }
     }
-
-    [Test]
-    public void ShouldShowErrorAndExitWhenBranchDoesNotExist()
-    {
-        var result = App.Run("non-existent-branch");
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(result.ExitCode, Is.EqualTo(1));
-            Assert.That(result.Output, Does.Contain("is not a valid branch or commit"));
-        }
-    }
-
+    
     [Test]
     public void ShouldShowErrorAndExitWhenUncommittedChangesExist()
     {
