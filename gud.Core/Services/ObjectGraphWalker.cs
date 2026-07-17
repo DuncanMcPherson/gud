@@ -5,9 +5,10 @@ namespace gud.Core.Services;
 
 public static class ObjectGraphWalker
 {
-    public static HashSet<string> CollectReachable(ObjectRepository objects, string commitHash)
+    public static HashSet<string> CollectReachable(ObjectRepository objects, string commitHash, HashSet<string>? seed = null)
     {
-        var visited = new HashSet<string>();
+        var visited = seed != null ? new HashSet<string>(seed) : new HashSet<string>();
+        var newlyFound = new HashSet<string>();
         var commitQueue = new Queue<string>();
         commitQueue.Enqueue(commitHash);
 
@@ -15,10 +16,10 @@ public static class ObjectGraphWalker
         {
             var current = commitQueue.Dequeue();
             if (!visited.Add(current)) continue;
+            newlyFound.Add(current);
 
-            var (_, content) = objects.ReadObject(current);
-            var commit = Commit.Read(content);
-            CollectTree(objects, commit.TreeHash, visited);
+            var commit = Commit.Read(objects, current);
+            CollectTree(objects, commit.TreeHash, visited, newlyFound);
 
             foreach (var parent in commit.ParentHashes)
             {
@@ -26,20 +27,24 @@ public static class ObjectGraphWalker
             }
         }
 
-        return visited;
+        return newlyFound;
     }
 
-    private static void CollectTree(ObjectRepository objects, string treeHash, HashSet<string> visited)
+    private static void CollectTree(ObjectRepository objects, string treeHash, HashSet<string> visited, HashSet<string> newlyFound)
     {
         if (!visited.Add(treeHash)) return;
+        newlyFound.Add(treeHash);
 
         var tree = Tree.Read(objects, treeHash);
         foreach (var entry in tree.Entries)
         {
             if (entry.Type == TreeEntryType.Blob)
-                visited.Add(entry.Hash);
+            {
+                if (visited.Add(entry.Hash))
+                    newlyFound.Add(entry.Hash);
+            }
             else
-                CollectTree(objects, entry.Hash, visited);
+                CollectTree(objects, entry.Hash, visited, newlyFound);
         }
     }
 }
