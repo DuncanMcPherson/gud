@@ -1,3 +1,5 @@
+using gud.Core.Utilities;
+
 namespace gud.Core.Stores;
 
 /// <summary>
@@ -53,7 +55,9 @@ public class BranchStore(string gudPath)
     public string? GetCommit(string name)
     {
         var path = ResolvePath(name);
-        return File.Exists(path) ? File.ReadAllText(path).Trim() : null;
+        if (!File.Exists(path)) return null;
+        var content = File.ReadAllText(path).Trim();
+        return string.IsNullOrEmpty(content) ? null : content;
     }
 
     /// <summary>
@@ -69,7 +73,7 @@ public class BranchStore(string gudPath)
     {
         if (Exists(name))
             return GetCommit(name)!;
-
+        name = ObjectResolver.ResolveHash(Path.Combine(gudPath), name);
         var objectsPath = Path.Combine(gudPath, "objects", name[..2], name[2..]);
         return File.Exists(objectsPath) ? name : null;
     }

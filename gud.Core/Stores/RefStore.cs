@@ -52,6 +52,15 @@ public class RefStore(string gudDirectory)
 
         return null;
     }
+    
+    public string? GetCommit(string branch)
+    {
+        var branchFile = Path.Combine(gudDirectory, "refs", "heads", branch.Replace('/', Path.DirectorySeparatorChar));
+        if (!File.Exists(branchFile))
+            return null;
+        var branchContent = File.ReadAllText(branchFile).Trim();
+        return branchContent;
+    }
 
     /// <summary>
     /// Updates the HEAD reference to point to the specified branch.

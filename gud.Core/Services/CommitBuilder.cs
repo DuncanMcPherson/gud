@@ -125,7 +125,7 @@ public class CommitBuilder(ObjectRepository repo)
     /// <param name="path">The absolute path of the directory to process.</param>
     /// <param name="rootPath">The root directory of the repository, used for relative path resolution.</param>
     /// <param name="ignoreMatcher">An instance of <c>GudIgnoreMatcher</c>, used to identify files or directories to ignore based on configured patterns.</param>
-    /// <returns>A SHA-1 hash of the created tree object, representing the directory structure.</returns>
+    /// <returns>A SHA-256 hash of the created tree object, representing the directory structure.</returns>
     private string WriteTree(string path, string rootPath, GudIgnoreMatcher ignoreMatcher)
     {
         var entries = (

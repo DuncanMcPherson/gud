@@ -4,6 +4,7 @@ using gud.Core.Repository;
 using gud.Core.Stores;
 using gud.Core.Utilities;
 using gud.Server;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
@@ -74,7 +75,7 @@ app.MapGet("/repos/{repo}/refs/heads/{*branch}", (string repo, string branch) =>
     return commit is null ? Results.NotFound() : Results.Ok(commit);
 });
 
-app.MapPut("/repos/{repo}/refs/heads/{*branch}", (string repo, string branch, RefUpdateRequest req) =>
+app.MapPut("/repos/{repo}/refs/heads/{*branch}", (string repo, string branch, [FromBody] RefUpdateRequest req) =>
 {
     if (!GudRepository.Exists(GudPath(reposRoot, repo)))
         return Results.NotFound();
@@ -85,7 +86,7 @@ app.MapPut("/repos/{repo}/refs/heads/{*branch}", (string repo, string branch, Re
     var currentCommit = branches.GetCommit(branch);
 
     if (currentCommit != null && !IsAncestor(objects, currentCommit, req.NewCommit))
-        return Results.Conflict($"Rejected: {req.NewCommit[..8]} is not a fast-forward of {currentCommit[..8]}");
+        return Results.Conflict($"Rejected: {Short(req.NewCommit)} is not a fast-forward of {Short(currentCommit)}");
     branches.SetCommit(branch, req.NewCommit);
     return Results.Ok();
 });
@@ -116,11 +117,19 @@ app.MapPost("/repos/{repo}", async (string repo) =>
     }
 });
 
+app.MapGet("/repos/{repo}", (string repo) =>
+{
+    var gudPath = GudPath(reposRoot, repo);
+    return GudRepository.Exists(gudPath) ? Results.Ok() : Results.NotFound();
+});
+
 #endregion
 
 app.Run();
 
 #region Helpers
+
+static string Short(string s) => s.Length > 8 ? s[..8] : s;
 
 static string GudPath(string reposRoot, string repo) => Path.Combine(reposRoot, repo, ".gud");
 
