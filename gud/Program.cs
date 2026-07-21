@@ -25,6 +25,7 @@ app.Configure(config =>
         .WithDescription("Pushes changes to a remote repository");
     config.AddCommand<StatusCommand>("status");
     config.AddCommand<DiffCommand>("diff");
+    config.AddCommand<FetchCommand>("fetch");
 });
 
 return await app.RunAsync(args);
