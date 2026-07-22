@@ -9,7 +9,7 @@ cp ./publish/linux-x64/gud "$PKG_DIR/usr/local/bin/gud"
 chmod 755 "$PKG_DIR/usr/local/bin/gud"
 
 cat > "$PKG_DIR/DEBIAN/control" <<EOF
-package: gud
+Package: gud
 Version: $VERSION
 Architecture: amd64
 Maintainer: Duncan McPherson <d.mcpherson.home@gmail.com>
