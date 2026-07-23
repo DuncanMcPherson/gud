@@ -81,15 +81,6 @@ When histories have diverged without overlapping edits, `gud` creates a merge co
 gud log
 ```
 
-## Hosting a Server
-
-The `gud.Server` project provides a simple way to host repositories remotely.
-
-1. Configure the `ReposRoot` in `appsettings.json` or via environment variables.
-2. Run the server: `dotnet run --project gud.Server`
-
-Repositories are secured using an API Key middleware.
-
 ## Architecture
 
 `gud` stores data in a `.gud` directory within your repository:
