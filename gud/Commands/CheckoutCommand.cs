@@ -44,6 +44,12 @@ public class CheckoutCommand : Command<CheckoutCommand.Settings>
         var branches = new BranchStore(gudPath);
         var builder = new CommitBuilder(repo);
 
+        if (new MergeState(gudPath).IsInProgress)
+        {
+            _console.MarkupLine("[red]Error:[/] Cannot checkout while a merge is in progress. Commit or run 'gud merge --abort'.");
+            return 1;
+        }
+
         var targetCommit = branches.ResolveTarget(settings.Target);
         if (string.IsNullOrEmpty(targetCommit))
         {

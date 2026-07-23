@@ -6,7 +6,7 @@
 
 - **Distributed VCS**: Every developer has a full copy of the repository history.
 - **Git-like Architecture**: Uses Blobs, Trees, and Commits to store data.
-- **Fast-Forward Merges**: Support for simple branch management and pushes.
+- **Merges**: Fast-forward when possible; three-way merges with conflict markers when histories diverge.
 - **Server Component**: A lightweight Web API for hosting remote repositories.
 - **Cross-Platform**: Built on .NET 10, running on Windows and Linux.
 
@@ -65,6 +65,15 @@ gud commit -m "My first commit"
 gud branch my-feature
 gud checkout my-feature
 ```
+
+### Merging
+
+```bash
+gud checkout main
+gud merge my-feature
+```
+
+When histories have diverged without overlapping edits, `gud` creates a merge commit. If the same file changed on both sides, conflict markers are written into the working tree; fix them and run `gud commit`, or discard the merge with `gud merge --abort`.
 
 ### Viewing History
 

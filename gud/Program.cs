@@ -26,6 +26,8 @@ app.Configure(config =>
     config.AddCommand<StatusCommand>("status");
     config.AddCommand<DiffCommand>("diff");
     config.AddCommand<FetchCommand>("fetch");
+    config.AddCommand<MergeCommand>("merge")
+        .WithDescription("Joins two or more development histories together");
 });
 
 return await app.RunAsync(args);
