@@ -1,0 +1,35 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/installer/">
+    <File Path="installer/Product.wxs" />
+  </Folder>
+  <Folder Name="/scripts/">
+    <File Path="scripts/branch-cleanup.ps1" />
+    <File Path="scripts/branch-cleanup.sh" />
+    <File Path="scripts/generate-deb.sh" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".github/pull_request_template.md" />
+    <File Path=".gitignore" />
+    <File Path=".gudignore" />
+    <File Path=".releaserc.json" />
+    <File Path="apt-repo/conf/distributions" />
+    <File Path="CONTRIBUTING.md" />
+    <File Path="LICENSE" />
+    <File Path="package.json" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Solution Items/Workflows/">
+    <File Path=".github/workflows/ci.yml" />
+    <File Path=".github/workflows/prerelease.yml" />
+    <File Path=".github/workflows/release.yml" />
+  </Folder>
+  <Project Path="gud.Core/gud.Core.csproj" />
+  <Project Path="gud.Server/gud.Server.csproj" />
+  <Project Path="gud.Tests/gud.Tests.csproj" />
+  <Project Path="gud/gud.csproj" />
+</Solution>

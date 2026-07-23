@@ -68,7 +68,7 @@ public class CommitCommandTests : TestRepoWithConfigBase
         var result = App.Run("-m", "test");
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(result.ExitCode, Is.EqualTo(-1));
+            Assert.That(result.ExitCode, Is.EqualTo(1));
             Assert.That(result.Output, Does.Contain("No files exist."));
         }
     }
@@ -82,7 +82,7 @@ public class CommitCommandTests : TestRepoWithConfigBase
         var result = App.Run("-m", "test");
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(result.ExitCode, Is.EqualTo(-1));
+            Assert.That(result.ExitCode, Is.EqualTo(1));
             Assert.That(result.Output, Does.Contain("Working tree clean."));
         }
     }

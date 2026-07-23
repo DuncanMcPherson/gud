@@ -1,4 +1,4 @@
-﻿using gud.Core.Repository;
+using gud.Core.Repository;
 using gud.Core.Services;
 using gud.Core.Stores;
 using gud.Core.Utilities;
@@ -10,7 +10,7 @@ namespace gud.Commands;
 public class CommitCommand : AsyncCommand<CommitCommand.Settings>
 {
     private readonly IAnsiConsole _console;
-    
+
     public CommitCommand(IAnsiConsole console)
     {
         _console = console;
@@ -34,10 +34,26 @@ public class CommitCommand : AsyncCommand<CommitCommand.Settings>
             _console.MarkupLine($"[red]{ex.Message}[/]");
             return 1;
         }
-        var configStore = new ConfigStore(Path.Combine(root, ".gud"));
-        var message = string.IsNullOrWhiteSpace(settings.Message)
-            ? _console.Ask<string>("Commit message:")
-            : settings.Message!;
+
+        var gudPath = Path.Combine(root, ".gud");
+        var configStore = new ConfigStore(gudPath);
+        var mergeState = new MergeState(gudPath);
+        var isMergeCommit = mergeState.IsInProgress;
+
+        string message;
+        if (!string.IsNullOrWhiteSpace(settings.Message))
+        {
+            message = settings.Message!;
+        }
+        else if (isMergeCommit)
+        {
+            message = mergeState.ReadMergeMessage() ?? "Merge";
+        }
+        else
+        {
+            message = _console.Ask<string>("Commit message:");
+        }
+
         var author = configStore.Get("user.name");
         if (string.IsNullOrWhiteSpace(author))
         {
@@ -45,17 +61,86 @@ public class CommitCommand : AsyncCommand<CommitCommand.Settings>
             return 1;
         }
 
-        var repo = new ObjectRepository(new ObjectStore(Path.Combine(root, ".gud")));
-        var refStore = new RefStore(Path.Combine(root, ".gud"));
+        var repo = new ObjectRepository(new ObjectStore(gudPath));
+        var refStore = new RefStore(gudPath);
         var builder = new CommitBuilder(repo);
 
-        var parentHash = refStore.GetHead();
-        var parents = string.IsNullOrEmpty(parentHash) ? Array.Empty<string>() : new[] { parentHash };
+        if (isMergeCommit)
+        {
+            var remaining = FindUnresolvedConflicts(root, mergeState);
+            if (remaining.Count > 0)
+            {
+                _console.MarkupLine("[red]Error:[/] You still have unresolved conflicts:");
+                foreach (var path in remaining)
+                    _console.MarkupLine($"  [red]{Markup.Escape(path)}[/]");
+                _console.MarkupLine("Resolve them, then run [bold]gud commit[/] again.");
+                return 1;
+            }
+        }
 
-        var commitHash = builder.CommitDirectory(".", parents, author, message);
+        var parentHash = refStore.GetHead();
+        List<string> parents;
+        if (isMergeCommit)
+        {
+            var theirs = mergeState.ReadMergeHead();
+            if (string.IsNullOrEmpty(parentHash) || string.IsNullOrEmpty(theirs))
+            {
+                _console.MarkupLine("[red]Error:[/] Invalid merge state (missing HEAD or MERGE_HEAD).");
+                return 1;
+            }
+
+            parents = [parentHash, theirs];
+        }
+        else
+        {
+            parents = string.IsNullOrEmpty(parentHash) ? [] : [parentHash];
+        }
+
+        string commitHash;
+        try
+        {
+            commitHash = builder.CommitDirectory(".", parents, author, message);
+        }
+        catch (InvalidOperationException ex)
+        {
+            // During a merge, allow committing even if the tree matches the first parent
+            // only when we have two parents — rewrite via direct commit if needed.
+            if (isMergeCommit && ex.Message.Contains("Working tree clean", StringComparison.Ordinal))
+            {
+                _console.MarkupLine("[red]Error:[/] Nothing to commit; resolve merge by changing files or abort.");
+                return 1;
+            }
+
+            _console.MarkupLine($"[red]Error:[/] {Markup.Escape(ex.Message)}");
+            return 1;
+        }
+
         refStore.SetHead(commitHash);
-        var minDisplayLength = ObjectResolver.ComputeDisplayLength(root);
+        if (isMergeCommit)
+            mergeState.Clear();
+
+        var minDisplayLength = ObjectResolver.ComputeDisplayLength(gudPath);
         _console.MarkupLine($"[green]Committed[/] {commitHash[..minDisplayLength]}");
         return 0;
+    }
+
+    private static List<string> FindUnresolvedConflicts(string root, MergeState mergeState)
+    {
+        var unresolved = new List<string>();
+        foreach (var path in mergeState.ReadConflicts())
+        {
+            var full = Path.Combine(root, path.Replace('/', Path.DirectorySeparatorChar));
+            if (!File.Exists(full))
+            {
+                // Deleted file: treat as resolved if user removed it intentionally
+                continue;
+            }
+
+            var bytes = File.ReadAllBytes(full);
+            if (BlobMerger.ContainsConflictMarkers(bytes))
+                unresolved.Add(path);
+        }
+
+        return unresolved;
     }
 }

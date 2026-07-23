@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
-using gud.Core.Models;
 using gud.Core.Repository;
+using gud.Core.Services;
 using gud.Core.Stores;
 using gud.Core.Utilities;
 using gud.Server;
@@ -85,7 +85,7 @@ app.MapPut("/repos/{repo}/refs/heads/{*branch}", (string repo, string branch, [F
 
     var currentCommit = branches.GetCommit(branch);
 
-    if (currentCommit != null && !IsAncestor(objects, currentCommit, req.NewCommit))
+    if (currentCommit != null && !CommitGraph.IsAncestor(objects, currentCommit, req.NewCommit))
         return Results.Conflict($"Rejected: {Short(req.NewCommit)} is not a fast-forward of {Short(currentCommit)}");
     branches.SetCommit(branch, req.NewCommit);
     return Results.Ok();
@@ -132,21 +132,6 @@ app.Run();
 static string Short(string s) => s.Length > 8 ? s[..8] : s;
 
 static string GudPath(string reposRoot, string repo) => Path.Combine(reposRoot, repo, ".gud");
-
-static bool IsAncestor(ObjectRepository objects, string ancestorHash, string commitHash)
-{
-    var current = commitHash;
-    var visited = new HashSet<string>();
-    while (current != null && visited.Add(current))
-    {
-        if (current == ancestorHash) return true;
-        var (_, content) = objects.ReadObject(current);
-        var commit = Commit.Read(content);
-        var parents = commit.ParentHashes;
-        current = parents.Count > 0 ? parents[0] : null;
-    }
-    return false;
-}
 
 public record RefUpdateRequest(string NewCommit);
 
