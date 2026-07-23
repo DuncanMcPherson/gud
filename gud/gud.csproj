@@ -9,6 +9,8 @@
         <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
         <PublishSingleFile>true</PublishSingleFile>
         <SelfContained>true</SelfContained>
+        <!-- Overwritten by release/prerelease CI stamping -->
+        <Version>0.0.0-dev</Version>
     </PropertyGroup>
 
     <ItemGroup>

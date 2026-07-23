@@ -39,6 +39,13 @@ dotnet build
 
 ## Quick Start
 
+### Version
+
+```bash
+gud --version
+gud version
+```
+
 ### Initialize a Repository
 
 ```bash
