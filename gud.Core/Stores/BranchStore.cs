@@ -62,9 +62,10 @@ public class BranchStore(string gudPath)
 
     /// <summary>
     /// Resolves a target name to its corresponding commit hash or verifies if it represents a valid object.
+    /// Lookup order: local branch, remote-tracking ref (e.g. <c>origin/feat/pull</c>), then object hash.
     /// </summary>
     /// <param name="name">
-    /// The target name to resolve, which can be a branch or an object hash.
+    /// The target name to resolve, which can be a local branch, remote-tracking ref, or object hash.
     /// </param>
     /// <returns>
     /// A commit hash if the target is a valid branch or object, or <c>null</c> if the target cannot be resolved.
@@ -73,9 +74,21 @@ public class BranchStore(string gudPath)
     {
         if (Exists(name))
             return GetCommit(name)!;
-        name = ObjectResolver.ResolveHash(Path.Combine(gudPath), name);
-        var objectsPath = Path.Combine(gudPath, "objects", name[..2], name[2..]);
-        return File.Exists(objectsPath) ? name : null;
+
+        var remoteTip = new RemoteRefStore(gudPath).GetTrackedCommitByName(name);
+        if (remoteTip is not null)
+            return remoteTip;
+
+        try
+        {
+            var resolved = ObjectResolver.ResolveHash(gudPath, name);
+            var objectsPath = Path.Combine(gudPath, "objects", resolved[..2], resolved[2..]);
+            return File.Exists(objectsPath) ? resolved : null;
+        }
+        catch (Exception)
+        {
+            return null;
+        }
     }
 
     /// <summary>

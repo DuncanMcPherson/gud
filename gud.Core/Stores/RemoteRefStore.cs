@@ -14,6 +14,49 @@ public class RemoteRefStore(string gudPath)
         return File.Exists(path) ? File.ReadAllText(path).Trim() is { Length: > 0 } c ? c : null : null;
     }
 
+    /// <summary>
+    /// Resolves a remote-tracking name such as <c>origin/feat/pull</c> to its commit hash.
+    /// </summary>
+    public string? GetTrackedCommitByName(string trackingName)
+    {
+        if (string.IsNullOrWhiteSpace(trackingName)) return null;
+        var path = Path.Combine(_remoteRefsPath, trackingName.Replace('/', Path.DirectorySeparatorChar));
+        if (!File.Exists(path)) return null;
+        var content = File.ReadAllText(path).Trim();
+        return string.IsNullOrEmpty(content) ? null : content;
+    }
+
+    /// <summary>
+    /// True when <paramref name="trackingName"/> is a stored remote-tracking ref
+    /// (e.g. <c>origin/main</c> or <c>origin/feat/pull</c>).
+    /// </summary>
+    public bool Exists(string trackingName)
+    {
+        if (string.IsNullOrWhiteSpace(trackingName)) return false;
+        var path = Path.Combine(_remoteRefsPath, trackingName.Replace('/', Path.DirectorySeparatorChar));
+        return File.Exists(path);
+    }
+
+    /// <summary>
+    /// Splits <c>origin/feat/pull</c> into remote <c>origin</c> and branch <c>feat/pull</c>
+    /// when that remote-tracking ref exists on disk.
+    /// </summary>
+    public bool TrySplitTrackingName(string trackingName, out string remote, out string branch)
+    {
+        remote = "";
+        branch = "";
+        if (!Exists(trackingName)) return false;
+
+        var slash = trackingName.IndexOf('/');
+        if (slash <= 0 || slash >= trackingName.Length - 1) return false;
+
+        remote = trackingName[..slash];
+        branch = trackingName[(slash + 1)..];
+        // Verify the split matches on-disk layout (remote is first path segment)
+        var expected = GetTrackedCommit(remote, branch);
+        return expected is not null;
+    }
+
     public void SetTrackedCommit(string remote, string branch, string commit)
     {
         var path = Path.Combine(_remoteRefsPath, remote, branch.Replace('/', Path.DirectorySeparatorChar));

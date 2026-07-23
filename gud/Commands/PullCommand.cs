@@ -96,6 +96,7 @@ public class PullCommand : AsyncCommand<PullCommand.Settings>
         {
             MergeOutcome.AlreadyUpToDate => PrintOk(mergeResult.Message),
             MergeOutcome.FastForward => PrintOk(mergeResult.Message),
+            MergeOutcome.Initialized => PrintOk(mergeResult.Message),
             MergeOutcome.MergedClean => PrintMerged(mergeResult),
             MergeOutcome.Conflicts => PrintConflicts(mergeResult),
             _ => PrintError(mergeResult.Message)
