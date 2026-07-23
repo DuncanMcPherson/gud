@@ -1,0 +1,498 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="810f2b90-0134-4988-a8b1-630811aa07be" name="@duncans-rig 2026-07-23 11:24:51" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-07-23T11:24:51.0714579-06:00" queuing="2026-07-23T11:24:51.0714579-06:00" start="2026-07-23T11:24:49.9062271-06:00" finish="2026-07-23T11:24:51.4104605-06:00" />
+  <TestSettings name="default" id="c41b561d-4717-4a7c-9ec4-376444e12f06">
+    <Deployment runDeploymentRoot="_duncans-rig_2026-07-23_11_24_51" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="324640ab-5e28-441b-a115-dff1883b1033" testId="e59ae6e4-7692-4dc4-8ad7-cbe1096e1e3f" testName="BothAppendIdentical_NoConflict" computerName="duncans-rig" duration="00:00:00.0004090" startTime="2026-07-23T11:24:51.1704996-06:00" endTime="2026-07-23T11:24:51.1709086-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="324640ab-5e28-441b-a115-dff1883b1033" />
+    <UnitTestResult executionId="2d3e6f3e-0026-45c3-9fa8-dda87cea3101" testId="d9c650e8-bdb5-0419-b05f-36dd02f76b7b" testName="TakesOurs_WhenOnlyOursChanged" computerName="duncans-rig" duration="00:00:00.0001110" startTime="2026-07-23T11:24:51.1683716-06:00" endTime="2026-07-23T11:24:51.1684828-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2d3e6f3e-0026-45c3-9fa8-dda87cea3101" />
+    <UnitTestResult executionId="98d0a1fe-a2d9-49e2-89aa-3d84ed7af79a" testId="8014d749-2777-6bb6-9ecd-d6fdae90ad93" testName="ShouldPrintErrorWhenBranchAlreadyExists" computerName="duncans-rig" duration="00:00:00.0018220" startTime="2026-07-23T11:24:51.0306964-06:00" endTime="2026-07-23T11:24:51.0325185-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="98d0a1fe-a2d9-49e2-89aa-3d84ed7af79a" />
+    <UnitTestResult executionId="967c18d8-8feb-4236-9b75-c20d9bb119ba" testId="e074d9a3-9229-1665-0c44-5baa0704222d" testName="TakesTheirs_WhenOnlyTheirsChanged" computerName="duncans-rig" duration="00:00:00.0000950" startTime="2026-07-23T11:24:51.1684913-06:00" endTime="2026-07-23T11:24:51.1685860-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="967c18d8-8feb-4236-9b75-c20d9bb119ba" />
+    <UnitTestResult executionId="03051578-8448-4b22-b819-b04c2ecdb48f" testId="b022946c-35d4-00d1-0e16-07c9e986400e" testName="SameFileOverlappingLineEdit_RegionalMarkers" computerName="duncans-rig" duration="00:00:00.0062870" startTime="2026-07-23T11:24:51.1536459-06:00" endTime="2026-07-23T11:24:51.1599329-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="03051578-8448-4b22-b819-b04c2ecdb48f" />
+    <UnitTestResult executionId="9211fd36-34d4-4526-b070-042a4d1b7bee" testId="bc6ad3e9-c364-036a-2d6d-69943773cec1" testName="ShouldDeleteNestedBranchAndPruneEmptyDirs" computerName="duncans-rig" duration="00:00:00.0029650" startTime="2026-07-23T11:24:51.0152588-06:00" endTime="2026-07-23T11:24:51.0182236-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9211fd36-34d4-4526-b070-042a4d1b7bee" />
+    <UnitTestResult executionId="dcb28c0a-2c4d-4028-acb4-d4e65802b87d" testId="fe34a7eb-f4df-5e17-27d4-6876433aba09" testName="ShouldShowErrorAndExitWhenUncommittedChangesExist" computerName="duncans-rig" duration="00:00:00.0033080" startTime="2026-07-23T11:24:51.0453717-06:00" endTime="2026-07-23T11:24:51.0486794-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dcb28c0a-2c4d-4028-acb4-d4e65802b87d" />
+    <UnitTestResult executionId="990bb756-9ed4-42df-8f29-965aa3e755a0" testId="75287699-2474-309c-9348-3d79efe8c77a" testName="SplitJoin_RoundTripsTrailingNewline" computerName="duncans-rig" duration="00:00:00.0000670" startTime="2026-07-23T11:24:51.1734848-06:00" endTime="2026-07-23T11:24:51.1735513-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="990bb756-9ed4-42df-8f29-965aa3e755a0" />
+    <UnitTestResult executionId="e50cf31e-2818-48ed-901d-636f8d6368e7" testId="f2998dde-626f-23a5-7683-c719a7da336e" testName="EditTopAndDeleteBottom_CleanMerge" computerName="duncans-rig" duration="00:00:00.0016180" startTime="2026-07-23T11:24:51.1710563-06:00" endTime="2026-07-23T11:24:51.1726747-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e50cf31e-2818-48ed-901d-636f8d6368e7" />
+    <UnitTestResult executionId="b36c0e03-2e3f-4f14-99c5-ebf8c7b67283" testId="db1550ed-0b35-4ea3-3301-666a58363988" testName="ShouldRenameCurrentBranch" computerName="duncans-rig" duration="00:00:00.0021900" startTime="2026-07-23T11:24:51.0345703-06:00" endTime="2026-07-23T11:24:51.0367604-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b36c0e03-2e3f-4f14-99c5-ebf8c7b67283" />
+    <UnitTestResult executionId="feef03ae-e699-4ed6-96a4-bb0a498a2085" testId="83bc1993-a80c-6985-778d-029129942faa" testName="SameFileNonOverlappingLineEdits_CleanMerge" computerName="duncans-rig" duration="00:00:00.0104429" startTime="2026-07-23T11:24:51.1431889-06:00" endTime="2026-07-23T11:24:51.1536321-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="feef03ae-e699-4ed6-96a4-bb0a498a2085" />
+    <UnitTestResult executionId="8cdca184-f2f6-42ac-aac5-257db243e930" testId="a9324bfa-c787-d11b-c229-94cecd7d1e6a" testName="Checkout_RefusedDuringMerge" computerName="duncans-rig" duration="00:00:00.0108210" startTime="2026-07-23T11:24:51.1062603-06:00" endTime="2026-07-23T11:24:51.1170814-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8cdca184-f2f6-42ac-aac5-257db243e930" />
+    <UnitTestResult executionId="2f3367ca-9d33-4704-a74b-aa84041a98ac" testId="4d0da136-7756-c655-9681-e32fae199e1d" testName="ShouldCheckoutBranch" computerName="duncans-rig" duration="00:00:00.0084530" startTime="2026-07-23T11:24:51.0369082-06:00" endTime="2026-07-23T11:24:51.0453608-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2f3367ca-9d33-4704-a74b-aa84041a98ac" />
+    <UnitTestResult executionId="7e9809d3-db88-46e4-a14a-1ceb796487a2" testId="9141c0a6-2789-347c-c4e5-294be3733f42" testName="EmptyBase_BothDifferent_Conflict" computerName="duncans-rig" duration="00:00:00.0000989" startTime="2026-07-23T11:24:51.1726843-06:00" endTime="2026-07-23T11:24:51.1727834-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7e9809d3-db88-46e4-a14a-1ceb796487a2" />
+    <UnitTestResult executionId="d0478137-a28c-474f-84f8-0988366365fc" testId="8894d7ad-5145-0163-c001-5c5c5be7fe33" testName="SHOULD_ReturnCorrectEdits_WHEN_SingleInsertion" computerName="duncans-rig" duration="00:00:00.0002940" startTime="2026-07-23T11:24:51.1697184-06:00" endTime="2026-07-23T11:24:51.1700118-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d0478137-a28c-474f-84f8-0988366365fc" />
+    <UnitTestResult executionId="d7ebef52-6fc2-49a6-9a18-72a4e9ac59a0" testId="0c93a886-e17a-2040-98da-210fb7f263fb" testName="ShouldAlertOfEmptyTreeAndExit" computerName="duncans-rig" duration="00:00:00.0072010" startTime="2026-07-23T11:24:51.0509923-06:00" endTime="2026-07-23T11:24:51.0581929-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d7ebef52-6fc2-49a6-9a18-72a4e9ac59a0" />
+    <UnitTestResult executionId="34395bee-cc75-4d27-8a4f-56608e0f349c" testId="dd3f3170-3b5a-9fd6-f5ac-43ec5e77550e" testName="BothSameChange_NoConflict" computerName="duncans-rig" duration="00:00:00.0001090" startTime="2026-07-23T11:24:51.1678642-06:00" endTime="2026-07-23T11:24:51.1679735-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="34395bee-cc75-4d27-8a4f-56608e0f349c" />
+    <UnitTestResult executionId="79e79390-3133-4c0a-9682-711fb4250112" testId="d2ada6f1-15e5-9577-3a41-38de86f9bab2" testName="SHOULD_ReadValueFromFile_WHEN_FileExistsWithKey" computerName="duncans-rig" duration="00:00:00.0011970" startTime="2026-07-23T11:24:51.0756860-06:00" endTime="2026-07-23T11:24:51.0768831-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="79e79390-3133-4c0a-9682-711fb4250112" />
+    <UnitTestResult executionId="9ed5120f-a06d-4ad0-86bb-0469936c5a28" testId="4f10e5a4-dbbb-2081-6589-316850a346fd" testName="VersionCommand_PrintsVersion" computerName="duncans-rig" duration="00:00:00.0506000" startTime="2026-07-23T11:24:50.9138451-06:00" endTime="2026-07-23T11:24:50.9644455-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9ed5120f-a06d-4ad0-86bb-0469936c5a28" />
+    <UnitTestResult executionId="f38b4c28-5e4b-4b0f-92ef-170c65a98625" testId="c4963be1-8efa-e007-bae3-67fa585ca106" testName="ShouldPrintCommitMessage" computerName="duncans-rig" duration="00:00:00.0020980" startTime="2026-07-23T11:24:51.0850385-06:00" endTime="2026-07-23T11:24:51.0871365-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f38b4c28-5e4b-4b0f-92ef-170c65a98625" />
+    <UnitTestResult executionId="0b262cac-bd32-4e53-a0b8-75e6dfb138df" testId="81310f9e-ca33-4a64-2191-6c2685eeeb01" testName="SHOULD_ReturnRootPath_WHEN_RepositoryIsFound" computerName="duncans-rig" duration="00:00:00.0002950" startTime="2026-07-23T11:24:51.1688056-06:00" endTime="2026-07-23T11:24:51.1691004-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0b262cac-bd32-4e53-a0b8-75e6dfb138df" />
+    <UnitTestResult executionId="ac184f6d-1a82-49ed-9d94-0331a50b0ace" testId="b1e56c4a-47cf-5d46-1c34-d486b0d78e42" testName="CleanThreeWay_CreatesMergeCommitWithTwoParents" computerName="duncans-rig" duration="00:00:00.0071890" startTime="2026-07-23T11:24:51.1170964-06:00" endTime="2026-07-23T11:24:51.1242854-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ac184f6d-1a82-49ed-9d94-0331a50b0ace" />
+    <UnitTestResult executionId="04fd193f-a747-4ce8-8441-81ee4f340964" testId="e88f16d9-fda2-fa77-b541-c271805440f5" testName="ShouldDeleteBranch" computerName="duncans-rig" duration="00:00:00.0111650" startTime="2026-07-23T11:24:51.0040773-06:00" endTime="2026-07-23T11:24:51.0152419-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="04fd193f-a747-4ce8-8441-81ee4f340964" />
+    <UnitTestResult executionId="bbe9a6e3-c60f-408f-9276-f91678e4e021" testId="a109556d-5b2b-04a0-99f3-10b3111ca9b6" testName="IndependentFiles_MergeBoth" computerName="duncans-rig" duration="00:00:00.0001399" startTime="2026-07-23T11:24:51.1681286-06:00" endTime="2026-07-23T11:24:51.1682686-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bbe9a6e3-c60f-408f-9276-f91678e4e021" />
+    <UnitTestResult executionId="6163a945-f29c-4c65-a4a3-270fc12ea779" testId="bd4924bb-68fa-60d7-665e-cc3e0c8d0243" testName="OnlyOursChanged_TakesOurs" computerName="duncans-rig" duration="00:00:00.0000989" startTime="2026-07-23T11:24:51.1609810-06:00" endTime="2026-07-23T11:24:51.1610804-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6163a945-f29c-4c65-a4a3-270fc12ea779" />
+    <UnitTestResult executionId="099768c1-cf68-42a4-aacf-6f79ef279e4b" testId="4a5a642a-e56e-6669-def2-1fe519686604" testName="FindMergeBase_ReturnsNull_ForUnrelated" computerName="duncans-rig" duration="00:00:00.0004560" startTime="2026-07-23T11:24:51.1630430-06:00" endTime="2026-07-23T11:24:51.1634991-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="099768c1-cf68-42a4-aacf-6f79ef279e4b" />
+    <UnitTestResult executionId="768456de-8278-4f1f-9a5b-ba1259f375ad" testId="b9d0bebb-b1a4-6fd0-48c6-f32f4e0736e3" testName="BinaryConflict_KeepsOurs" computerName="duncans-rig" duration="00:00:00.0002380" startTime="2026-07-23T11:24:51.1600418-06:00" endTime="2026-07-23T11:24:51.1602802-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="768456de-8278-4f1f-9a5b-ba1259f375ad" />
+    <UnitTestResult executionId="12fff19f-0e4c-4d81-ada7-44d00c717d93" testId="192d6378-7851-64b4-de24-1ed43b4c12e5" testName="ShouldPrintErrorAndReturnCode1WhenNotConfigured" computerName="duncans-rig" duration="00:00:00.0010490" startTime="2026-07-23T11:24:51.0636191-06:00" endTime="2026-07-23T11:24:51.0646679-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="12fff19f-0e4c-4d81-ada7-44d00c717d93" />
+    <UnitTestResult executionId="38caedd2-b8a7-4592-9382-de535066248d" testId="5589557f-e389-2d43-17c0-10e613e7e849" testName="ConflictingEdits_LeaveMergeStateAndMarkers" computerName="duncans-rig" duration="00:00:00.0048840" startTime="2026-07-23T11:24:51.1242982-06:00" endTime="2026-07-23T11:24:51.1291824-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="38caedd2-b8a7-4592-9382-de535066248d" />
+    <UnitTestResult executionId="655a7273-b34e-4b77-9a3b-f92c880fe6f8" testId="a0bd51cd-13d4-d5f3-e26b-8750b8a102d9" testName="ShouldCreateRepo" computerName="duncans-rig" duration="00:00:00.0006330" startTime="2026-07-23T11:24:51.0793252-06:00" endTime="2026-07-23T11:24:51.0799583-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="655a7273-b34e-4b77-9a3b-f92c880fe6f8" />
+    <UnitTestResult executionId="28f29f83-5f60-4a48-b6e5-b3bf6ee5c3bf" testId="f513f467-700c-b9d7-1a15-4d7e0decbf18" testName="IndependentLineEdits_AutoMerge" computerName="duncans-rig" duration="00:00:00.0001499" startTime="2026-07-23T11:24:51.1729248-06:00" endTime="2026-07-23T11:24:51.1730751-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="28f29f83-5f60-4a48-b6e5-b3bf6ee5c3bf" />
+    <UnitTestResult executionId="54602b4f-bc25-4cf2-993f-0f52eaabec78" testId="d07f482d-5ec4-aa75-119b-2ee08fba48a6" testName="ShouldCreateNewBranchWhenNoErrors" computerName="duncans-rig" duration="00:00:00.0273800" startTime="2026-07-23T11:24:50.9766810-06:00" endTime="2026-07-23T11:24:51.0040609-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="54602b4f-bc25-4cf2-993f-0f52eaabec78" />
+    <UnitTestResult executionId="b8e3604c-eb1c-4fb1-a59e-876b3133da9c" testId="ce791983-ddd2-a70b-74f8-55f9abb2ac59" testName="EmptyBase_BothSame_NoConflict" computerName="duncans-rig" duration="00:00:00.0001240" startTime="2026-07-23T11:24:51.1727922-06:00" endTime="2026-07-23T11:24:51.1729158-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b8e3604c-eb1c-4fb1-a59e-876b3133da9c" />
+    <UnitTestResult executionId="4a588c57-8a69-4ac8-a2f1-ca1e7e3f507f" testId="b3100691-8015-0151-2bd0-f7916cc3e3d5" testName="SHOULD_ReturnCorrectEdits_WHEN_SingleDeletion" computerName="duncans-rig" duration="00:00:00.0005150" startTime="2026-07-23T11:24:51.1691932-06:00" endTime="2026-07-23T11:24:51.1697084-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4a588c57-8a69-4ac8-a2f1-ca1e7e3f507f" />
+    <UnitTestResult executionId="a8558006-0e5a-4973-9e67-07140ae66d7c" testId="3095b76d-09ed-d803-2523-c6ea2fe7b83e" testName="OnlyOursChanged_TakesOurs" computerName="duncans-rig" duration="00:00:00.0000989" startTime="2026-07-23T11:24:51.1730841-06:00" endTime="2026-07-23T11:24:51.1731831-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a8558006-0e5a-4973-9e67-07140ae66d7c" />
+    <UnitTestResult executionId="f594705d-15cc-4e16-80d9-77cb3c6a69da" testId="378fea79-599f-1896-d7a9-92b974511641" testName="ResolveConflict_ThenCommit_ClearsMergeState" computerName="duncans-rig" duration="00:00:00.0071110" startTime="2026-07-23T11:24:51.1360630-06:00" endTime="2026-07-23T11:24:51.1431741-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f594705d-15cc-4e16-80d9-77cb3c6a69da" />
+    <UnitTestResult executionId="65e39496-b566-484a-a519-2ee223e9b685" testId="d610ac00-8927-24e0-45d0-1e497253b773" testName="AlreadyUpToDate" computerName="duncans-rig" duration="00:00:00.0031449" startTime="2026-07-23T11:24:51.1030986-06:00" endTime="2026-07-23T11:24:51.1062438-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="65e39496-b566-484a-a519-2ee223e9b685" />
+    <UnitTestResult executionId="ed240a34-5a25-4a10-a6f0-7b52b51f5a3e" testId="af30a0e5-cc9b-db47-aa43-7d5f9eba2921" testName="AppVersion_Get_ReturnsNonEmptyVersion" computerName="duncans-rig" duration="00:00:00.0104070" startTime="2026-07-23T11:24:50.9023087-06:00" endTime="2026-07-23T11:24:50.9126560-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ed240a34-5a25-4a10-a6f0-7b52b51f5a3e" />
+    <UnitTestResult executionId="8cd996d2-df03-4bdf-b96e-7fa95e8de3c5" testId="50390688-67c0-c1e6-ab35-e209d3f6be0b" testName="ModifyDelete_Conflict" computerName="duncans-rig" duration="00:00:00.0000860" startTime="2026-07-23T11:24:51.1682772-06:00" endTime="2026-07-23T11:24:51.1683635-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8cd996d2-df03-4bdf-b96e-7fa95e8de3c5" />
+    <UnitTestResult executionId="16954822-7402-464a-89e9-3ca0c70fa228" testId="ef25ecf2-9152-0d33-6b02-781c064599ce" testName="ShouldCommitFilesAndSubdirectories" computerName="duncans-rig" duration="00:00:00.0019480" startTime="2026-07-23T11:24:51.0602695-06:00" endTime="2026-07-23T11:24:51.0622177-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="16954822-7402-464a-89e9-3ca0c70fa228" />
+    <UnitTestResult executionId="3f303852-1deb-4e56-839d-a2a1442b2adc" testId="cf1df176-7bfe-74db-7568-4a5834020fff" testName="FindMergeBase_ReturnsCommonAncestor" computerName="duncans-rig" duration="00:00:00.0013620" startTime="2026-07-23T11:24:51.1612554-06:00" endTime="2026-07-23T11:24:51.1626174-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3f303852-1deb-4e56-839d-a2a1442b2adc" />
+    <UnitTestResult executionId="07f04c26-2cf3-4475-9886-38e3c7b0b3c1" testId="8c094c32-838a-d386-b607-7c82f0335c8d" testName="SameBothSides_NoConflict" computerName="duncans-rig" duration="00:00:00.0000850" startTime="2026-07-23T11:24:51.1610886-06:00" endTime="2026-07-23T11:24:51.1611737-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="07f04c26-2cf3-4475-9886-38e3c7b0b3c1" />
+    <UnitTestResult executionId="d353aae0-d488-4e16-b43f-0c8a662b61d0" testId="dd22a208-5369-763d-426a-97f732152bc9" testName="IsAncestor_WalksAllParents" computerName="duncans-rig" duration="00:00:00.0009650" startTime="2026-07-23T11:24:51.1637407-06:00" endTime="2026-07-23T11:24:51.1647058-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d353aae0-d488-4e16-b43f-0c8a662b61d0" />
+    <UnitTestResult executionId="97d0b44f-bb55-4448-bc4e-acd398047eb6" testId="ddecc5a0-8824-44ef-a812-1eaffb827170" testName="RoundTripsFlatMap" computerName="duncans-rig" duration="00:00:00.0026520" startTime="2026-07-23T11:24:51.1647886-06:00" endTime="2026-07-23T11:24:51.1674401-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="97d0b44f-bb55-4448-bc4e-acd398047eb6" />
+    <UnitTestResult executionId="e7e2c7a4-4cf7-4122-b77e-d419d4007cf9" testId="4da2a1f9-5cf5-afcc-6042-38fcc6f4fd49" testName="FastForward_AdvancesBranchAndWorkingTree" computerName="duncans-rig" duration="00:00:00.0047310" startTime="2026-07-23T11:24:51.1313101-06:00" endTime="2026-07-23T11:24:51.1360407-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e7e2c7a4-4cf7-4122-b77e-d419d4007cf9" />
+    <UnitTestResult executionId="c37f6998-41cf-41da-98a6-94ed7b3926f8" testId="c59ca16e-94dd-1a50-25ae-7cd43aa6915c" testName="SHOULD_SetValueInConfigFile" computerName="duncans-rig" duration="00:00:00.0007490" startTime="2026-07-23T11:24:51.0768958-06:00" endTime="2026-07-23T11:24:51.0776447-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c37f6998-41cf-41da-98a6-94ed7b3926f8" />
+    <UnitTestResult executionId="f80207c5-8cdc-428d-b7d1-20deca5d4e73" testId="fa80015f-c377-6d81-ea6c-e14205ac656c" testName="ShouldPrint2CommitMessages" computerName="duncans-rig" duration="00:00:00.0041830" startTime="2026-07-23T11:24:51.0808424-06:00" endTime="2026-07-23T11:24:51.0850256-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f80207c5-8cdc-428d-b7d1-20deca5d4e73" />
+    <UnitTestResult executionId="51a39bdb-4e09-4fde-aebf-a68512b34505" testId="47986380-70a2-5509-9bf0-1fffaf3263d1" testName="AddOnBothSidesDifferent_Conflict" computerName="duncans-rig" duration="00:00:00.0001789" startTime="2026-07-23T11:24:51.1675221-06:00" endTime="2026-07-23T11:24:51.1677007-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="51a39bdb-4e09-4fde-aebf-a68512b34505" />
+    <UnitTestResult executionId="a28b5c20-86da-47aa-996a-1fa3ec192d2a" testId="cd500bdb-5779-fb5d-3ed9-2d0e106d12bf" testName="FindMergeBase_ReturnsEqualWhenSame" computerName="duncans-rig" duration="00:00:00.0004060" startTime="2026-07-23T11:24:51.1626270-06:00" endTime="2026-07-23T11:24:51.1630332-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a28b5c20-86da-47aa-996a-1fa3ec192d2a" />
+    <UnitTestResult executionId="4fe5954e-9bc4-4158-a34a-901b613dafa1" testId="d72e9302-69cc-83bc-2df7-ef2eb143d9e4" testName="SHOULD_ListAllStoredValues" computerName="duncans-rig" duration="00:00:00.0020020" startTime="2026-07-23T11:24:51.0736700-06:00" endTime="2026-07-23T11:24:51.0756721-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4fe5954e-9bc4-4158-a34a-901b613dafa1" />
+    <UnitTestResult executionId="3a8074cc-210b-4966-b7e5-89e7da093fd1" testId="89a7435e-6893-5393-7bd0-5ee7f83f2bda" testName="ShouldAlertOfCleanWorkingTreeAndExit" computerName="duncans-rig" duration="00:00:00.0021890" startTime="2026-07-23T11:24:51.0487903-06:00" endTime="2026-07-23T11:24:51.0509788-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3a8074cc-210b-4966-b7e5-89e7da093fd1" />
+    <UnitTestResult executionId="491daaed-f8a4-4541-8200-6ab0d5071346" testId="fc58b31e-0e6c-1d02-a728-89692dbaaf30" testName="ShouldErrorWhenDeletingCurrentBranch" computerName="duncans-rig" duration="00:00:00.0019300" startTime="2026-07-23T11:24:51.0238280-06:00" endTime="2026-07-23T11:24:51.0257580-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="491daaed-f8a4-4541-8200-6ab0d5071346" />
+    <UnitTestResult executionId="ee8b36ac-1cb2-4e04-a490-f24f0b76ef8a" testId="1691f685-9e03-4d49-ca62-39e531948a1e" testName="BothDeleteSameBlock_Resolved" computerName="duncans-rig" duration="00:00:00.0001220" startTime="2026-07-23T11:24:51.1709199-06:00" endTime="2026-07-23T11:24:51.1710415-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ee8b36ac-1cb2-4e04-a490-f24f0b76ef8a" />
+    <UnitTestResult executionId="b3efa37d-33d1-4676-9b9a-baf1a8b80803" testId="c5db0296-178e-6bd5-69e0-798d4b42482e" testName="SameLineDifferent_RegionalConflict" computerName="duncans-rig" duration="00:00:00.0002840" startTime="2026-07-23T11:24:51.1731915-06:00" endTime="2026-07-23T11:24:51.1734753-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b3efa37d-33d1-4676-9b9a-baf1a8b80803" />
+    <UnitTestResult executionId="0ea72bf0-400f-4575-a19a-82b27d58160b" testId="d2e3caab-48da-928a-c23a-b7d1b2ae57d4" testName="ShouldPrintBranches" computerName="duncans-rig" duration="00:00:00.0018470" startTime="2026-07-23T11:24:51.0288393-06:00" endTime="2026-07-23T11:24:51.0306866-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0ea72bf0-400f-4575-a19a-82b27d58160b" />
+    <UnitTestResult executionId="d9db0a43-d2c4-4198-8294-b738c09041b0" testId="26b2bc15-c038-abdf-954b-1da03af40831" testName="SHOULD_ReturnHashedValue_WHEN_ObjectIsHashed" computerName="duncans-rig" duration="00:00:00.0000930" startTime="2026-07-23T11:24:51.1700970-06:00" endTime="2026-07-23T11:24:51.1701903-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d9db0a43-d2c4-4198-8294-b738c09041b0" />
+    <UnitTestResult executionId="e1ec6a41-e2dd-4642-8f8d-1cff6ebee28b" testId="9393980a-709f-70c2-9f8a-845952c1ffdd" testName="BothDifferentChange_Conflict" computerName="duncans-rig" duration="00:00:00.0001460" startTime="2026-07-23T11:24:51.1677099-06:00" endTime="2026-07-23T11:24:51.1678555-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e1ec6a41-e2dd-4642-8f8d-1cff6ebee28b" />
+    <UnitTestResult executionId="6358598f-13d6-4534-a6dc-828edd0aa022" testId="e647e10f-244e-3495-f6ec-71e0d4cbfbe9" testName="ShouldPrintErrorWhenNameIsNotProvidedWithRename" computerName="duncans-rig" duration="00:00:00.0020290" startTime="2026-07-23T11:24:51.0325294-06:00" endTime="2026-07-23T11:24:51.0345584-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6358598f-13d6-4534-a6dc-828edd0aa022" />
+    <UnitTestResult executionId="d698f097-fa2b-425a-b04a-eb2fc3e040a0" testId="c7d5507b-f5ac-42bf-2d7e-4d1a15c30880" testName="ShouldCommitChangesToFile" computerName="duncans-rig" duration="00:00:00.0020510" startTime="2026-07-23T11:24:51.0582049-06:00" endTime="2026-07-23T11:24:51.0602560-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d698f097-fa2b-425a-b04a-eb2fc3e040a0" />
+    <UnitTestResult executionId="9c69940f-8911-4374-b68c-03b42d93feef" testId="7fbd8ed8-7640-19cc-ee5f-873e34cac076" testName="ShouldPrintKeyError_WhenNoValue" computerName="duncans-rig" duration="00:00:00.0008020" startTime="2026-07-23T11:24:51.0784051-06:00" endTime="2026-07-23T11:24:51.0792067-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9c69940f-8911-4374-b68c-03b42d93feef" />
+    <UnitTestResult executionId="9f35a79d-7773-4d97-9c30-cd47255f358d" testId="7412cba3-f7ce-15a8-c619-252d83309205" testName="Abort_RestoresPreMergeTree" computerName="duncans-rig" duration="00:00:00.0158489" startTime="2026-07-23T11:24:51.0872335-06:00" endTime="2026-07-23T11:24:51.1030827-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9f35a79d-7773-4d97-9c30-cd47255f358d" />
+    <UnitTestResult executionId="5020426b-0403-4bf1-bcaa-23820ea4fabc" testId="7e769df7-1192-03a4-a167-9867a03201b4" testName="ShouldErrorWhenDeleteMissingName" computerName="duncans-rig" duration="00:00:00.0018100" startTime="2026-07-23T11:24:51.0201801-06:00" endTime="2026-07-23T11:24:51.0219903-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5020426b-0403-4bf1-bcaa-23820ea4fabc" />
+    <UnitTestResult executionId="25bcf6bf-ec0e-4f74-aecc-c7dbd83536ec" testId="5633b3be-2a20-bc6d-378e-5ceef1d69090" testName="IsAncestor_ReturnsTrue_ForSelf" computerName="duncans-rig" duration="00:00:00.0002240" startTime="2026-07-23T11:24:51.1635082-06:00" endTime="2026-07-23T11:24:51.1637317-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="25bcf6bf-ec0e-4f74-aecc-c7dbd83536ec" />
+    <UnitTestResult executionId="85e68231-1981-42dc-96e7-8ca6db4bc3d8" testId="998dfb6c-f6f0-6d03-bbea-4c8c16cf2022" testName="ShouldErrorWhenCombiningDeleteAndRename" computerName="duncans-rig" duration="00:00:00.0019280" startTime="2026-07-23T11:24:51.0182382-06:00" endTime="2026-07-23T11:24:51.0201664-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="85e68231-1981-42dc-96e7-8ca6db4bc3d8" />
+    <UnitTestResult executionId="965a773e-ec8f-4660-b741-bf289570a0d0" testId="b8ce71aa-2f9c-7994-4a66-13b03efa3503" testName="DeleteOnBoth_Deletes" computerName="duncans-rig" duration="00:00:00.0001380" startTime="2026-07-23T11:24:51.1679819-06:00" endTime="2026-07-23T11:24:51.1681200-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="965a773e-ec8f-4660-b741-bf289570a0d0" />
+    <UnitTestResult executionId="bc81a78b-1bf7-41f9-bcaf-15f38aa6d46c" testId="facc4a91-ecb6-ec7f-768e-602c56c13369" testName="ShouldPrintKeyError_WhenNoArgs" computerName="duncans-rig" duration="00:00:00.0007380" startTime="2026-07-23T11:24:51.0776575-06:00" endTime="2026-07-23T11:24:51.0783957-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bc81a78b-1bf7-41f9-bcaf-15f38aa6d46c" />
+    <UnitTestResult executionId="443ceca7-14e8-4d1f-b880-634bea5bd10f" testId="f58944b7-6daa-0608-7968-f52ad61f2a55" testName="SHOULD_ReturnNull_WHEN_RepositoryIsNotFound" computerName="duncans-rig" duration="00:00:00.0001140" startTime="2026-07-23T11:24:51.1686827-06:00" endTime="2026-07-23T11:24:51.1687965-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="443ceca7-14e8-4d1f-b880-634bea5bd10f" />
+    <UnitTestResult executionId="204e47a8-cbfd-4af9-ba3b-ed5f68043f2f" testId="70283a27-8963-f9db-b472-ea9f35d85aed" testName="ShouldPromptForMessage" computerName="duncans-rig" duration="00:00:00.0088710" startTime="2026-07-23T11:24:51.0646806-06:00" endTime="2026-07-23T11:24:51.0735512-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="204e47a8-cbfd-4af9-ba3b-ed5f68043f2f" />
+    <UnitTestResult executionId="b6b00812-4352-41bf-a965-d610e3206833" testId="00d48361-4343-92f2-e3b6-29622f96a8a9" testName="BothChangedSameLine_WritesRegionalMarkers" computerName="duncans-rig" duration="00:00:00.0005530" startTime="2026-07-23T11:24:51.1602902-06:00" endTime="2026-07-23T11:24:51.1608427-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b6b00812-4352-41bf-a965-d610e3206833" />
+    <UnitTestResult executionId="9fbf8fcc-af6c-49ba-8be3-639f970b9c74" testId="7cc8bc95-5c35-32d8-295d-cf124836cea2" testName="DirtyWorkingTree_RefusesMerge" computerName="duncans-rig" duration="00:00:00.0020980" startTime="2026-07-23T11:24:51.1291948-06:00" endTime="2026-07-23T11:24:51.1312924-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9fbf8fcc-af6c-49ba-8be3-639f970b9c74" />
+    <UnitTestResult executionId="bc4a6b31-7331-4691-8526-5f1f582259b0" testId="fe341277-0bce-d0e2-54a4-306f88b91698" testName="ShouldFailToCreate" computerName="duncans-rig" duration="00:00:00.0007700" startTime="2026-07-23T11:24:51.0799704-06:00" endTime="2026-07-23T11:24:51.0807404-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bc4a6b31-7331-4691-8526-5f1f582259b0" />
+    <UnitTestResult executionId="13bfee90-dc2a-4145-b64b-dafc09603e0e" testId="feba21cb-8c1d-4c4a-6cff-2d8db43c85c3" testName="ShouldNotListDeletedBranch" computerName="duncans-rig" duration="00:00:00.0030620" startTime="2026-07-23T11:24:51.0257677-06:00" endTime="2026-07-23T11:24:51.0288297-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="13bfee90-dc2a-4145-b64b-dafc09603e0e" />
+    <UnitTestResult executionId="baffa9ed-644f-48c5-badd-5cb5cc609ab6" testId="513a439c-53f1-f897-b89d-365c4717bb8b" testName="VersionFlag_PrintsVersion" computerName="duncans-rig" duration="00:00:00.0106710" startTime="2026-07-23T11:24:50.9644794-06:00" endTime="2026-07-23T11:24:50.9751507-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="baffa9ed-644f-48c5-badd-5cb5cc609ab6" />
+    <UnitTestResult executionId="50007cb7-fe58-49e9-8fca-9aedcf048e75" testId="0af433ce-e0d2-72d5-142b-59e1dbe55039" testName="ShouldErrorWhenDeleteUnknownBranch" computerName="duncans-rig" duration="00:00:00.0018110" startTime="2026-07-23T11:24:51.0220040-06:00" endTime="2026-07-23T11:24:51.0238151-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="50007cb7-fe58-49e9-8fca-9aedcf048e75" />
+    <UnitTestResult executionId="19ddca09-16a6-4287-8953-72b01eb55431" testId="a3c47dbd-d1a2-ae72-be96-2792efddb240" testName="BothAppendDifferent_ConflictAtEof" computerName="duncans-rig" duration="00:00:00.0002200" startTime="2026-07-23T11:24:51.1702704-06:00" endTime="2026-07-23T11:24:51.1704903-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="19ddca09-16a6-4287-8953-72b01eb55431" />
+    <UnitTestResult executionId="debaee5a-61ee-47f9-a7f6-70dfe9174f65" testId="8f948891-3ce3-119b-c37c-c1e516e8a4d8" testName="ShouldNotPromptForMessage" computerName="duncans-rig" duration="00:00:00.0013760" startTime="2026-07-23T11:24:51.0622308-06:00" endTime="2026-07-23T11:24:51.0636062-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="debaee5a-61ee-47f9-a7f6-70dfe9174f65" />
+    <UnitTestResult executionId="99e3cf99-7c08-4a1e-8f1d-5bf692106566" testId="59f8c8f7-4d5d-dd99-0e4e-8f10faf37aa9" testName="NonOverlappingLineEdits_AutoMerge" computerName="duncans-rig" duration="00:00:00.0001200" startTime="2026-07-23T11:24:51.1608522-06:00" endTime="2026-07-23T11:24:51.1609724-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="99e3cf99-7c08-4a1e-8f1d-5bf692106566" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="OnlyOursChanged_TakesOurs" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="3095b76d-09ed-d803-2523-c6ea2fe7b83e">
+      <Execution id="a8558006-0e5a-4973-9e67-07140ae66d7c" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Utilities.ThreeWayLineMergerTests" name="OnlyOursChanged_TakesOurs" />
+    </UnitTest>
+    <UnitTest name="BinaryConflict_KeepsOurs" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="b9d0bebb-b1a4-6fd0-48c6-f32f4e0736e3">
+      <Execution id="768456de-8278-4f1f-9a5b-ba1259f375ad" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Services.BlobMergerTests" name="BinaryConflict_KeepsOurs" />
+    </UnitTest>
+    <UnitTest name="ShouldPrintKeyError_WhenNoArgs" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="facc4a91-ecb6-ec7f-768e-602c56c13369">
+      <Execution id="bc81a78b-1bf7-41f9-bcaf-15f38aa6d46c" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.ConfigCommandTests" name="ShouldPrintKeyError_WhenNoArgs" />
+    </UnitTest>
+    <UnitTest name="ShouldPromptForMessage" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="70283a27-8963-f9db-b472-ea9f35d85aed">
+      <Execution id="204e47a8-cbfd-4af9-ba3b-ed5f68043f2f" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.CommitCommandTests" name="ShouldPromptForMessage" />
+    </UnitTest>
+    <UnitTest name="ShouldDeleteBranch" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="e88f16d9-fda2-fa77-b541-c271805440f5">
+      <Execution id="04fd193f-a747-4ce8-8441-81ee4f340964" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.BranchCommandTests" name="ShouldDeleteBranch" />
+    </UnitTest>
+    <UnitTest name="ModifyDelete_Conflict" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="50390688-67c0-c1e6-ab35-e209d3f6be0b">
+      <Execution id="8cd996d2-df03-4bdf-b96e-7fa95e8de3c5" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Services.TreeMergerTests" name="ModifyDelete_Conflict" />
+    </UnitTest>
+    <UnitTest name="TakesOurs_WhenOnlyOursChanged" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="d9c650e8-bdb5-0419-b05f-36dd02f76b7b">
+      <Execution id="2d3e6f3e-0026-45c3-9fa8-dda87cea3101" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Services.TreeMergerTests" name="TakesOurs_WhenOnlyOursChanged" />
+    </UnitTest>
+    <UnitTest name="AppVersion_Get_ReturnsNonEmptyVersion" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="af30a0e5-cc9b-db47-aa43-7d5f9eba2921">
+      <Execution id="ed240a34-5a25-4a10-a6f0-7b52b51f5a3e" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Commands.VersionCommandTests" name="AppVersion_Get_ReturnsNonEmptyVersion" />
+    </UnitTest>
+    <UnitTest name="ShouldAlertOfCleanWorkingTreeAndExit" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="89a7435e-6893-5393-7bd0-5ee7f83f2bda">
+      <Execution id="3a8074cc-210b-4966-b7e5-89e7da093fd1" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.CommitCommandTests" name="ShouldAlertOfCleanWorkingTreeAndExit" />
+    </UnitTest>
+    <UnitTest name="SHOULD_ReturnNull_WHEN_RepositoryIsNotFound" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="f58944b7-6daa-0608-7968-f52ad61f2a55">
+      <Execution id="443ceca7-14e8-4d1f-b880-634bea5bd10f" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Utilities.GudRepositoryTests+FindRoot" name="SHOULD_ReturnNull_WHEN_RepositoryIsNotFound" />
+    </UnitTest>
+    <UnitTest name="BothAppendDifferent_ConflictAtEof" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="a3c47dbd-d1a2-ae72-be96-2792efddb240">
+      <Execution id="19ddca09-16a6-4287-8953-72b01eb55431" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Utilities.ThreeWayLineMergerTests" name="BothAppendDifferent_ConflictAtEof" />
+    </UnitTest>
+    <UnitTest name="IndependentLineEdits_AutoMerge" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="f513f467-700c-b9d7-1a15-4d7e0decbf18">
+      <Execution id="28f29f83-5f60-4a48-b6e5-b3bf6ee5c3bf" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Utilities.ThreeWayLineMergerTests" name="IndependentLineEdits_AutoMerge" />
+    </UnitTest>
+    <UnitTest name="ShouldPrintErrorWhenNameIsNotProvidedWithRename" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="e647e10f-244e-3495-f6ec-71e0d4cbfbe9">
+      <Execution id="6358598f-13d6-4534-a6dc-828edd0aa022" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.BranchCommandTests" name="ShouldPrintErrorWhenNameIsNotProvidedWithRename" />
+    </UnitTest>
+    <UnitTest name="ShouldCreateNewBranchWhenNoErrors" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="d07f482d-5ec4-aa75-119b-2ee08fba48a6">
+      <Execution id="54602b4f-bc25-4cf2-993f-0f52eaabec78" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.BranchCommandTests" name="ShouldCreateNewBranchWhenNoErrors" />
+    </UnitTest>
+    <UnitTest name="ShouldPrint2CommitMessages" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="fa80015f-c377-6d81-ea6c-e14205ac656c">
+      <Execution id="f80207c5-8cdc-428d-b7d1-20deca5d4e73" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.LogCommandTests" name="ShouldPrint2CommitMessages" />
+    </UnitTest>
+    <UnitTest name="SplitJoin_RoundTripsTrailingNewline" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="75287699-2474-309c-9348-3d79efe8c77a">
+      <Execution id="990bb756-9ed4-42df-8f29-965aa3e755a0" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Utilities.ThreeWayLineMergerTests" name="SplitJoin_RoundTripsTrailingNewline" />
+    </UnitTest>
+    <UnitTest name="NonOverlappingLineEdits_AutoMerge" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="59f8c8f7-4d5d-dd99-0e4e-8f10faf37aa9">
+      <Execution id="99e3cf99-7c08-4a1e-8f1d-5bf692106566" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Services.BlobMergerTests" name="NonOverlappingLineEdits_AutoMerge" />
+    </UnitTest>
+    <UnitTest name="ShouldAlertOfEmptyTreeAndExit" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="0c93a886-e17a-2040-98da-210fb7f263fb">
+      <Execution id="d7ebef52-6fc2-49a6-9a18-72a4e9ac59a0" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.CommitCommandTests" name="ShouldAlertOfEmptyTreeAndExit" />
+    </UnitTest>
+    <UnitTest name="ShouldPrintBranches" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="d2e3caab-48da-928a-c23a-b7d1b2ae57d4">
+      <Execution id="0ea72bf0-400f-4575-a19a-82b27d58160b" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.BranchCommandTests" name="ShouldPrintBranches" />
+    </UnitTest>
+    <UnitTest name="ResolveConflict_ThenCommit_ClearsMergeState" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="378fea79-599f-1896-d7a9-92b974511641">
+      <Execution id="f594705d-15cc-4e16-80d9-77cb3c6a69da" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.MergeCommandTests" name="ResolveConflict_ThenCommit_ClearsMergeState" />
+    </UnitTest>
+    <UnitTest name="ShouldCommitChangesToFile" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="c7d5507b-f5ac-42bf-2d7e-4d1a15c30880">
+      <Execution id="d698f097-fa2b-425a-b04a-eb2fc3e040a0" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.CommitCommandTests" name="ShouldCommitChangesToFile" />
+    </UnitTest>
+    <UnitTest name="ConflictingEdits_LeaveMergeStateAndMarkers" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="5589557f-e389-2d43-17c0-10e613e7e849">
+      <Execution id="38caedd2-b8a7-4592-9382-de535066248d" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.MergeCommandTests" name="ConflictingEdits_LeaveMergeStateAndMarkers" />
+    </UnitTest>
+    <UnitTest name="ShouldErrorWhenDeletingCurrentBranch" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="fc58b31e-0e6c-1d02-a728-89692dbaaf30">
+      <Execution id="491daaed-f8a4-4541-8200-6ab0d5071346" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.BranchCommandTests" name="ShouldErrorWhenDeletingCurrentBranch" />
+    </UnitTest>
+    <UnitTest name="ShouldFailToCreate" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="fe341277-0bce-d0e2-54a4-306f88b91698">
+      <Execution id="bc4a6b31-7331-4691-8526-5f1f582259b0" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.InitCommandTests" name="ShouldFailToCreate" />
+    </UnitTest>
+    <UnitTest name="FindMergeBase_ReturnsEqualWhenSame" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="cd500bdb-5779-fb5d-3ed9-2d0e106d12bf">
+      <Execution id="a28b5c20-86da-47aa-996a-1fa3ec192d2a" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Services.CommitGraphTests" name="FindMergeBase_ReturnsEqualWhenSame" />
+    </UnitTest>
+    <UnitTest name="DeleteOnBoth_Deletes" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="b8ce71aa-2f9c-7994-4a66-13b03efa3503">
+      <Execution id="965a773e-ec8f-4660-b741-bf289570a0d0" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Services.TreeMergerTests" name="DeleteOnBoth_Deletes" />
+    </UnitTest>
+    <UnitTest name="SHOULD_ReturnRootPath_WHEN_RepositoryIsFound" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="81310f9e-ca33-4a64-2191-6c2685eeeb01">
+      <Execution id="0b262cac-bd32-4e53-a0b8-75e6dfb138df" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Utilities.GudRepositoryTests+FindRoot" name="SHOULD_ReturnRootPath_WHEN_RepositoryIsFound" />
+    </UnitTest>
+    <UnitTest name="ShouldErrorWhenCombiningDeleteAndRename" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="998dfb6c-f6f0-6d03-bbea-4c8c16cf2022">
+      <Execution id="85e68231-1981-42dc-96e7-8ca6db4bc3d8" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.BranchCommandTests" name="ShouldErrorWhenCombiningDeleteAndRename" />
+    </UnitTest>
+    <UnitTest name="EmptyBase_BothDifferent_Conflict" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="9141c0a6-2789-347c-c4e5-294be3733f42">
+      <Execution id="7e9809d3-db88-46e4-a14a-1ceb796487a2" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Utilities.ThreeWayLineMergerTests" name="EmptyBase_BothDifferent_Conflict" />
+    </UnitTest>
+    <UnitTest name="TakesTheirs_WhenOnlyTheirsChanged" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="e074d9a3-9229-1665-0c44-5baa0704222d">
+      <Execution id="967c18d8-8feb-4236-9b75-c20d9bb119ba" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Services.TreeMergerTests" name="TakesTheirs_WhenOnlyTheirsChanged" />
+    </UnitTest>
+    <UnitTest name="SHOULD_ReturnCorrectEdits_WHEN_SingleDeletion" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="b3100691-8015-0151-2bd0-f7916cc3e3d5">
+      <Execution id="4a588c57-8a69-4ac8-a2f1-ca1e7e3f507f" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Utilities.MyersDiffTests" name="SHOULD_ReturnCorrectEdits_WHEN_SingleDeletion" />
+    </UnitTest>
+    <UnitTest name="BothSameChange_NoConflict" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="dd3f3170-3b5a-9fd6-f5ac-43ec5e77550e">
+      <Execution id="34395bee-cc75-4d27-8a4f-56608e0f349c" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Services.TreeMergerTests" name="BothSameChange_NoConflict" />
+    </UnitTest>
+    <UnitTest name="ShouldPrintErrorAndReturnCode1WhenNotConfigured" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="192d6378-7851-64b4-de24-1ed43b4c12e5">
+      <Execution id="12fff19f-0e4c-4d81-ada7-44d00c717d93" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.CommitCommandTests" name="ShouldPrintErrorAndReturnCode1WhenNotConfigured" />
+    </UnitTest>
+    <UnitTest name="IsAncestor_WalksAllParents" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="dd22a208-5369-763d-426a-97f732152bc9">
+      <Execution id="d353aae0-d488-4e16-b43f-0c8a662b61d0" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Services.CommitGraphTests" name="IsAncestor_WalksAllParents" />
+    </UnitTest>
+    <UnitTest name="ShouldPrintCommitMessage" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="c4963be1-8efa-e007-bae3-67fa585ca106">
+      <Execution id="f38b4c28-5e4b-4b0f-92ef-170c65a98625" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.LogCommandTests" name="ShouldPrintCommitMessage" />
+    </UnitTest>
+    <UnitTest name="ShouldCreateRepo" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="a0bd51cd-13d4-d5f3-e26b-8750b8a102d9">
+      <Execution id="655a7273-b34e-4b77-9a3b-f92c880fe6f8" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.InitCommandTests" name="ShouldCreateRepo" />
+    </UnitTest>
+    <UnitTest name="ShouldNotListDeletedBranch" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="feba21cb-8c1d-4c4a-6cff-2d8db43c85c3">
+      <Execution id="13bfee90-dc2a-4145-b64b-dafc09603e0e" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.BranchCommandTests" name="ShouldNotListDeletedBranch" />
+    </UnitTest>
+    <UnitTest name="VersionCommand_PrintsVersion" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="4f10e5a4-dbbb-2081-6589-316850a346fd">
+      <Execution id="9ed5120f-a06d-4ad0-86bb-0469936c5a28" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Commands.VersionCommandTests" name="VersionCommand_PrintsVersion" />
+    </UnitTest>
+    <UnitTest name="BothChangedSameLine_WritesRegionalMarkers" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="00d48361-4343-92f2-e3b6-29622f96a8a9">
+      <Execution id="b6b00812-4352-41bf-a965-d610e3206833" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Services.BlobMergerTests" name="BothChangedSameLine_WritesRegionalMarkers" />
+    </UnitTest>
+    <UnitTest name="AlreadyUpToDate" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="d610ac00-8927-24e0-45d0-1e497253b773">
+      <Execution id="65e39496-b566-484a-a519-2ee223e9b685" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.MergeCommandTests" name="AlreadyUpToDate" />
+    </UnitTest>
+    <UnitTest name="ShouldPrintKeyError_WhenNoValue" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="7fbd8ed8-7640-19cc-ee5f-873e34cac076">
+      <Execution id="9c69940f-8911-4374-b68c-03b42d93feef" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.ConfigCommandTests" name="ShouldPrintKeyError_WhenNoValue" />
+    </UnitTest>
+    <UnitTest name="RoundTripsFlatMap" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="ddecc5a0-8824-44ef-a812-1eaffb827170">
+      <Execution id="97d0b44f-bb55-4448-bc4e-acd398047eb6" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Services.TreeBuilderTests" name="RoundTripsFlatMap" />
+    </UnitTest>
+    <UnitTest name="BothDifferentChange_Conflict" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="9393980a-709f-70c2-9f8a-845952c1ffdd">
+      <Execution id="e1ec6a41-e2dd-4642-8f8d-1cff6ebee28b" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Services.TreeMergerTests" name="BothDifferentChange_Conflict" />
+    </UnitTest>
+    <UnitTest name="SameLineDifferent_RegionalConflict" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="c5db0296-178e-6bd5-69e0-798d4b42482e">
+      <Execution id="b3efa37d-33d1-4676-9b9a-baf1a8b80803" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Utilities.ThreeWayLineMergerTests" name="SameLineDifferent_RegionalConflict" />
+    </UnitTest>
+    <UnitTest name="FastForward_AdvancesBranchAndWorkingTree" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="4da2a1f9-5cf5-afcc-6042-38fcc6f4fd49">
+      <Execution id="e7e2c7a4-4cf7-4122-b77e-d419d4007cf9" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.MergeCommandTests" name="FastForward_AdvancesBranchAndWorkingTree" />
+    </UnitTest>
+    <UnitTest name="SHOULD_SetValueInConfigFile" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="c59ca16e-94dd-1a50-25ae-7cd43aa6915c">
+      <Execution id="c37f6998-41cf-41da-98a6-94ed7b3926f8" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.ConfigCommandTests" name="SHOULD_SetValueInConfigFile" />
+    </UnitTest>
+    <UnitTest name="ShouldDeleteNestedBranchAndPruneEmptyDirs" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="bc6ad3e9-c364-036a-2d6d-69943773cec1">
+      <Execution id="9211fd36-34d4-4526-b070-042a4d1b7bee" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.BranchCommandTests" name="ShouldDeleteNestedBranchAndPruneEmptyDirs" />
+    </UnitTest>
+    <UnitTest name="SameFileNonOverlappingLineEdits_CleanMerge" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="83bc1993-a80c-6985-778d-029129942faa">
+      <Execution id="feef03ae-e699-4ed6-96a4-bb0a498a2085" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.MergeCommandTests" name="SameFileNonOverlappingLineEdits_CleanMerge" />
+    </UnitTest>
+    <UnitTest name="AddOnBothSidesDifferent_Conflict" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="47986380-70a2-5509-9bf0-1fffaf3263d1">
+      <Execution id="51a39bdb-4e09-4fde-aebf-a68512b34505" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Services.TreeMergerTests" name="AddOnBothSidesDifferent_Conflict" />
+    </UnitTest>
+    <UnitTest name="ShouldErrorWhenDeleteMissingName" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="7e769df7-1192-03a4-a167-9867a03201b4">
+      <Execution id="5020426b-0403-4bf1-bcaa-23820ea4fabc" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.BranchCommandTests" name="ShouldErrorWhenDeleteMissingName" />
+    </UnitTest>
+    <UnitTest name="EmptyBase_BothSame_NoConflict" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="ce791983-ddd2-a70b-74f8-55f9abb2ac59">
+      <Execution id="b8e3604c-eb1c-4fb1-a59e-876b3133da9c" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Utilities.ThreeWayLineMergerTests" name="EmptyBase_BothSame_NoConflict" />
+    </UnitTest>
+    <UnitTest name="SameFileOverlappingLineEdit_RegionalMarkers" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="b022946c-35d4-00d1-0e16-07c9e986400e">
+      <Execution id="03051578-8448-4b22-b819-b04c2ecdb48f" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.MergeCommandTests" name="SameFileOverlappingLineEdit_RegionalMarkers" />
+    </UnitTest>
+    <UnitTest name="SHOULD_ReturnCorrectEdits_WHEN_SingleInsertion" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="8894d7ad-5145-0163-c001-5c5c5be7fe33">
+      <Execution id="d0478137-a28c-474f-84f8-0988366365fc" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Utilities.MyersDiffTests" name="SHOULD_ReturnCorrectEdits_WHEN_SingleInsertion" />
+    </UnitTest>
+    <UnitTest name="IsAncestor_ReturnsTrue_ForSelf" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="5633b3be-2a20-bc6d-378e-5ceef1d69090">
+      <Execution id="25bcf6bf-ec0e-4f74-aecc-c7dbd83536ec" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Services.CommitGraphTests" name="IsAncestor_ReturnsTrue_ForSelf" />
+    </UnitTest>
+    <UnitTest name="VersionFlag_PrintsVersion" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="513a439c-53f1-f897-b89d-365c4717bb8b">
+      <Execution id="baffa9ed-644f-48c5-badd-5cb5cc609ab6" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Commands.VersionCommandTests" name="VersionFlag_PrintsVersion" />
+    </UnitTest>
+    <UnitTest name="BothAppendIdentical_NoConflict" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="e59ae6e4-7692-4dc4-8ad7-cbe1096e1e3f">
+      <Execution id="324640ab-5e28-441b-a115-dff1883b1033" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Utilities.ThreeWayLineMergerTests" name="BothAppendIdentical_NoConflict" />
+    </UnitTest>
+    <UnitTest name="ShouldErrorWhenDeleteUnknownBranch" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="0af433ce-e0d2-72d5-142b-59e1dbe55039">
+      <Execution id="50007cb7-fe58-49e9-8fca-9aedcf048e75" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.BranchCommandTests" name="ShouldErrorWhenDeleteUnknownBranch" />
+    </UnitTest>
+    <UnitTest name="ShouldShowErrorAndExitWhenUncommittedChangesExist" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="fe34a7eb-f4df-5e17-27d4-6876433aba09">
+      <Execution id="dcb28c0a-2c4d-4028-acb4-d4e65802b87d" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.CheckoutCommandTests" name="ShouldShowErrorAndExitWhenUncommittedChangesExist" />
+    </UnitTest>
+    <UnitTest name="FindMergeBase_ReturnsNull_ForUnrelated" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="4a5a642a-e56e-6669-def2-1fe519686604">
+      <Execution id="099768c1-cf68-42a4-aacf-6f79ef279e4b" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Services.CommitGraphTests" name="FindMergeBase_ReturnsNull_ForUnrelated" />
+    </UnitTest>
+    <UnitTest name="DirtyWorkingTree_RefusesMerge" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="7cc8bc95-5c35-32d8-295d-cf124836cea2">
+      <Execution id="9fbf8fcc-af6c-49ba-8be3-639f970b9c74" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.MergeCommandTests" name="DirtyWorkingTree_RefusesMerge" />
+    </UnitTest>
+    <UnitTest name="Checkout_RefusedDuringMerge" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="a9324bfa-c787-d11b-c229-94cecd7d1e6a">
+      <Execution id="8cdca184-f2f6-42ac-aac5-257db243e930" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.MergeCommandTests" name="Checkout_RefusedDuringMerge" />
+    </UnitTest>
+    <UnitTest name="SHOULD_ReadValueFromFile_WHEN_FileExistsWithKey" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="d2ada6f1-15e5-9577-3a41-38de86f9bab2">
+      <Execution id="79e79390-3133-4c0a-9682-711fb4250112" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.ConfigCommandTests" name="SHOULD_ReadValueFromFile_WHEN_FileExistsWithKey" />
+    </UnitTest>
+    <UnitTest name="ShouldCheckoutBranch" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="4d0da136-7756-c655-9681-e32fae199e1d">
+      <Execution id="2f3367ca-9d33-4704-a74b-aa84041a98ac" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.CheckoutCommandTests" name="ShouldCheckoutBranch" />
+    </UnitTest>
+    <UnitTest name="ShouldPrintErrorWhenBranchAlreadyExists" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="8014d749-2777-6bb6-9ecd-d6fdae90ad93">
+      <Execution id="98d0a1fe-a2d9-49e2-89aa-3d84ed7af79a" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.BranchCommandTests" name="ShouldPrintErrorWhenBranchAlreadyExists" />
+    </UnitTest>
+    <UnitTest name="EditTopAndDeleteBottom_CleanMerge" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="f2998dde-626f-23a5-7683-c719a7da336e">
+      <Execution id="e50cf31e-2818-48ed-901d-636f8d6368e7" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Utilities.ThreeWayLineMergerTests" name="EditTopAndDeleteBottom_CleanMerge" />
+    </UnitTest>
+    <UnitTest name="OnlyOursChanged_TakesOurs" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="bd4924bb-68fa-60d7-665e-cc3e0c8d0243">
+      <Execution id="6163a945-f29c-4c65-a4a3-270fc12ea779" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Services.BlobMergerTests" name="OnlyOursChanged_TakesOurs" />
+    </UnitTest>
+    <UnitTest name="SameBothSides_NoConflict" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="8c094c32-838a-d386-b607-7c82f0335c8d">
+      <Execution id="07f04c26-2cf3-4475-9886-38e3c7b0b3c1" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Services.BlobMergerTests" name="SameBothSides_NoConflict" />
+    </UnitTest>
+    <UnitTest name="IndependentFiles_MergeBoth" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="a109556d-5b2b-04a0-99f3-10b3111ca9b6">
+      <Execution id="bbe9a6e3-c60f-408f-9276-f91678e4e021" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Services.TreeMergerTests" name="IndependentFiles_MergeBoth" />
+    </UnitTest>
+    <UnitTest name="ShouldNotPromptForMessage" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="8f948891-3ce3-119b-c37c-c1e516e8a4d8">
+      <Execution id="debaee5a-61ee-47f9-a7f6-70dfe9174f65" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.CommitCommandTests" name="ShouldNotPromptForMessage" />
+    </UnitTest>
+    <UnitTest name="ShouldRenameCurrentBranch" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="db1550ed-0b35-4ea3-3301-666a58363988">
+      <Execution id="b36c0e03-2e3f-4f14-99c5-ebf8c7b67283" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.BranchCommandTests" name="ShouldRenameCurrentBranch" />
+    </UnitTest>
+    <UnitTest name="Abort_RestoresPreMergeTree" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="7412cba3-f7ce-15a8-c619-252d83309205">
+      <Execution id="9f35a79d-7773-4d97-9c30-cd47255f358d" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.MergeCommandTests" name="Abort_RestoresPreMergeTree" />
+    </UnitTest>
+    <UnitTest name="BothDeleteSameBlock_Resolved" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="1691f685-9e03-4d49-ca62-39e531948a1e">
+      <Execution id="ee8b36ac-1cb2-4e04-a490-f24f0b76ef8a" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Utilities.ThreeWayLineMergerTests" name="BothDeleteSameBlock_Resolved" />
+    </UnitTest>
+    <UnitTest name="ShouldCommitFilesAndSubdirectories" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="ef25ecf2-9152-0d33-6b02-781c064599ce">
+      <Execution id="16954822-7402-464a-89e9-3ca0c70fa228" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.CommitCommandTests" name="ShouldCommitFilesAndSubdirectories" />
+    </UnitTest>
+    <UnitTest name="SHOULD_ReturnHashedValue_WHEN_ObjectIsHashed" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="26b2bc15-c038-abdf-954b-1da03af40831">
+      <Execution id="d9db0a43-d2c4-4198-8294-b738c09041b0" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Utilities.ObjectHasherTests" name="SHOULD_ReturnHashedValue_WHEN_ObjectIsHashed" />
+    </UnitTest>
+    <UnitTest name="FindMergeBase_ReturnsCommonAncestor" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="cf1df176-7bfe-74db-7568-4a5834020fff">
+      <Execution id="3f303852-1deb-4e56-839d-a2a1442b2adc" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.Services.CommitGraphTests" name="FindMergeBase_ReturnsCommonAncestor" />
+    </UnitTest>
+    <UnitTest name="CleanThreeWay_CreatesMergeCommitWithTwoParents" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="b1e56c4a-47cf-5d46-1c34-d486b0d78e42">
+      <Execution id="ac184f6d-1a82-49ed-9d94-0331a50b0ace" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.MergeCommandTests" name="CleanThreeWay_CreatesMergeCommitWithTwoParents" />
+    </UnitTest>
+    <UnitTest name="SHOULD_ListAllStoredValues" storage="/home/duncan/riderprojects/gud/gud.tests/bin/debug/net10.0/gud.tests.dll" id="d72e9302-69cc-83bc-2df7-ef2eb143d9e4">
+      <Execution id="4fe5954e-9bc4-4158-a34a-901b613dafa1" />
+      <TestMethod codeBase="/home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="gud.Tests.IntegrationTests.ConfigCommandTests" name="SHOULD_ListAllStoredValues" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="e59ae6e4-7692-4dc4-8ad7-cbe1096e1e3f" executionId="324640ab-5e28-441b-a115-dff1883b1033" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d9c650e8-bdb5-0419-b05f-36dd02f76b7b" executionId="2d3e6f3e-0026-45c3-9fa8-dda87cea3101" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8014d749-2777-6bb6-9ecd-d6fdae90ad93" executionId="98d0a1fe-a2d9-49e2-89aa-3d84ed7af79a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e074d9a3-9229-1665-0c44-5baa0704222d" executionId="967c18d8-8feb-4236-9b75-c20d9bb119ba" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b022946c-35d4-00d1-0e16-07c9e986400e" executionId="03051578-8448-4b22-b819-b04c2ecdb48f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bc6ad3e9-c364-036a-2d6d-69943773cec1" executionId="9211fd36-34d4-4526-b070-042a4d1b7bee" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fe34a7eb-f4df-5e17-27d4-6876433aba09" executionId="dcb28c0a-2c4d-4028-acb4-d4e65802b87d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="75287699-2474-309c-9348-3d79efe8c77a" executionId="990bb756-9ed4-42df-8f29-965aa3e755a0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f2998dde-626f-23a5-7683-c719a7da336e" executionId="e50cf31e-2818-48ed-901d-636f8d6368e7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="db1550ed-0b35-4ea3-3301-666a58363988" executionId="b36c0e03-2e3f-4f14-99c5-ebf8c7b67283" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="83bc1993-a80c-6985-778d-029129942faa" executionId="feef03ae-e699-4ed6-96a4-bb0a498a2085" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a9324bfa-c787-d11b-c229-94cecd7d1e6a" executionId="8cdca184-f2f6-42ac-aac5-257db243e930" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4d0da136-7756-c655-9681-e32fae199e1d" executionId="2f3367ca-9d33-4704-a74b-aa84041a98ac" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9141c0a6-2789-347c-c4e5-294be3733f42" executionId="7e9809d3-db88-46e4-a14a-1ceb796487a2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8894d7ad-5145-0163-c001-5c5c5be7fe33" executionId="d0478137-a28c-474f-84f8-0988366365fc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0c93a886-e17a-2040-98da-210fb7f263fb" executionId="d7ebef52-6fc2-49a6-9a18-72a4e9ac59a0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dd3f3170-3b5a-9fd6-f5ac-43ec5e77550e" executionId="34395bee-cc75-4d27-8a4f-56608e0f349c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d2ada6f1-15e5-9577-3a41-38de86f9bab2" executionId="79e79390-3133-4c0a-9682-711fb4250112" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4f10e5a4-dbbb-2081-6589-316850a346fd" executionId="9ed5120f-a06d-4ad0-86bb-0469936c5a28" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c4963be1-8efa-e007-bae3-67fa585ca106" executionId="f38b4c28-5e4b-4b0f-92ef-170c65a98625" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="81310f9e-ca33-4a64-2191-6c2685eeeb01" executionId="0b262cac-bd32-4e53-a0b8-75e6dfb138df" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b1e56c4a-47cf-5d46-1c34-d486b0d78e42" executionId="ac184f6d-1a82-49ed-9d94-0331a50b0ace" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e88f16d9-fda2-fa77-b541-c271805440f5" executionId="04fd193f-a747-4ce8-8441-81ee4f340964" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a109556d-5b2b-04a0-99f3-10b3111ca9b6" executionId="bbe9a6e3-c60f-408f-9276-f91678e4e021" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bd4924bb-68fa-60d7-665e-cc3e0c8d0243" executionId="6163a945-f29c-4c65-a4a3-270fc12ea779" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4a5a642a-e56e-6669-def2-1fe519686604" executionId="099768c1-cf68-42a4-aacf-6f79ef279e4b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b9d0bebb-b1a4-6fd0-48c6-f32f4e0736e3" executionId="768456de-8278-4f1f-9a5b-ba1259f375ad" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="192d6378-7851-64b4-de24-1ed43b4c12e5" executionId="12fff19f-0e4c-4d81-ada7-44d00c717d93" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5589557f-e389-2d43-17c0-10e613e7e849" executionId="38caedd2-b8a7-4592-9382-de535066248d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a0bd51cd-13d4-d5f3-e26b-8750b8a102d9" executionId="655a7273-b34e-4b77-9a3b-f92c880fe6f8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f513f467-700c-b9d7-1a15-4d7e0decbf18" executionId="28f29f83-5f60-4a48-b6e5-b3bf6ee5c3bf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d07f482d-5ec4-aa75-119b-2ee08fba48a6" executionId="54602b4f-bc25-4cf2-993f-0f52eaabec78" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ce791983-ddd2-a70b-74f8-55f9abb2ac59" executionId="b8e3604c-eb1c-4fb1-a59e-876b3133da9c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b3100691-8015-0151-2bd0-f7916cc3e3d5" executionId="4a588c57-8a69-4ac8-a2f1-ca1e7e3f507f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3095b76d-09ed-d803-2523-c6ea2fe7b83e" executionId="a8558006-0e5a-4973-9e67-07140ae66d7c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="378fea79-599f-1896-d7a9-92b974511641" executionId="f594705d-15cc-4e16-80d9-77cb3c6a69da" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d610ac00-8927-24e0-45d0-1e497253b773" executionId="65e39496-b566-484a-a519-2ee223e9b685" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="af30a0e5-cc9b-db47-aa43-7d5f9eba2921" executionId="ed240a34-5a25-4a10-a6f0-7b52b51f5a3e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="50390688-67c0-c1e6-ab35-e209d3f6be0b" executionId="8cd996d2-df03-4bdf-b96e-7fa95e8de3c5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ef25ecf2-9152-0d33-6b02-781c064599ce" executionId="16954822-7402-464a-89e9-3ca0c70fa228" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cf1df176-7bfe-74db-7568-4a5834020fff" executionId="3f303852-1deb-4e56-839d-a2a1442b2adc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8c094c32-838a-d386-b607-7c82f0335c8d" executionId="07f04c26-2cf3-4475-9886-38e3c7b0b3c1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dd22a208-5369-763d-426a-97f732152bc9" executionId="d353aae0-d488-4e16-b43f-0c8a662b61d0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ddecc5a0-8824-44ef-a812-1eaffb827170" executionId="97d0b44f-bb55-4448-bc4e-acd398047eb6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4da2a1f9-5cf5-afcc-6042-38fcc6f4fd49" executionId="e7e2c7a4-4cf7-4122-b77e-d419d4007cf9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c59ca16e-94dd-1a50-25ae-7cd43aa6915c" executionId="c37f6998-41cf-41da-98a6-94ed7b3926f8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fa80015f-c377-6d81-ea6c-e14205ac656c" executionId="f80207c5-8cdc-428d-b7d1-20deca5d4e73" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="47986380-70a2-5509-9bf0-1fffaf3263d1" executionId="51a39bdb-4e09-4fde-aebf-a68512b34505" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cd500bdb-5779-fb5d-3ed9-2d0e106d12bf" executionId="a28b5c20-86da-47aa-996a-1fa3ec192d2a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d72e9302-69cc-83bc-2df7-ef2eb143d9e4" executionId="4fe5954e-9bc4-4158-a34a-901b613dafa1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="89a7435e-6893-5393-7bd0-5ee7f83f2bda" executionId="3a8074cc-210b-4966-b7e5-89e7da093fd1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fc58b31e-0e6c-1d02-a728-89692dbaaf30" executionId="491daaed-f8a4-4541-8200-6ab0d5071346" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1691f685-9e03-4d49-ca62-39e531948a1e" executionId="ee8b36ac-1cb2-4e04-a490-f24f0b76ef8a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c5db0296-178e-6bd5-69e0-798d4b42482e" executionId="b3efa37d-33d1-4676-9b9a-baf1a8b80803" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d2e3caab-48da-928a-c23a-b7d1b2ae57d4" executionId="0ea72bf0-400f-4575-a19a-82b27d58160b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="26b2bc15-c038-abdf-954b-1da03af40831" executionId="d9db0a43-d2c4-4198-8294-b738c09041b0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9393980a-709f-70c2-9f8a-845952c1ffdd" executionId="e1ec6a41-e2dd-4642-8f8d-1cff6ebee28b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e647e10f-244e-3495-f6ec-71e0d4cbfbe9" executionId="6358598f-13d6-4534-a6dc-828edd0aa022" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c7d5507b-f5ac-42bf-2d7e-4d1a15c30880" executionId="d698f097-fa2b-425a-b04a-eb2fc3e040a0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7fbd8ed8-7640-19cc-ee5f-873e34cac076" executionId="9c69940f-8911-4374-b68c-03b42d93feef" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7412cba3-f7ce-15a8-c619-252d83309205" executionId="9f35a79d-7773-4d97-9c30-cd47255f358d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7e769df7-1192-03a4-a167-9867a03201b4" executionId="5020426b-0403-4bf1-bcaa-23820ea4fabc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5633b3be-2a20-bc6d-378e-5ceef1d69090" executionId="25bcf6bf-ec0e-4f74-aecc-c7dbd83536ec" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="998dfb6c-f6f0-6d03-bbea-4c8c16cf2022" executionId="85e68231-1981-42dc-96e7-8ca6db4bc3d8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b8ce71aa-2f9c-7994-4a66-13b03efa3503" executionId="965a773e-ec8f-4660-b741-bf289570a0d0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="facc4a91-ecb6-ec7f-768e-602c56c13369" executionId="bc81a78b-1bf7-41f9-bcaf-15f38aa6d46c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f58944b7-6daa-0608-7968-f52ad61f2a55" executionId="443ceca7-14e8-4d1f-b880-634bea5bd10f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="70283a27-8963-f9db-b472-ea9f35d85aed" executionId="204e47a8-cbfd-4af9-ba3b-ed5f68043f2f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="00d48361-4343-92f2-e3b6-29622f96a8a9" executionId="b6b00812-4352-41bf-a965-d610e3206833" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7cc8bc95-5c35-32d8-295d-cf124836cea2" executionId="9fbf8fcc-af6c-49ba-8be3-639f970b9c74" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fe341277-0bce-d0e2-54a4-306f88b91698" executionId="bc4a6b31-7331-4691-8526-5f1f582259b0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="feba21cb-8c1d-4c4a-6cff-2d8db43c85c3" executionId="13bfee90-dc2a-4145-b64b-dafc09603e0e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="513a439c-53f1-f897-b89d-365c4717bb8b" executionId="baffa9ed-644f-48c5-badd-5cb5cc609ab6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0af433ce-e0d2-72d5-142b-59e1dbe55039" executionId="50007cb7-fe58-49e9-8fca-9aedcf048e75" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a3c47dbd-d1a2-ae72-be96-2792efddb240" executionId="19ddca09-16a6-4287-8953-72b01eb55431" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8f948891-3ce3-119b-c37c-c1e516e8a4d8" executionId="debaee5a-61ee-47f9-a7f6-70dfe9174f65" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="59f8c8f7-4d5d-dd99-0e4e-8f10faf37aa9" executionId="99e3cf99-7c08-4a1e-8f1d-5bf692106566" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="77" executed="77" passed="77" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>NUnit Adapter 5.0.0.0: Test execution started
+Running all tests in /home/duncan/RiderProjects/gud/gud.Tests/bin/Debug/net10.0/gud.Tests.dll
+   NUnit3TestExecutor discovered 77 of 77 NUnit test cases using Current Discovery mode, Non-Explicit run
+NUnit Adapter 5.0.0.0: Test execution complete
+</StdOut>
+    </Output>
+    <CollectorDataEntries>
+      <Collector agentName="duncans-rig" uri="datacollector://microsoft/CoverletCodeCoverage/1.0" collectorDisplayName="XPlat code coverage">
+        <UriAttachments>
+          <UriAttachment>
+            <A href="duncans-rig/coverage.cobertura.xml"></A>
+          </UriAttachment>
+        </UriAttachments>
+      </Collector>
+    </CollectorDataEntries>
+  </ResultSummary>
+</TestRun>

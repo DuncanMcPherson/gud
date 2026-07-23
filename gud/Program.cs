@@ -1,11 +1,13 @@
 ﻿using Spectre.Console.Cli;
 using gud.Commands;
+using gud.Utilities;
 
 var app = new CommandApp();
 
 app.Configure(config =>
 {
     config.SetApplicationName("gud");
+    config.SetApplicationVersion(AppVersion.Get());
 
     config.AddCommand<LogCommand>("log")
         .WithDescription("Shows the commit logs");
@@ -28,6 +30,8 @@ app.Configure(config =>
     config.AddCommand<FetchCommand>("fetch");
     config.AddCommand<MergeCommand>("merge")
         .WithDescription("Joins two or more development histories together");
+    config.AddCommand<VersionCommand>("version")
+        .WithDescription("Prints the gud version");
 });
 
 return await app.RunAsync(args);
