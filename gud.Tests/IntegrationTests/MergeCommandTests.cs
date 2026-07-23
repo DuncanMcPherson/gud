@@ -113,6 +113,57 @@ public class MergeCommandTests : TestRepoWithConfigBase
     }
 
     [Test]
+    public void SameFileNonOverlappingLineEdits_CleanMerge()
+    {
+        File.WriteAllText(Path.Combine(RepoPath, "shared.txt"), "line1\nline2\nline3\nline4\n");
+        _commitApp.Run("-m", "add shared");
+
+        _branchApp.Run("feature");
+        _checkoutApp.Run("feature");
+        File.WriteAllText(Path.Combine(RepoPath, "shared.txt"), "LINE1\nline2\nline3\nline4\n");
+        _commitApp.Run("-m", "edit top");
+
+        _checkoutApp.Run("main");
+        File.WriteAllText(Path.Combine(RepoPath, "shared.txt"), "line1\nline2\nline3\nLINE4\n");
+        _commitApp.Run("-m", "edit bottom");
+
+        var result = _mergeApp.Run("feature");
+        Assert.That(result.ExitCode, Is.EqualTo(0), result.Output);
+        Assert.That(new MergeState(Path.Combine(RepoPath, ".gud")).IsInProgress, Is.False);
+        Assert.That(File.ReadAllText(Path.Combine(RepoPath, "shared.txt")), Is.EqualTo("LINE1\nline2\nline3\nLINE4\n"));
+
+        var gud = Path.Combine(RepoPath, ".gud");
+        var head = new RefStore(gud).GetHead()!;
+        var commit = Commit.Read(new ObjectRepository(new ObjectStore(gud)), head);
+        Assert.That(commit.ParentHashes, Has.Count.EqualTo(2));
+    }
+
+    [Test]
+    public void SameFileOverlappingLineEdit_RegionalMarkers()
+    {
+        File.WriteAllText(Path.Combine(RepoPath, "shared.txt"), "prefix\nmiddle\nsuffix\n");
+        _commitApp.Run("-m", "add shared");
+
+        _branchApp.Run("feature");
+        _checkoutApp.Run("feature");
+        File.WriteAllText(Path.Combine(RepoPath, "shared.txt"), "prefix\nfeature-mid\nsuffix\n");
+        _commitApp.Run("-m", "feature mid");
+
+        _checkoutApp.Run("main");
+        File.WriteAllText(Path.Combine(RepoPath, "shared.txt"), "prefix\nmain-mid\nsuffix\n");
+        _commitApp.Run("-m", "main mid");
+
+        var result = _mergeApp.Run("feature");
+        Assert.That(result.ExitCode, Is.EqualTo(1), result.Output);
+        var content = File.ReadAllText(Path.Combine(RepoPath, "shared.txt"));
+        Assert.That(content, Does.StartWith("prefix\n"));
+        Assert.That(content, Does.Contain("<<<<<<<"));
+        Assert.That(content, Does.Contain("main-mid"));
+        Assert.That(content, Does.Contain("feature-mid"));
+        Assert.That(content, Does.Contain("suffix"));
+    }
+
+    [Test]
     public void ResolveConflict_ThenCommit_ClearsMergeState()
     {
         _branchApp.Run("feature");

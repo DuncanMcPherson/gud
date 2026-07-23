@@ -64,7 +64,10 @@ gud commit -m "My first commit"
 ```bash
 gud branch my-feature
 gud checkout my-feature
+gud branch -d my-feature   # delete a branch you are not on
 ```
+
+Deleting a branch removes its ref under `.gud/refs/heads/`. Commits and objects remain in the object store (garbage collection is not implemented yet).
 
 ### Merging
 
@@ -73,7 +76,7 @@ gud checkout main
 gud merge my-feature
 ```
 
-When histories have diverged without overlapping edits, `gud` creates a merge commit. If the same file changed on both sides, conflict markers are written into the working tree; fix them and run `gud commit`, or discard the merge with `gud merge --abort`.
+When histories have diverged without overlapping path edits, `gud` creates a merge commit. Changes on different lines of the same text file are auto-merged; only overlapping line regions get conflict markers. Fix markers and run `gud commit`, or discard the merge with `gud merge --abort`.
 
 ### Viewing History
 
