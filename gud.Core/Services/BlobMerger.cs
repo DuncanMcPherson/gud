@@ -1,4 +1,5 @@
 using System.Text;
+using gud.Core.Utilities;
 
 namespace gud.Core.Services;
 
@@ -10,14 +11,14 @@ public sealed class BlobMergeResult
 }
 
 /// <summary>
-/// File-level three-way content merge. When both sides change a text file differently,
-/// emits whole-file Git-style conflict markers.
+/// Three-way content merge for blob bytes. Text files use line-level (diff3-style)
+/// merge; binary conflicts keep ours content and set <see cref="BlobMergeResult.HadConflict"/>.
 /// </summary>
 public static class BlobMerger
 {
     /// <summary>
-    /// Merges blob contents. For conflicts, writes markers with ours / theirs full content.
-    /// Binary conflicts keep ours content and set <see cref="BlobMergeResult.HadConflict"/>.
+    /// Merges blob contents. Text both-changed cases use line-level merge with
+    /// regional conflict markers. Binary conflicts keep ours content.
     /// </summary>
     public static BlobMergeResult Merge(
         byte[]? baseContent,
@@ -36,7 +37,7 @@ public static class BlobMerger
             };
         }
 
-        // Only one side differs from base — tree merger usually handles this, but be complete
+        // Only one side differs from base
         if (BytesEqual(theirsContent, baseContent))
         {
             return new BlobMergeResult
@@ -57,9 +58,9 @@ public static class BlobMerger
 
         var oursBytes = oursContent ?? Array.Empty<byte>();
         var theirsBytes = theirsContent ?? Array.Empty<byte>();
+        var baseBytes = baseContent ?? Array.Empty<byte>();
 
-        if (IsBinary(oursBytes) || IsBinary(theirsBytes) ||
-            (baseContent is not null && IsBinary(baseContent)))
+        if (IsBinary(oursBytes) || IsBinary(theirsBytes) || IsBinary(baseBytes))
         {
             return new BlobMergeResult
             {
@@ -69,25 +70,22 @@ public static class BlobMerger
             };
         }
 
+        var baseText = Encoding.UTF8.GetString(baseBytes);
         var oursText = Encoding.UTF8.GetString(oursBytes);
         var theirsText = Encoding.UTF8.GetString(theirsBytes);
 
-        // Normalize so markers are clean; preserve trailing newline if either side had one
-        var marker = new StringBuilder();
-        marker.Append("<<<<<<< ").Append(oursLabel).Append('\n');
-        marker.Append(oursText);
-        if (oursText.Length > 0 && !oursText.EndsWith('\n'))
-            marker.Append('\n');
-        marker.Append("=======\n");
-        marker.Append(theirsText);
-        if (theirsText.Length > 0 && !theirsText.EndsWith('\n'))
-            marker.Append('\n');
-        marker.Append(">>>>>>> ").Append(theirsLabel).Append('\n');
+        var lineResult = ThreeWayLineMerger.Merge(
+            ThreeWayLineMerger.SplitLines(baseText),
+            ThreeWayLineMerger.SplitLines(oursText),
+            ThreeWayLineMerger.SplitLines(theirsText),
+            oursLabel,
+            theirsLabel);
 
+        var merged = ThreeWayLineMerger.JoinLines(lineResult.Lines);
         return new BlobMergeResult
         {
-            Content = Encoding.UTF8.GetBytes(marker.ToString()),
-            HadConflict = true,
+            Content = Encoding.UTF8.GetBytes(merged),
+            HadConflict = lineResult.HadConflict,
             IsBinary = false
         };
     }
@@ -111,11 +109,8 @@ public static class BlobMerger
             if (content[i] == 0) return true;
         }
 
-        // Invalid UTF-8
         try
         {
-            Encoding.UTF8.GetString(content);
-            // Also reject if decoder would replace — use strict
             var encoding = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true);
             encoding.GetString(content);
             return false;
