@@ -4,33 +4,33 @@ Hash: SHA512
 Origin: gud
 Label: gud
 Codename: stable
-Date: Fri, 17 Jul 2026 20:31:20 UTC
+Date: Thu, 23 Jul 2026 18:53:12 UTC
 Architectures: amd64
 Components: main
 Description: APT repository for gud
 MD5Sum:
- 313cf36a7dfd7bfc5d1c51566333e85d 493 main/binary-amd64/Packages
- 5bc01bfc14eabbf101af3f8afdc782ee 367 main/binary-amd64/Packages.gz
+ b5b0760f76ca4abd1f5de8fb8fccbf2a 493 main/binary-amd64/Packages
+ ffb18c3e77423e6b3f1d644093eb8ec4 367 main/binary-amd64/Packages.gz
  c40624dfd6d4245649717588bf14657b 95 main/binary-amd64/Release
 SHA1:
- cabe16b33839ad293acb48b11fa80e5d5e5fec78 493 main/binary-amd64/Packages
- 99dc4bc0cbe72a87b9527491035d39e28d57f871 367 main/binary-amd64/Packages.gz
+ 6695498ccf6b9fc13361aad44f88e33ed6dca287 493 main/binary-amd64/Packages
+ 76152f5f2238fa49460169a89ad2bf6582d6b8ce 367 main/binary-amd64/Packages.gz
  2ab9dd7a9371002e2413bf08dbef00709c2372f2 95 main/binary-amd64/Release
 SHA256:
- 94eddab1bad41e9b8f30829bd7fdecc8313639510ab36cd07b50d57fe00fca1b 493 main/binary-amd64/Packages
- 0c0e4f368edcb1b9aa7292719950c6d1549e8bb18a715a3d7448e780c88430a1 367 main/binary-amd64/Packages.gz
+ 904f9c04a8c286be59ae59701300438e0e5cf7dd944c64498842f98fa07b9a88 493 main/binary-amd64/Packages
+ f6e61253e9c32fc2b79171e8ff383c95a0658d2b1f82775cbcddc28aa491cb58 367 main/binary-amd64/Packages.gz
  66ea71e92911d220df7a13b54f22ecb1693fa7e514fd3ecc5984fdfa7755a14c 95 main/binary-amd64/Release
 -----BEGIN PGP SIGNATURE-----
 
-iQGzBAEBCgAdFiEEV0wqCDiVnTV6Abo7JDVRltFcUzIFAmpakRgACgkQJDVRltFc
-UzJE1QwAmlf/zLdUr6fCt6NxPMcpDqVYPpPzUBgObLKhpdq9PgK/qEe0Ruzf3p0E
-/BVXQpnfOGRYlft62tjMPdCDczHlG5eD7Ym46uIw4dJmxBmOlHXg+v1fYlpMPzoh
-M096fe2zlSr3rIVlBTxVgKLcRa8iibQe02u28kZQ6MbswOI7RantAx3Wskk/j/tx
-TmoKmOJop9OdLb0i9o2QMe5cU2FoVACM+UQZvr9+tKtRnhBF/b8fm75JwSjG04/5
-15dh2m/4rf9OUMT73qeNJd1eh+/TK8sL4uxf0bNdmU/w65pwXBfSbjOYgU9rchZ6
-m41cGbewpRBSyZKI5L0wl9QH6SKluBZOLgMlePWGFAqvRVoMwpsSVFvtoyBHk1nX
-VUVa4IZo2G3dRoIdEy8Ln6rQX9GNFwW0Nno9V+NmoQlaS3NcuUowDgKa/1vJxN+x
-Pa/GZ5VNPU4YyijagR9ddph96Yr38R+6s9OTW7UEfl3kdc4TAF5Db2PN0Ni/fE5n
-3WTgUVIl
-=SM80
+iQGzBAEBCgAdFiEEV0wqCDiVnTV6Abo7JDVRltFcUzIFAmpiYxkACgkQJDVRltFc
+UzJppgv/RmoWG5D6IjYymS5ZwkZLejsHZopFmBsGj3tLhx/wIao8A63rcnt3T1ez
+X/p9M0bp4CIG9LpBtmgDdTmjPoAtyqu89/ydfZLrdagcDmJiKgXNE6bi4d+JWYY6
+2VUkNw6zGAckhQznHE8Aj7JwyBp2Su1pxTBUi4xhfXdw5s5smAEsO93r/47eFJmK
+MvKO3f/bRjFwwPEwFBUxku2OOEKd5FNbrnPhNZNVqKBrbd3OB8BlXUF5MGOYFyUW
+hUg30GSjM9QUY91jfZlfwXpO6ZIURe1/kbHrqS5uLyEsqEHl34nQ8oqvujNIP5mx
+mrEgw3Y4L5qEaGhCVz2quh5l3X5NrmHkNETa8Mz8QAZ8QUdtUbZImVRGaM5Ngf9A
+IVTvm4Q5GMPP8IlSE3bmi2ZWofIPhAauZnQOc6C/M++gr3Og8P6vIAd7ITF/n23A
+7+hhKY0XU09A9TwrDZa6KO4vfM0NiA6OKveYIzqi2dk+EDiGiNF7BnD2VoIh5O8e
+NIJuSBJC
+=L9fT
 -----END PGP SIGNATURE-----
