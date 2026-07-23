@@ -102,23 +102,30 @@ public class PushCommand : AsyncCommand<PushCommand.Settings>
         if (!await client.RepoExistsAsync())
             await client.CreateRepoAsync(repoName);
         
+        var serverCommit = await client.GetRefAsync(branch);
+        
         AnsiConsole.MarkupLine("Collecting objects...");
-        var localHashes = ObjectGraphWalker.CollectReachable(objects, commitToPush);
-        var toUpload = new List<string>();
-
-        foreach (var hash in localHashes)
+        HashSet<string> toUpload;
+        if (serverCommit.IsNullOrWhiteSpace())
         {
-            if (!await client.ObjectExistsAsync(hash))
-                toUpload.Add(hash);
+            toUpload = ObjectGraphWalker.CollectReachable(objects, commitToPush);
+        }else if (objects.Exists(serverCommit!))
+        {
+            var known = ObjectGraphWalker.CollectReachable(objects, serverCommit!);
+            toUpload = ObjectGraphWalker.CollectReachable(objects, commitToPush, known);
         }
-
+        else
+        {
+            _console.MarkupLine("[red]ERROR:[/] remote has commits not present locally. Fetch before pushing");
+            return 1;
+        }
+        
         if (toUpload.Count == 0)
         {
             _console.MarkupLine("[green]Nothing to push.[/]");
             return 0;
         }
         
-        _console.MarkupLine($"[yellow]{toUpload.Count}[/] of [yellow]{localHashes.Count}[/] objects to upload.");
         foreach (var hash in toUpload)
         {
             var rawWithHeader = objects.ReadRawObjectFile(hash);
@@ -128,6 +135,8 @@ public class PushCommand : AsyncCommand<PushCommand.Settings>
         try
         {
             await client.PutRefAsync(branch, commitToPush);
+            var remoteRefs = new RemoteRefStore(gudPath);
+            remoteRefs.SetTrackedCommit(remoteToUse, branch, commitToPush);
         }
         catch (HttpRequestException ex)
         {

@@ -50,6 +50,21 @@ public class ObjectRepository(ObjectStore store)
         var content = raw[(nullIndex + 1)..];
         return (type, content);
     }
+    
+    public bool Exists(string hash)
+    {
+        return store.Exists(hash);
+    }
+
+    public static (ObjectType Type, byte[] Content) ParseRaw(byte[] raw)
+    {
+        var nullIndex = Array.IndexOf(raw, (byte)'\0');
+        var headerString = Encoding.UTF8.GetString(raw, 0, nullIndex);
+        var parts = headerString.Split(' ');
+        var type = ParseType(parts[0]);
+        var content = raw[(nullIndex + 1)..];
+        return (type, content);
+    }
 
     public byte[] ReadRawObjectFile(string hash)
     {
@@ -62,7 +77,7 @@ public class ObjectRepository(ObjectStore store)
     /// <param name="typeStr">The string representation of the object type to parse. Supported values are "blob", "tree", and "commit".</param>
     /// <returns>The parsed <see cref="ObjectType"/> value corresponding to the input string.</returns>
     /// <exception cref="IndexOutOfRangeException">Thrown if the input string does not match any supported object types.</exception>
-    private ObjectType ParseType(string typeStr)
+    private static ObjectType ParseType(string typeStr)
     {
         return typeStr switch
         {

@@ -93,6 +93,40 @@ public class BranchStore(string gudPath)
     }
 
     /// <summary>
+    /// Deletes the branch ref file for <paramref name="branch"/> and removes any empty
+    /// parent directories under <c>refs/heads</c> left by nested branch names.
+    /// Does not remove commits or other objects from the object store.
+    /// </summary>
+    /// <param name="branch">The branch name to delete.</param>
+    /// <exception cref="FileNotFoundException">Thrown if the branch does not exist.</exception>
+    public void Delete(string branch)
+    {
+        var path = ResolvePath(branch);
+        if (!File.Exists(path))
+            throw new FileNotFoundException($"Branch '{branch}' does not exist.");
+        File.Delete(path);
+        PruneEmptyParents(Path.GetDirectoryName(path)!);
+    }
+
+    /// <summary>
+    /// Removes empty directories from <paramref name="directory"/> up toward
+    /// <c>refs/heads</c>, without deleting the heads directory itself.
+    /// </summary>
+    private void PruneEmptyParents(string directory)
+    {
+        var headsFull = Path.GetFullPath(_headsPath);
+        var current = Path.GetFullPath(directory);
+        while (current.StartsWith(headsFull, StringComparison.Ordinal)
+               && !string.Equals(current, headsFull, StringComparison.Ordinal))
+        {
+            if (!Directory.Exists(current) || Directory.EnumerateFileSystemEntries(current).Any())
+                break;
+            Directory.Delete(current);
+            current = Path.GetDirectoryName(current)!;
+        }
+    }
+
+    /// <summary>
     /// Sets the commit hash for the specified branch. If the branch does not exist,
     /// it creates the branch and writes the commit hash to its reference file.
     /// </summary>

@@ -38,6 +38,33 @@ public class StatusCommand : Command<StatusCommand.Settings>
         var objects = new ObjectRepository(new ObjectStore(gudPath));
         var refs = new RefStore(gudPath);
         var ignore = new GudIgnoreMatcher(Path.Combine(root, ".gudignore"));
+        var mergeState = new MergeState(gudPath);
+
+        if (mergeState.IsInProgress)
+        {
+            var conflicts = mergeState.ReadConflicts();
+            var unresolved = new List<string>();
+            foreach (var path in conflicts)
+            {
+                var full = Path.Combine(root, path.Replace('/', Path.DirectorySeparatorChar));
+                if (File.Exists(full) && BlobMerger.ContainsConflictMarkers(File.ReadAllBytes(full)))
+                    unresolved.Add(path);
+            }
+
+            if (unresolved.Count > 0)
+            {
+                _console.MarkupLine("[yellow]You have unmerged paths.[/]");
+                _console.MarkupLine("  (fix conflicts and run \"gud commit\")");
+                foreach (var path in unresolved)
+                    _console.MarkupLine($"[red]both modified:[/] {path}");
+            }
+            else
+            {
+                _console.MarkupLine("[yellow]All conflicts fixed but you are still merging.[/]");
+                _console.MarkupLine("  (use \"gud commit\" to conclude merge)");
+            }
+            _console.WriteLine();
+        }
 
         var headCommit = refs.GetHead();
         string? headTreeHash = null;

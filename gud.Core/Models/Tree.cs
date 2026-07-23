@@ -73,6 +73,20 @@ public sealed class Tree
         return new Tree(entries);
     }
 
+    public static Tree Read(byte[] content)
+    {
+        var contentStr = Encoding.UTF8.GetString(content);
+        var entryStrs = contentStr.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+        var entries = (from entryStr in entryStrs
+            select entryStr.Split(' ')
+            into parts
+            let entryType = Enum.Parse<TreeEntryType>(parts[0])
+            let entryHash = parts[1]
+            let entryName = parts[2]
+            select new TreeEntry { Name = entryName, Hash = entryHash, Type = entryType }).ToList();
+        return new Tree(entries);
+    }
+
     /// <summary>
     /// Writes the current <see cref="Tree"/> object to the specified repository.
     /// </summary>
