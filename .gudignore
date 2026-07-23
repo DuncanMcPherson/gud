@@ -9,3 +9,4 @@ publish
 .gitignore
 node_modules
 .junie
+TestResults
