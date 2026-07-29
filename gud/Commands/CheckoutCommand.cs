@@ -65,24 +65,7 @@ public class CheckoutCommand : Command<CheckoutCommand.Settings>
             return 1;
         }
 
-        string? oldTreeHash = null;
-        if (headCommit != null)
-        {
-            var (_, headContent) = repo.ReadObject(headCommit);
-            var committedHead = Commit.Read(headContent);
-            oldTreeHash = committedHead.TreeHash;
-        }
-        
-        var (_, targetContent) = repo.ReadObject(targetCommit);
-        var committedTarget = Commit.Read(targetContent);
-        var newTreeHash = committedTarget.TreeHash;
-        
-        WorkingTreeSync.SyncWorkingTree(oldTreeHash, newTreeHash, root, repo);
-        
-        if (branches.Exists(settings.Target))
-            refStore.SetBranch(settings.Target);
-        else
-            refStore.SetHead(targetCommit);
+        CheckoutUtility.Checkout(headCommit, targetCommit, settings.Target, root, repo, branches, refStore);
         _console.MarkupLine($"[green]Switched to[/] {settings.Target}");
         return 0;
     }

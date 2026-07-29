@@ -32,6 +32,8 @@ app.Configure(config =>
         .WithDescription("Joins two or more development histories together");
     config.AddCommand<VersionCommand>("version")
         .WithDescription("Prints the gud version");
+    config.AddCommand<CloneCommand>("clone")
+        .WithDescription("Clones a remote repository");
 });
 
 return await app.RunAsync(args);

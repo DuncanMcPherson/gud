@@ -60,4 +60,14 @@ public class GudRemoteClient
         var response = await _client.PutAsJsonAsync($"/repos/{_repoName}/refs/heads/{branch}", new { NewCommit = newCommit });
         response.EnsureSuccessStatusCode();
     }
+
+    public async Task<Dictionary<string, string>> ListBranchesAsync()
+    {
+        var result = await _client.GetAsync($"/repos/{_repoName}/refs/heads");
+        if (result.StatusCode == HttpStatusCode.NotFound)
+            throw new Exception($"'{_repoName}' does not exist at '{_client.BaseAddress!.ToString()}");
+        result.EnsureSuccessStatusCode();
+        var refs = await result.Content.ReadFromJsonAsync<Dictionary<string, string>>();
+        return refs ?? new Dictionary<string, string>();
+    }
 }
