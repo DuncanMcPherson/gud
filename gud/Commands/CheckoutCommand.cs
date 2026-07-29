@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using gud.Core.Models;
 using gud.Core.Repository;
 using gud.Core.Services;
@@ -12,7 +12,7 @@ namespace gud.Commands;
 public class CheckoutCommand : Command<CheckoutCommand.Settings>
 {
     private readonly IAnsiConsole _console;
-    
+
     public CheckoutCommand(IAnsiConsole console)
     {
         _console = console;
@@ -21,7 +21,7 @@ public class CheckoutCommand : Command<CheckoutCommand.Settings>
     public class Settings : CommandSettings
     {
         [CommandArgument(0, "<target>")]
-        [Description("The branch to check out")]
+        [Description("Local branch, remote-tracking ref (e.g. origin/feat/x), or commit")]
         public string Target { get; init; } = null!;
     }
 
@@ -38,10 +38,12 @@ public class CheckoutCommand : Command<CheckoutCommand.Settings>
             _console.MarkupLine($"[red]Error:[/] {ex.Message}");
             return 1;
         }
+
         var gudPath = Path.Combine(root, ".gud");
         var repo = new ObjectRepository(new ObjectStore(gudPath));
         var refStore = new RefStore(gudPath);
         var branches = new BranchStore(gudPath);
+        var remoteRefs = new RemoteRefStore(gudPath);
         var builder = new CommitBuilder(repo);
 
         if (new MergeState(gudPath).IsInProgress)
@@ -53,7 +55,7 @@ public class CheckoutCommand : Command<CheckoutCommand.Settings>
         var targetCommit = branches.ResolveTarget(settings.Target);
         if (string.IsNullOrEmpty(targetCommit))
         {
-            _console.MarkupLine($"[red]Error:[/] '{settings.Target}' is not a valid branch or commit");
+            _console.MarkupLine($"[red]Error:[/] '{settings.Target}' is not a valid branch, remote-tracking ref, or commit");
             return 1;
         }
 
@@ -61,7 +63,7 @@ public class CheckoutCommand : Command<CheckoutCommand.Settings>
 
         if (builder.HasUncommittedChanges(root, headCommit))
         {
-            _console.MarkupLine($"[red]Error:[/] You have uncommitted changes. Please commit them before checking out a new branch."); // Note: this message will need to be updated once we have stashing
+            _console.MarkupLine("[red]Error:[/] You have uncommitted changes. Please commit them before checking out a new branch.");
             return 1;
         }
 

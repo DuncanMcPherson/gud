@@ -27,7 +27,10 @@ app.Configure(config =>
         .WithDescription("Pushes changes to a remote repository");
     config.AddCommand<StatusCommand>("status");
     config.AddCommand<DiffCommand>("diff");
-    config.AddCommand<FetchCommand>("fetch");
+    config.AddCommand<FetchCommand>("fetch")
+        .WithDescription("Downloads objects and refs from a remote");
+    config.AddCommand<PullCommand>("pull")
+        .WithDescription("Fetches from a remote and merges into the current branch");
     config.AddCommand<MergeCommand>("merge")
         .WithDescription("Joins two or more development histories together");
     config.AddCommand<VersionCommand>("version")
