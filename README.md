@@ -85,6 +85,16 @@ gud merge my-feature
 
 When histories have diverged without overlapping path edits, `gud` creates a merge commit. Changes on different lines of the same text file are auto-merged; only overlapping line regions get conflict markers. Fix markers and run `gud commit`, or discard the merge with `gud merge --abort`.
 
+### Pull
+
+```bash
+gud pull              # fetch default remote + current branch, then merge
+gud pull origin -b main
+```
+
+Pull fetches the remote tip, then merges it into the current branch. If the remote tip matches the last fetched tracking ref and objects are already local, no object download is performed.
+
+
 ### Viewing History
 
 ```bash

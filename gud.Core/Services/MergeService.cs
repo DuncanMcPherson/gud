@@ -10,6 +10,8 @@ public enum MergeOutcome
 {
     AlreadyUpToDate,
     FastForward,
+    /// <summary>Empty local history was populated from the merge target (clone-like pull).</summary>
+    Initialized,
     MergedClean,
     Conflicts,
     Aborted,
@@ -53,13 +55,15 @@ public sealed class MergeService
             return Fail("A merge is already in progress. Resolve conflicts and commit, or run 'gud merge --abort'.");
         }
 
-        var head = _refs.GetHead();
-        if (string.IsNullOrEmpty(head))
-            return Fail("No commits yet on current branch; nothing to merge into.");
-
         var targetCommit = _branches.ResolveTarget(target);
         if (string.IsNullOrEmpty(targetCommit))
             return Fail($"'{target}' is not a valid branch or commit.");
+
+        var head = _refs.GetHead();
+
+        // Empty local history (e.g. fresh init + pull): check out the remote tip onto the current branch.
+        if (string.IsNullOrEmpty(head))
+            return InitializeFromTarget(targetCommit);
 
         var builder = new CommitBuilder(_objects);
         if (builder.HasUncommittedChanges(_root, head))
@@ -234,6 +238,23 @@ public sealed class MergeService
             Outcome = MergeOutcome.FastForward,
             ResultCommitHash = targetCommit,
             Message = $"Fast-forward\n{oldHead[..Math.Min(7, oldHead.Length)]}..{targetCommit[..Math.Min(7, targetCommit.Length)]}"
+        };
+    }
+
+    /// <summary>
+    /// Populate an empty repository from a fetched tip (same effect as a shallow clone of that branch).
+    /// </summary>
+    private MergeResult InitializeFromTarget(string targetCommit)
+    {
+        var newCommit = Commit.Read(_objects, targetCommit);
+        WorkingTreeSync.SyncWorkingTree(null, newCommit.TreeHash, _root, _objects);
+        _refs.SetHead(targetCommit);
+        return new MergeResult
+        {
+            Outcome = MergeOutcome.Initialized,
+            ResultCommitHash = targetCommit,
+            Message =
+                $"Initialized local branch from remote\n{targetCommit[..Math.Min(7, targetCommit.Length)]}"
         };
     }
 
