@@ -25,7 +25,7 @@ public class CheckoutCommand : Command<CheckoutCommand.Settings>
         public string Target { get; init; } = null!;
     }
 
-    protected override int Execute(CommandContext context, Settings settings, CancellationToken cancellationToken)
+    protected override int Execute(CommandContext context, Settings settings, CancellationToken _)
     {
         string root;
 
@@ -67,46 +67,7 @@ public class CheckoutCommand : Command<CheckoutCommand.Settings>
             return 1;
         }
 
-        string? oldTreeHash = null;
-        if (headCommit != null)
-        {
-            var headContent = repo.ReadObject(headCommit).Content;
-            var committedHead = Commit.Read(headContent);
-            oldTreeHash = committedHead.TreeHash;
-        }
-
-        var targetContent = repo.ReadObject(targetCommit).Content;
-        var committedTarget = Commit.Read(targetContent);
-        var newTreeHash = committedTarget.TreeHash;
-
-        WorkingTreeSync.SyncWorkingTree(oldTreeHash, newTreeHash, root, repo);
-
-        if (branches.Exists(settings.Target))
-        {
-            refStore.SetBranch(settings.Target);
-            _console.MarkupLine($"[green]Switched to[/] {settings.Target}");
-            return 0;
-        }
-
-        // Remote-tracking ref: origin/feat/pull → create local feat/pull when missing
-        if (remoteRefs.TrySplitTrackingName(settings.Target, out _, out var remoteBranch))
-        {
-            if (!branches.Exists(remoteBranch))
-            {
-                branches.SetCommit(remoteBranch, targetCommit);
-                refStore.SetBranch(remoteBranch);
-                _console.MarkupLine($"[green]Switched to a new branch[/] '{remoteBranch}'");
-                return 0;
-            }
-
-            // Local branch already exists: stay detached at the remote-tracking tip (git-like)
-            refStore.SetHead(targetCommit);
-            _console.MarkupLine($"[green]Switched to[/] {settings.Target} [grey](detached HEAD)[/]");
-            return 0;
-        }
-
-        // Bare commit / short hash
-        refStore.SetHead(targetCommit);
+        CheckoutUtility.Checkout(headCommit, targetCommit, settings.Target, root, repo, branches, refStore, remoteRefs);
         _console.MarkupLine($"[green]Switched to[/] {settings.Target}");
         return 0;
     }
