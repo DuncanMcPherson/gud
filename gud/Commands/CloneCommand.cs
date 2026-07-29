@@ -73,7 +73,7 @@ public class CloneCommand : AsyncCommand<CloneCommand.Settings>
             var refStore = new RefStore(gudPath);
             refStore.SetBranch(defaultBranch);
 
-            CheckoutUtility.Checkout(null, branches[defaultBranch], defaultBranch, targetDir, objects, localBranches, refStore);
+            CheckoutUtility.Checkout(null, branches[defaultBranch], defaultBranch, targetDir, objects, localBranches, refStore, remoteRefs);
 
             AnsiConsole.MarkupLine($"[green]Cloned into [/]{targetDir}");
             return 0;

@@ -67,7 +67,7 @@ public class CheckoutCommand : Command<CheckoutCommand.Settings>
             return 1;
         }
 
-        CheckoutUtility.Checkout(headCommit, targetCommit, settings.Target, root, repo, branches, refStore);
+        CheckoutUtility.Checkout(headCommit, targetCommit, settings.Target, root, repo, branches, refStore, remoteRefs);
         _console.MarkupLine($"[green]Switched to[/] {settings.Target}");
         return 0;
     }

@@ -13,7 +13,8 @@ public static class CheckoutUtility
         string repoRoot,
         ObjectRepository repo,
         BranchStore branches,
-        RefStore refStore)
+        RefStore refStore,
+        RemoteRefStore remoteRefs)
     {
         string? oldTreeHash = null;
         if (!string.IsNullOrWhiteSpace(headCommitHash))
@@ -25,10 +26,24 @@ public static class CheckoutUtility
         var newTreeHash = Commit.Read(repo, newCommitHash).TreeHash;
         
         WorkingTreeSync.SyncWorkingTree(oldTreeHash, newTreeHash, repoRoot, repo);
-        
+
         if (branches.Exists(targetName))
+        {
             refStore.SetBranch(targetName);
-        else
-            refStore.SetHead(newCommitHash);
+            return;
+        }
+
+        if (remoteRefs.TrySplitTrackingName(targetName, out _, out var remoteRef))
+        {
+            if (!branches.Exists(remoteRef))
+            {
+                branches.SetCommit(remoteRef, newCommitHash);
+                refStore.SetBranch(remoteRef);
+                return;
+            }
+            
+        }
+        
+        refStore.SetHead(newCommitHash);
     }
 }
