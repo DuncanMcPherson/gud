@@ -42,4 +42,10 @@ public static class ObjectResolver
             length++;
         return length;
     }
+
+    public static string ShortHash(string hash, int length = 7)
+    {
+        var displayLength = ComputeDisplayLength(hash);
+        return hash[..Math.Min(length, displayLength)];
+    }
 }

@@ -1,0 +1,27 @@
+﻿VERIFICATION
+Verification is intended to assist the Chocolatey moderators and community
+in verifying that this package's contents are trustworthy.
+
+This package downloads the official gud installer directly from the
+project's GitHub Releases page at install time. No files are embedded
+in this Chocolatey package.
+
+Installer source:
+https://github.com/DuncanMcPherson/gud/releases/download/v1.6.0/gud_1.6.0.msi
+
+To verify the checksum yourself:
+
+1. Download the file from the URL above.
+2. Get the checksum using one of the following methods:
+   - Using PowerShell:
+     Get-FileHash -Path "gud_1.6.0.msi" -Algorithm SHA256
+   - Using Chocolatey's checksum utility:
+     checksum -t sha256 -f "gud_1.6.0.msi"
+
+The checksum should match what's declared in this package's
+chocolateyinstall.ps1:
+
+SHA256: 9B60ADDD5E5ED4BA318A72AC8DDB1A19CB10A69F9315A504E87EDB40CCB45031
+
+gud is authored and maintained by Duncan McPherson.
+Source code: https://github.com/DuncanMcPherson/gud

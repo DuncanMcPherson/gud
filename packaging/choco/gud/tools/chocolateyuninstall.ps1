@@ -1,0 +1,1 @@
+﻿# Not needed for now. Eventually, we will have a global config file to deal with, but right now it can be empty

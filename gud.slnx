@@ -4,6 +4,15 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Folder Name="/choco-files/">
+    <File Path="packaging/choco/gud/gud.nuspec" />
+    <File Path="packaging/choco/gud/ReadMe.md" />
+    <File Path="packaging/choco/gud/tools/chocolateybeforemodify.ps1" />
+    <File Path="packaging/choco/gud/tools/chocolateyinstall.ps1" />
+    <File Path="packaging/choco/gud/tools/chocolateyuninstall.ps1" />
+    <File Path="packaging/choco/gud/tools/LICENSE.txt" />
+    <File Path="packaging/choco/gud/tools/VERIFICATION.txt" />
+  </Folder>
   <Folder Name="/installer/">
     <File Path="installer/Product.wxs" />
   </Folder>

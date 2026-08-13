@@ -13,3 +13,4 @@ publish/
 .wix/
 .junie/
 TestResults/
+**/*.nupkg
