@@ -31,6 +31,18 @@ public class AuthService(IUserRepository userRepository, IConfiguration config) 
         return (true, null, new AuthResponse(user.Username, token));
     }
 
+    public async Task<(bool Success, string? Error, AuthResponse? Response)> LoginAsync(LoginRequest request)
+    {
+        if (string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))
+            return (false, "Username and password are required", null);
+
+        var user = await userRepository.GetByUsernameAsync(request.Username);
+        if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
+            return (false, "Invalid username or password", null);
+        var token = IssueToken(user.Id, user.Username);
+        return (true, null, new AuthResponse(user.Username, token));
+    }
+
     public string IssueToken(int userId, string username)
     {
         var secret = config["Jwt:Secret"]!;
