@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>gud</id>
+    <version>1.6.0</version>
+    <owners>Duncan McPherson</owners>
+    <title>gud</title>
+    <authors>Duncan McPherson</authors>
+    <projectUrl>https://github.com/duncanmcpherson/gud</projectUrl>
+     <copyright>2026 gud Duncan McPherson</copyright> 
+    <licenseUrl>https://github.com/duncanmcpherson/gud/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/duncanmcpherson/gud</projectSourceUrl>
+    <docsUrl>https://github.com/duncanmcpherson/gud/blob/master/README.md</docsUrl>
+    <bugTrackerUrl>https://github.com/duncanmcpherson/gud/issues</bugTrackerUrl>
+    <tags>gud vcs version-control cli</tags>
+    <summary>A git-inspired version control system</summary>
+    <description>gud is a git-inspired version control system, built as a self-hosting CLI tool.</description>
+     <releaseNotes>https://github.com/DuncanMcPherson/gud/releases/tag/v1.6.0</releaseNotes> 
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
