@@ -1,138 +1,29 @@
-using System.Security.Cryptography;
-using gud.Core.Repository;
-using gud.Core.Services;
-using gud.Core.Stores;
-using gud.Core.Utilities;
-using gud.Server;
-using Microsoft.AspNetCore.Mvc;
+using gud.Server.Middleware;
+using gud.Server.Repositories.Implementations;
+using gud.Server.Repositories.Interfaces;
+using gud.Server.Services.Implementations;
+using gud.Server.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IRepoRepository, RepoRepository>();
+builder.Services.AddScoped<IRepoService, RepoService>();
+builder.Services.AddScoped<IRefService, RefService>();
+builder.Services.AddScoped<IObjectService, ObjectService>();
+
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 app.UseMiddleware<ApiKeyMiddleware>();
-
-var reposRoot = builder.Configuration["ReposRoot"] ?? "./repos";
-
-#region Objects
-
-app.MapGet("/repos/{repo}/objects/{hash}/exists", (string repo, string hash) =>
-{
-    if (!GudRepository.Exists(GudPath(reposRoot, repo)))
-        return Results.NotFound();
-    var store = new ObjectStore(GudPath(reposRoot, repo));
-    return store.Exists(hash) ? Results.Ok() : Results.NotFound();
-});
-
-app.MapGet("/repos/{repo}/objects/{hash}", (string repo, string hash) =>
-{
-    if (!GudRepository.Exists(GudPath(reposRoot, repo)))
-        return Results.NotFound();
-    var store = new ObjectStore(GudPath(reposRoot, repo));
-    try
-    {
-        return Results.Bytes(store.Read(hash), "application/octet-stream");
-    }
-    catch (FileNotFoundException)
-    {
-        return Results.NotFound();
-    }
-});
-
-app.MapPost("/repos/{repo}/objects/{hash}", async (string repo, string hash, HttpRequest req) =>
-{
-    if (!GudRepository.Exists(GudPath(reposRoot, repo)))
-        return Results.NotFound();
-    using var ms = new MemoryStream();
-    await req.Body.CopyToAsync(ms);
-    var content = ms.ToArray();
-
-    var actualHash = Convert.ToHexString(SHA256.HashData(content)).ToLowerInvariant();
-    if (actualHash != hash.ToLowerInvariant())
-        return Results.BadRequest($"Content hash mismatch: expected {hash}, got {actualHash}");
-    new ObjectStore(GudPath(reposRoot, repo)).Write(hash, content);
-    return Results.Created();
-});
-
-#endregion
-
-#region Refs
-
-app.MapGet("/repos/{repo}/refs/heads", (string repo) =>
-{
-    if (!GudRepository.Exists(GudPath(reposRoot, repo)))
-        return Results.NotFound();
-    var branches = new BranchStore(GudPath(reposRoot, repo));
-    var result = branches.ListBranches().ToDictionary(b => b!, b => branches.GetCommit(b!));
-    return Results.Ok(result);
-});
-
-app.MapGet("/repos/{repo}/refs/heads/{*branch}", (string repo, string branch) =>
-{
-    if (!GudRepository.Exists(GudPath(reposRoot, repo)))
-        return Results.NotFound();
-    var branches = new BranchStore(GudPath(reposRoot, repo));
-    var commit = branches.GetCommit(branch);
-    return commit is null ? Results.NotFound() : Results.Ok(commit);
-});
-
-app.MapPut("/repos/{repo}/refs/heads/{*branch}", (string repo, string branch, [FromBody] RefUpdateRequest req) =>
-{
-    if (!GudRepository.Exists(GudPath(reposRoot, repo)))
-        return Results.NotFound();
-    var gudPath = GudPath(reposRoot, repo);
-    var branches = new BranchStore(gudPath);
-    var objects = new ObjectRepository(new ObjectStore(gudPath));
-
-    var currentCommit = branches.GetCommit(branch);
-
-    if (currentCommit != null && !CommitGraph.IsAncestor(objects, currentCommit, req.NewCommit))
-        return Results.Conflict($"Rejected: {Short(req.NewCommit)} is not a fast-forward of {Short(currentCommit)}");
-    branches.SetCommit(branch, req.NewCommit);
-    return Results.Ok();
-});
-
-app.MapGet("/repos", () =>
-{
-    if (!Directory.Exists(reposRoot))
-        return Results.Ok(Array.Empty<string>());
-    var repoNames = Directory.GetDirectories(reposRoot)
-        .Where(dir => Directory.Exists(Path.Combine(dir, ".gud")))
-        .Select(Path.GetFileName);
-    return Results.Ok(repoNames);
-});
-
-app.MapPost("/repos/{repo}", async (string repo) =>
-{
-    var gudPath = GudPath(reposRoot, repo);
-    if (GudRepository.Exists(gudPath))
-        return Results.Conflict("Repository already exists");
-    try
-    {
-        await GudRepository.CreateAsync(gudPath);
-        return Results.Created($"/repos/{repo}", null);
-    }
-    catch (Exception)
-    {
-        return Results.BadRequest("Failed to create repository");
-    }
-});
-
-app.MapGet("/repos/{repo}", (string repo) =>
-{
-    var gudPath = GudPath(reposRoot, repo);
-    return GudRepository.Exists(gudPath) ? Results.Ok() : Results.NotFound();
-});
-
-#endregion
+app.MapControllers();
 
 app.Run();
-
-#region Helpers
-
-static string Short(string s) => s.Length > 8 ? s[..8] : s;
-
-static string GudPath(string reposRoot, string repo) => Path.Combine(reposRoot, repo, ".gud");
-
-public record RefUpdateRequest(string NewCommit);
-
-#endregion

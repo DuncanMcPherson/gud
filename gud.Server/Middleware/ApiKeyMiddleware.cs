@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace gud.Server;
+namespace gud.Server.Middleware;
 
 public class ApiKeyMiddleware
 {
