@@ -16,8 +16,17 @@ builder.Services.AddScoped<IRepoRepository, RepoRepository>();
 builder.Services.AddScoped<IRepoService, RepoService>();
 builder.Services.AddScoped<IRefService, RefService>();
 builder.Services.AddScoped<IObjectService, ObjectService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddDbContext<GudDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("Default") ?? "Data Source=gud.db"));
+
+var jwtSecret = builder.Configuration["Jwt:Secret"]!;
+if (string.IsNullOrWhiteSpace(jwtSecret) || jwtSecret == "CHANGE_ME_LOCALLY")
+{
+    if (builder.Environment.IsProduction())
+        throw new InvalidOperationException("Jwt:Secret is not configured for production");
+}
 
 var app = builder.Build();
 
