@@ -14,3 +14,6 @@ publish/
 .junie/
 TestResults/
 **/*.nupkg
+**/*.db
+**/*.db-shm
+**/*.db-wal
