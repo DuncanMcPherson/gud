@@ -14,4 +14,11 @@ public class AuthController(IAuthService authService) : ControllerBase
         var (success, error, response) = await authService.RegisterAsync(request);
         return success ? Ok(response) : BadRequest(error);
     }
+    
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginRequest request)
+    {
+        var (success, error, response) = await authService.LoginAsync(request);
+        return success ? Ok(response) : BadRequest(error);
+    }
 }

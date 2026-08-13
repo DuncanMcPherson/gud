@@ -20,6 +20,7 @@ is_ignored_branch() {
       return 0
     fi
   done
+  return 1
 }
 
 mapfile -t LOCAL_BRANCHES < <(
@@ -36,6 +37,7 @@ for branch in "${MERGED_BRANCHES[@]}"; do
   fi
   
   if is_ignored_branch "$branch"; then
+    echo "Ignoring $branch"
     continue
   fi
   
