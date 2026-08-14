@@ -15,16 +15,12 @@ $mergedBranches = gh pr list `
 
 $localBranches = git branch --format='%(refname:short)'
 
-$mergedIntoDev = $mergedBranches | Where-Object { $_.baseRefName -eq "dev" }
+$mergedIntoDev = $mergedBranches | Where-Object { $_.baseRefName -eq "dev" } | Sort-Object -Property headRefName -Unique
 
 foreach ($pr in $mergedIntoDev) {
     $branch = $pr.headRefName
     
     if ($localBranches -notcontains $branch) {
-        continue
-    }
-    
-    if ($pr.baseRefName -ne "dev") {
         continue
     }
     
@@ -35,7 +31,11 @@ foreach ($pr in $mergedIntoDev) {
     if ($DryRun) {
         Write-Host "[dry-run] Would delete: $branch"
     } else {
-        git branch -D $branch
-        Write-Host "Deleted $branch"
+        git branch -D $branch 2>$null
+        if ($LASTEXITCODE -eq 0) {
+            Write-Host "Deleted $branch"
+        } else {
+            Write-Host "Failed to delete $branch (already gone?)" -ForegroundColor Yellow
+        }
     }
 }
